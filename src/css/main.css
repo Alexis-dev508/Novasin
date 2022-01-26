@@ -1,0 +1,65 @@
+:root {
+    --main-blue: rgb(0 162 208);
+    --main-green: rgb(44 148 87);
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+.contact-bar{
+    background-color: var(--main-blue);
+    color: white;
+    font-size: 1.5rem;
+    padding-top: 1.5rem;
+}
+.contact-bar p{
+    /* padding: 1rem; */
+}
+.contact-bar .bi{
+    font-size: 2rem;
+    color: white;
+}
+.social-block{
+    display: inline-flex;
+}
+.F1{
+    background-color: #3b5998;
+    padding: 1rem 3.5rem 1rem 1.5rem;
+}
+.I1{
+    background-color: black;
+    padding: 1rem 3.5rem 1rem 1.5rem;
+}
+.logo-img{
+    margin: 2rem 0 2rem 0;
+    width: 80vw;
+    height: 8rem;
+}
+.dropdown-item{
+    font-size: 2rem;
+}
+.btn-group{
+    font-weight: bold;
+}
+.button-home{
+    font-size: 1.3rem;
+    padding: 0.56rem;
+    background-color: var(--main-blue);
+    color: white;
+    font-weight: bold;
+    border: 0px solid black;
+}
+
+.text-over--carousel{
+    color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+}
