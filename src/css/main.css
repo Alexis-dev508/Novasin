@@ -7,12 +7,25 @@
     margin: 0px;
     padding: 0px;
 }
+.navbar-light{
+    background-color: var(--main-blue) !important;
+    color: white !important;
+    vertical-align: middle;
+    font-size: 2rem;
+    
+}
+.nav-item{
+    
+    vertical-align: middle !important;
+    font-size: 2rem;
+    color: white !important;
+}
 html{
     box-sizing: border-box;
     font-size: 62.5%;
 }
 .contact-bar{
-    background-color: var(--main-blue);
+    background-color: var(--main-green);
     color: white;
     font-size: 1.5rem;
     padding-top: 1.5rem;
@@ -124,7 +137,7 @@ html{
         -webkit-text-stroke: 2px black;
     }
     .wrap{
-        margin-top: 60vh;
+        margin-top: 70vh;
     }
     .logo-img{
         width:50%;

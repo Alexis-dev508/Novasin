@@ -49,7 +49,7 @@ nav ul {
     padding: 0;
 }
 
-nav ul li {
+.list-group-item nav ul li {
     --c: rgb(44 148 87);
     color: var(--c);
     font-size: 16px;
