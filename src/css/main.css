@@ -49,7 +49,7 @@ html{
     padding: 1rem 3.5rem 1rem 1.5rem;
 }
 .logo-img{
-    margin: 2rem 0 2rem 0;
+    margin: 10% 0 2rem 0;
     width: 80vw;
     height: 8rem;
 }
@@ -183,6 +183,10 @@ html{
 	.image{
 		flex: 100%;
 	}
+    .logo-img{
+        margin: 22% 0 2rem 0;
+        height: 9rem;
+    }
     .wrap{
         margin-top: 30vh;
     }
