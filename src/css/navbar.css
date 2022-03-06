@@ -104,6 +104,11 @@ section {
 		text-align: justify;
 		padding: 0 1rem;
 	}
+	.btn-horario{
+		background-color: none;
+		border: none;
+		background: none;
+	}
 	.dropdown_menu{
 		background-color: #FFFFFA;
 		padding-bottom: 70vh;
@@ -112,11 +117,14 @@ section {
 		-moz-box-shadow: 6px 17px 24px 5px rgba(0,0,0,0.59);
 		box-shadow: 6px 17px 24px 5px rgba(0,0,0,0.59);
 	}
-	.imagenLogo{
+	.imagen-logo {
 		/* margin-top: 0.5rem; */
-		background-image:url("../images/WATERMARK\ GOLD_lowQUALITY\ .png");
-		width: 10rem;
-		height: 6rem;
+		background-image:url("../images/logo-movil-golden.png");
+		width: 3.5rem;
+		height: 3.5rem;
+		position: absolute;
+		left: 88%;
+		top: 13%;
 		background-repeat: round;
 		float: right;
 	}

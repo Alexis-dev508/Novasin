@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina no encontrada</title>
+    <link rel="stylesheet" href="src/css/navbar.css">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/registro.css">
+    <script src="src/libraries/gsap/gsap.min.js"></script>
+    <script src="src/libraries/jquery3.6.0/jquery-3.6.0.min.js" ></script>
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="src/libraries/bootstrap-4.6.1-dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbarContainer"></div>
+    <div class="container-fluid">
+        <div class="row mx-auto">
+            <div class="col-sm-12">
+
+                <form action="" method="post" id="user_form">
+                    <img class="imgLogo"src="src/images/logo-golden.png" alt="Logo de Novasin">
+                    <br>
+                    <label for="user" class="label-form">
+                        <span>Nombre de usuario</span>
+                        <br>
+                        <input type="text" id="user" name="user"  placeholder="Escriba su nombre de usuario" required>
+                    </label>
+                    <label for="password" class="label-form">
+                        <span>Contraseña</span>
+                        <br>
+                        <input type="text" id="password" name="password"  placeholder="Escriba su contraseña" required>
+                    </label>
+                    <input type="submit" class="btn-aceptar" value="Aceptar">
+                    <br>
+                    <button class="btn-google"><i class="bi bi-google"></i> Iniciar sesion con Google </button>
+                    <br>
+                    <a href="#" class="form-a a-contrasena">Olvide mi contraseña</a>
+                    <a href="#" class="form-a a-registrate">o</a>
+                    <a href="#" class="form-a a-registrate">Registrate</a>
+                </form>
+            </div>                     
+        </div>
+    </div>
+   
+    <script>
+        gsap.to("#user_form", { y: "5%",  duration: 3, ease: "bounce" })
+        $(document).ready(function () {
+            $('.navbarContainer').load('src/_html/_navbar.html');
+        });
+    </script>
+
+    <script src="src/libraries/bootstrap-4.6.1-dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso denegado</title>
+    <script src="../libraries/gsap/gsap.min.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/404.css">
+    <script src="../libraries/jquery3.6.0/jquery-3.6.0.min.js" ></script>
+    <link rel="stylesheet" href="../libraries/bootstrap-4.6.1-dist/css/bootstrap.min.css">
+</head>
+
+<body style="width: 100vw;">
+    <!-- Navbar -->
+    <div class="navbarContainer"></div>
+    <div class="container-fluid">
+        <div class="row mx-auto">
+            <div class="col-sm-12">
+              <center> <img class="imgLogo" src="../images/logo-movil-candado.png" alt="Logo de Novasin"></center> 
+                <p class="p404" style="font-weight: bold; font-size: 10rem; text-align: center;">503</p>
+                <p class="pDesc" style="font-weight: bold; font-size: 2rem; text-align: center; ">Heyyy! Parece que no tienes permiso para estar aqui. <a href="/">Regresar al inicio</a></p>
+            </div>
+           
+        </div>
+    </div>
+   
+    <script>
+        gsap.to(".imgLogo", { y: "30%", rotation: 360, duration: 3, ease: "elastic" })
+        gsap.to(".p404", { y: "50%", rotation: 360, duration: 3, ease: "expo"})
+        gsap.to(".pDesc", { y: "80%", duration: 2, ease: "bounce" })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.navbarContainer').load('_navbar.html');
+        });
+    </script>
+
+    <script src="../libraries/bootstrap-4.6.1-dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+:root {
+    --main-blue: rgb(0 162 208);
+    --main-green: rgb(44 148 87);
+    --roboto-font: @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+}
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    background-image: url("../images/fondo-registro.jpg");
+    background-repeat:round;
+    height: 100vh;
+}
+#user_form{
+    background-color:rgba(0, 162, 208, 0.7);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: block;
+    max-width: 30vw;
+    min-width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    height: 60vh;
+}
+#user_form span{
+    font-size: 1.8rem;
+    color: white;
+    font-weight: bold;
+    font-family: var(--roboto-font);
+}
+#user_form input{
+    margin: 0.5rem;
+    padding: 0.8rem;
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0.5rem;
+}
+#user_form img{
+    max-width: 68%;
+    height: 17%;
+}
+.btn-google{
+    width: 80%;
+    margin: 0.5rem;
+    padding: 0.8rem;
+    border: 0.5px solid grey;
+    background-color: white;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+.btn-google i {
+    color: red;
+}
+.a-registrate{
+    color: white;
+    font-weight: bold;
+}
+.form-a{
+    font-size: 1.3rem;
+}
+.label-form{
+    display: block;
+}
+.btn-aceptar{
+    background-color: var(--main-green);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+@media screen and (min-width:350px) {
+    #user_form{
+        margin-top: 25%;
+    }
+}
+@media screen and (min-width:576px) {
+    #user_form{
+        margin-top: 13%;
+    }
+}
+@media screen and (min-width:768px) {
+    #user_form{
+        margin-top: 12%;
+    }
+}
+@media screen and (min-width:992px) {
+    #user_form{
+        margin-top: 18%;
+    }
+    .form-a{
+        font-size: 1.5rem;
+    }
+}
+@media screen and (min-width:1200px) {
+    #user_form{
+        margin-top: 8%;
+    }
+}
