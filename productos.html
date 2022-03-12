@@ -12,65 +12,15 @@
     <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/main-cards.css">
     <link rel="stylesheet" href="src/css/footer.css">
-   
+   <link rel="stylesheet" href="src/css/navbar.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css"> 
 
     <title>Productos</title>
   </head>
   <body>
     <!-- Navbar -->
-    <!-- <div class="navbarContainer"></div> -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-        <div class="container-fluid" >
-          <a class="navbar-brand" href="index.html" style="color: white;">Novasin</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item" style=" border-color: none;">
-                <a class="nav-link active" aria-current="page" href="index.html" style="color: white;">Inicio</a>
-              </li>
-              <li class="nav-item" style=" border-color: none;">
-                <a class="nav-link active" aria-current="page" href="acerca.html" style="color: white;">Acerca de</a>
-              </li>
-              <li class="nav-item" style=" border-color: none;">
-                <a class="nav-link active" aria-current="page" href="politicas.html" style="color: white;">Politicas</a>
-              </li>
-              <li class="nav-item" style=" border-color: none;">
-                <a class="nav-link active" aria-current="page" href="contacto.html" style="color: white;">Contacto</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="productos.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
-                  Productos
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="productos.html">Categoria 1</a></li>
-                </ul>
-              </li>
-             
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Productos" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-          </div>
-        </div>
-      </nav>
-      <!-- Barra verde -->
-    <header>
-        <nav>
-            <div class="container-fluid">
-                <div class="row contact-bar">
-                    <div class="col-6"><p><i class="bi bi-telephone-fill"></i> 6676973437</p></div>
-                    <div class="col-6"><p><i class="bi bi-alarm-fill"></i> Lunes - Viernes</p></div>
-                    <div class="row pb-3 mx-auto">
-                       <a href="https://www.facebook.com/Novasin-132269560514178/" ><div class="col-6 social-block F1"><i class="bi bi-facebook"></i></div></a>
-                        <a href="https://instagram.com/novasin_culiacan" ><div class="col-6 social-block I1"><i class="bi bi-instagram"></i></div></a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+    <div class="navbarContainer"></div>
+    
     </header>
     <!-- Main -->
     <div class="container-fluid">
@@ -363,7 +313,7 @@
        
 
     </div>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md">
           <div class="wrap">
@@ -423,6 +373,7 @@
                 </a>
               </div>
             </div>
+            <div class="footer-container"  ></div>
           </div>
         </div>
         <br><br><br>
@@ -454,6 +405,9 @@
     <script>
       $(document).ready(function () {
         $('.navbarContainer').load('./src/_html/_navbar.html');
+      });
+      $(document).ready(function () {
+        $('.footer-container').load('./src/_html/_footer.html');
       });
   </script>
    <script>
