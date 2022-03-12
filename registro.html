@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/registro.css">
     <script src="src/libraries/gsap/gsap.min.js"></script>
-    <script src="src/libraries/jquery3.6.0/jquery-3.6.0.min.js" ></script>
+    <script src="src/libraries/jquery3.6.0/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="src/libraries/bootstrap-4.6.1-dist/css/bootstrap.min.css">
 </head>
@@ -22,32 +23,70 @@
             <div class="col-sm-12">
 
                 <form action="" method="post" id="user_form">
-                    <img class="imgLogo"src="src/images/logo-golden.png" alt="Logo de Novasin">
+                    <img class="imgLogo" src="src/images/logo-golden.png" alt="Logo de Novasin">
                     <br>
                     <label for="user" class="label-form">
                         <span>Nombre de usuario</span>
                         <br>
-                        <input type="text" id="user" name="user"  placeholder="Escriba su nombre de usuario" required>
+                        <input type="text" id="user" name="user" placeholder="Escriba su nombre de usuario" required>
                     </label>
                     <label for="password" class="label-form">
                         <span>Contraseña</span>
                         <br>
-                        <input type="text" id="password" name="password"  placeholder="Escriba su contraseña" required>
+                        <input type="text" id="password" name="password" placeholder="Escriba su contraseña" required>
                     </label>
                     <input type="submit" class="btn-aceptar" value="Aceptar">
-                    <br>
+                
+                    <p style="font-size: 1.5rem; color: white; font-weight: bold;">O</p>
+                   
                     <button class="btn-google"><i class="bi bi-google"></i> Iniciar sesion con Google </button>
                     <br>
                     <a href="#" class="form-a a-contrasena">Olvide mi contraseña</a>
                     <a href="#" class="form-a a-registrate">o</a>
-                    <a href="#" class="form-a a-registrate">Registrate</a>
+                    <a href="#" class="form-a a-registrate"  data-toggle="modal" data-target="#user_register">Registrate</a>
                 </form>
-            </div>                     
+            </div>
         </div>
     </div>
-   
+
+<!-- Modal -->
+<div class="modal fade" id="user_register" tabindex="-1" aria-labelledby="user_register-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="user_register-label">Crea una nueva cuenta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <label for="name">
+                <span>Nombre de usuario</span>
+                <input type="text" name="name" id="name" minlength="5" maxlength="32" required placeholder="Ej. Pedro Lopez" st>
+            </label>
+            <label for="password">
+                <span>Contraseña</span>
+                <input type="password" name="password" id="password" minlength="8" maxlength="32" required placeholder="Minimo 8 caracteres">
+            </label>
+            <label for="password2">
+                <span>Repita su Contraseña</span>
+                <input type="password" name="password2" id="password2" minlength="8" maxlength="32" required placeholder="Minimo 8 caracteres">
+            </label>
+            <label for="phone">
+                <span>Numero de telefono 10 digitos</span>
+                <input type="tel" name="phone" id="phone" minlength="10" maxlength="10" required placeholder="Ej. 6681530000">
+            </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" style="font-size: 1.3rem; font-weight: bold; " data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" style="font-size: 1.3rem; font-weight: bold;" data-dismiss="modal">Registrarse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     <script>
-        gsap.to("#user_form", { y: "5%",  duration: 3, ease: "bounce" })
+        gsap.to("#user_form", { y: "5%", duration: 3, ease: "bounce" })
         $(document).ready(function () {
             $('.navbarContainer').load('src/_html/_navbar.html');
         });

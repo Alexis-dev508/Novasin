@@ -30,7 +30,7 @@ body{
     font-weight: bold;
     font-family: var(--roboto-font);
 }
-#user_form input{
+#user_form input,#user_register input{
     margin: 0.5rem;
     padding: 0.8rem;
     width: 80%;
@@ -46,6 +46,7 @@ body{
     width: 80%;
     margin: 0.5rem;
     padding: 0.8rem;
+    margin-top: 0;
     border: 0.5px solid grey;
     background-color: white;
     border-radius: 0.5rem;
@@ -70,6 +71,37 @@ body{
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+
+/* ========= MODAL ========== */
+#user_register{
+    padding-left: 200px;
+    padding-right: 200px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+#user_register-label{
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+.btn{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+#user_register input{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-right: 0px !important;
+    border-bottom: 1px solid var(--main-blue);
+}
+#user_register label{
+    width: 100%;
+    margin-right: 0px !important;
+    text-align: center;
 }
 @media screen and (min-width:350px) {
     #user_form{
