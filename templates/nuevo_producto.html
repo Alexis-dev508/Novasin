@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Producto</title>
+</head>
+<body>
+    <form action="" id="new_prod_form">
+        <label for="nombre_prod">
+            <span>Nombre del producto</span>
+            <input type="text" id="nombre_prod" name="nombre_prod" placeholder="Nombre del producto">
+        </label>
+        <label for="desc_prod">
+            <span>Descripcion del producto</span>
+           <textarea name="desc_prod" id="desc_prod" rows="10"></textarea>
+        </label>
+        <select name="cat_prod" id="cat_prod">
+            <option value="none">Seleccione una categoria</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        <button id="btn_form_save">Guardar</button>
+    </form>
+</body>
+</html>

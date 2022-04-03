@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador</title>
+  <script src="../static/libraries/gsap/gsap.min.js"></script>
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="stylesheet" href="../static/css/404.css">
+  <link rel="stylesheet" href="../static/css/footer.css">
+  <link rel="stylesheet" href="../static/css/admin.css">
+  <script src="../../static/libraries/jquery3.6.0/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="../static/libraries/bootstrap-4.6.1-dist/css/bootstrap.min.css">
+</head>
+
+<body style="width: 100vw; ">
+  <!-- Navbar -->
+
+  {% extends "./_html/_navbar.html" %}
+  {% block contenido %}
+  <br>
+  <br>
+  <div class="container">
+    <!-- ========= TABLA DE CATEGORIAS ========= -->
+    <div class="row">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategoria"
+        style="font-size: 1.5rem; font-weight: bold;">
+        + Añadir nueva categoria
+      </button>
+    </div>
+    <br>
+    <div class="row">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Caratula</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for datos in categorias %}
+          <tr>
+              <td>{{datos[0]}}</td>
+              <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
+              <td>{{datos[2]}}</td>
+              <td><img style="width: 7rem; height: 7rem;" src="../static/images/categorias/{{datos[1]}}/caratula-{{datos[3]}}" alt=""> </td>
+              <td>
+                  <a href="/editar-categoria/{{datos[0]}}">Editar</a> <!--Envia el id de la personas a la ruta de editar-->
+                  <a href="/eliminar-categoria/{{datos[0]}}">Eliminar</a>
+              </td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!-- ========= TABLA DE PRODUCTOS ========= -->
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProducto"
+      style="font-size: 1.5rem; font-weight: bold;">
+      + Añadir nueva categoria
+    </button>
+    <br>
+    <br>
+    <div class="row">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Precio por unidad</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <br><br>
+    <!-- ========= TABLA DE USUARIOS ========= -->
+    <div class="row">
+      <H1>Tabla de usuarios</H1>
+    </div>
+    <br>
+    <div class="row">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Cantidad de productos</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- ====== Modal Categoria ====== -->
+
+    <div class="modal fade" id="modalCategoria" tabindex="-1" role="dialog" aria-labelledby="modalCategoriaLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCategoriaLabel">Nueva categoria</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <form action="/guardar-categoria" method="POST" enctype="multipart/form-data">
+                <div class="col-sm-12">
+                  <label for="nombreCategoria">
+                    <span>Nombre de la categoria</span>
+                    <br>
+                    <input type="text" name="nombreCategoria" id="nombreCategoria">
+                  </label>
+                </div>
+                <div class="col-sm-12">
+                  <label for="descripcionCategoria">
+                    <span>Descripcion de la Categoria</span>
+                    <br>
+                    <textarea name="descripcionCategoria" id="descripcionCategoria"></textarea>
+                  </label>
+                </div>
+                <div class="col">
+                  <label for="imagenCaratula">
+                    <span>Imagen de la caratula</span>
+                    <input type="file" name="imagenCaratula" id="imagenCaratula">
+                  </label>
+                  <label for="imagen">
+                    <span>Imagen 1</span>
+                    <input type="file" name="imagen1" id="imagen1">
+                  </label>
+                  <label for="imagen2">
+                    <span>Imagen 2</span>
+                    <input type="file" name="imagen2" id="imagen2">
+                  </label>
+                  <label for="imagen3">
+                    <span>Imagen 3</span>
+                    <input type="file" name="imagen3" id="imagen3">
+                  </label>
+                  <label for="imagen4">
+                    <span>Imagen 4</span>
+                    <input type="file" name="imagen4" id="imagen4">
+                  </label>
+                  <label for="imagen5">
+                    <span>Imagen 5</span>
+                    <input type="file" name="imagen5" id="imagen5">
+                  </label>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <input type="submit" class="btn btn-primary" value="Guardar">
+                </div>
+              </form>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Modal Categoria ====== -->
+
+    <div class="modal fade" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="modalProductoLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalProductoLabel">Nueva categoria</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <form action="">
+                <div class="col-sm-12">
+                  <label for="nombreProducto">
+                    <span>Nombre del producto</span>
+                    <br>
+                    <input type="text" name="nombreProducto" id="nombreProducto">
+                  </label>
+                </div>
+                <div class="col-sm-12">
+                  <label for="descripcionProducto">
+                    <span>Descripcion del producto</span>
+                    <br>
+                    <textarea name="descripcionProducto" id="descripcionProducto"></textarea>
+                  </label>
+                </div>
+                <div class="col">
+                  <label for="precioProducto">
+                    <span>Precio del producto</span>
+                    <br>
+                    <input type="number" name="precioProducto" id="precioProducto">
+                  </label>
+                  <label for="imagen">
+                    <span>Imagen 1</span>
+                    <input type="file" name="imagen1" id="imagen1">
+                  </label>
+                  <label for="imagen2">
+                    <span>Imagen 2</span>
+                    <input type="file" name="imagen2" id="imagen2">
+                  </label>
+                  <label for="imagen3">
+                    <span>Imagen 3</span>
+                    <input type="file" name="imagen3" id="imagen3">
+                  </label>
+                  <label for="imagen4">
+                    <span>Imagen 4</span>
+                    <input type="file" name="imagen4" id="imagen4">
+                  </label>
+                  <label for="imagen5">
+                    <span>Imagen 5</span>
+                    <input type="file" name="imagen5" id="imagen5">
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  {% include "./_html/_footer.html" %}
+
+
+  <script src="../../static/libraries/bootstrap-4.6.1-dist/js/bootstrap.min.js "></script>
+
+  {% endblock %}
+
+</body>
+
+</html>

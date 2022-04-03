@@ -1,0 +1,8 @@
+.usage-container{
+    padding: 0rem 5vw 2rem 5vw;
+    text-align: center;
+    font-size: 2rem;
+}
+.usage-container_ul{
+    list-style: none;
+}

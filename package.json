@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap-icons": "^1.7.2",
-    "firebase": "^9.6.5",
     "materialize": "^1.0.0"
   }
 }

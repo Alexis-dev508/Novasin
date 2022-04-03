@@ -1,0 +1,22 @@
+form{
+    font-size: 1.2rem;
+    text-align: center;
+}
+label{
+    width: 100%;
+}
+span{
+    font-weight: bold;
+}
+#nombreCategoria, #descripcionCategoria{
+    width: 100%;
+}
+#descripcionCategoria{
+    height: 10rem;
+}
+#nombreProducto, #descripcionProducto{
+    width: 100%;
+}
+#descripcionProducto{
+    height: 10rem;
+}
