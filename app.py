@@ -187,13 +187,13 @@ def eliminar_persona(idcategoria):
 
 @app.route('/admin')
 def admin():
-    consulta = 'SELECT * FROM categorias'
-    con = db.connect()
-    cur = con.cursor()
-    cur.execute(consulta)
-    categorias = cur.fetchall() #Envia todos los datos de la consulta y los guarda en la variable persona
-    con.commit()
-    return render_template('admin.html', categorias = categorias) #Le mandamos el array a la vista para poder usar los datos
+    # consulta = 'SELECT * FROM categorias'
+    # con = db.connect()
+    # cur = con.cursor()
+    # cur.execute(consulta)
+    # categorias = cur.fetchall() #Envia todos los datos de la consulta y los guarda en la variable persona
+    # con.commit()
+    return render_template('admin.html') #Le mandamos el array a la vista para poder usar los datos
     
 
 
