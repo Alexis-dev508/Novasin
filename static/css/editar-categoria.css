@@ -1,0 +1,60 @@
+:root {
+    --main-blue: rgb(0 162 208);
+    --main-green: rgb(44 148 87);
+   
+  }
+.label-input{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+span{
+    padding: 2rem;
+}
+.img-label{
+    display: inline-block;
+}
+.label-input input {
+    width: 40%;
+    height: 3rem;
+}
+textarea{
+    width: 40%;
+    height: 10rem;
+}
+.custom-input-file {
+    background-color: var(--main-green);
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto 0;
+    min-height: 15px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    width: 400px;
+    margin-top: 10px;
+  }
+  
+  .custom-input-file .input-file {
+   border: 10000px solid transparent;
+   cursor: pointer;
+   font-size: 10000px;
+   margin: 0;
+   opacity: 0;
+   outline: 0 none;
+   padding: 0;
+   position: absolute;
+   right: -1000px;
+   top: -1000px;
+  }
+  
+  .form-editar{
+      margin-top: 2rem;
+      padding: 3rem;
+      background-color: rgba(237, 237, 237, 0.288);
+  }

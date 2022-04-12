@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="../static/css/footer.css">
     <link rel="stylesheet" href="../static/css/contacto.css">
     <link rel="stylesheet" href="../static/css/navbar.css">
-    <title>Politicas</title>
+    <link rel="stylesheet" href="../static/css/editar-categoria.css">
+    <title>Editar Categoria</title>
 </head>
 
 <body>
@@ -29,50 +30,65 @@
         {% for datos in registro %}
 
 
-        <div class="row">
-            <form action="/actualizar-categoria" method="POST" enctype="multipart/form-data">
+        <div class="row mx-auto">
+            <form action="/actualizar-categoria" class="form-editar" method="POST" enctype="multipart/form-data">
                 <input type="text" name="pk_categoria" id="pk_categoria" value="{{datos[0]}}" hidden>
+                <input type="text"  name="nombreCategoriaRespaldo" id="nombreCategoriaRespaldo" hidden>
                 <div class="col-sm-12">
-                    <label for="nombreCategoria">
+                    <label for="nombreCategoria"  class="label-input">
+                        <br>
                         <span>Nombre de la categoria</span>
                         <br>
-                        <input type="text" name="nombreCategoria" id="nombreCategoria" value='{{datos[1]}}' required>
+                        <input type="text" name="nombreCategoria" id="nombreCategoria" value='{{datos[1]}}' disabled required>
                     </label>
                 </div>
                 <div class="col-sm-12">
-                    <label for="descripcionCategoria">
+                    <label for="descripcionCategoria"  class="label-input">
+                        <br>
                         <span>Descripcion de la Categoria</span>
                         <br>
                         <textarea spellcheck="checked" name="descripcionCategoria"
                             id="descripcionCategoria" required>{{datos[2]}}</textarea>
                     </label>
                 </div>
-                <div class="col">
-                    <label for="imagenCaratula">
+                <div class="col custom-input-file" style="background-color: gold;">
+                    <label for="imagenCaratula" class="label-input">
                         <span>Imagen de la caratula</span>
-                        <input type="file" name="imagenCaratula" id="imagenCaratula" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                    <label for="imagen">
-                        <span>Imagen 1</span>
-                        <input type="file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                    <label for="imagen2">
-                        <span>Imagen 2</span>
-                        <input type="file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                    <label for="imagen3">
-                        <span>Imagen 3</span>
-                        <input type="file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                    <label for="imagen4">
-                        <span>Imagen 4</span>
-                        <input type="file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                    <label for="imagen5">
-                        <span>Imagen 5</span>
-                        <input type="file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                        <input type="file" class="input-file"  name="imagenCaratula" id="imagenCaratula" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
                     </label>
                 </div>
+                <div class="col custom-input-file">
+                    <label for="imagen" class="label-input img-label">
+                        <span>Subir una imagen</span>
+                        <input type="file" class="input-file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                    </label>
+                </div>
+                <div class="col custom-input-file">
+                    <label for="imagen2" class="label-input img-label">
+                        <span>Subir una imagen</span>
+                        <input type="file" class="input-file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required> 
+                    </label>
+                </div>
+                <div class="col custom-input-file">
+                    <label for="imagen3" class="label-input img-label">
+                        <span>Subir una imagen</span>
+                        <input type="file" class="input-file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                    </label>
+                </div>
+                <div class="col custom-input-file">
+                    <label for="imagen4" class="label-input img-label">
+                        <span>Subir una imagen</span>
+                        <input type="file" class="input-file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                    </label>
+                </div>
+                <div class="col custom-input-file">
+                    <label for="imagen5" class="label-input img-label">
+                        <span>Subir una imagen</span>
+                        <input type="file" class="input-file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                    </label>
+                </div>
+                    
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <input type="submit" class="btn btn-primary" value="Guardar">
@@ -96,7 +112,16 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.js"></script>
-
+    <script>
+        $(document).ready(function() {
+            let nombreCategoria = document.getElementById('nombreCategoria').value;
+            let nombreCategoriaRespaldo = document.getElementById('nombreCategoriaRespaldo')
+            nombreCategoriaRespaldo.value = nombreCategoria
+            nombreCategoria.style = 'disabled'
+        });
+        
+    </script> 
+        </script>
     {% endblock %}
 
 </body>

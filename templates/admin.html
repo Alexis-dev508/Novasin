@@ -46,14 +46,16 @@
         <tbody>
           {% for datos in categorias %}
           <tr>
-              <td>{{datos[0]}}</td>
-              <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
-              <td>{{datos[2]}}</td>
-              <td><img style="width: 7rem; height: 7rem;" src="../static/images/categorias/{{datos[1]}}/caratula-{{datos[3]}}" alt=""> </td>
-              <td>
-                  <a href="/editar-categoria/{{datos[0]}}">Editar</a> <!--Envia el id de la personas a la ruta de editar-->
-                  <a href="/eliminar-categoria/{{datos[0]}}">Eliminar</a>
-              </td>
+            <td>{{datos[0]}}</td>
+            <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
+            <td>{{datos[2]}}</td>
+            <td><img style="width: 7rem; height: 7rem;"
+                src="../static/images/categorias/{{datos[1]}}/caratula-{{datos[3]}}" alt=""> </td>
+            <td>
+              <a href="/editar-categoria/{{datos[0]}}">Editar</a>
+              <!--Envia el id de la personas a la ruta de editar-->
+              <a href="/eliminar-categoria/{{datos[0]}}">Eliminar</a>
+            </td>
           </tr>
           {% endfor %}
 
@@ -62,11 +64,12 @@
     </div>
     <br>
     <!-- ========= TABLA DE PRODUCTOS ========= -->
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProducto"
-      style="font-size: 1.5rem; font-weight: bold;">
-      + Añadir nueva categoria
-    </button>
+    <div class="row">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProducto"
+        style="font-size: 1.5rem; font-weight: bold; left:-55px;">
+        + Añadir nuevo producto
+      </button>
+    </div>
     <br>
     <br>
     <div class="row">
@@ -210,7 +213,7 @@
               </form>
             </div>
           </div>
-         
+
         </div>
       </div>
     </div>

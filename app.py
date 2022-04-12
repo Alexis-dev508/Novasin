@@ -114,7 +114,7 @@ def guardarCategoria():
 
 
 @app.route('/editar-categoria/<int:idcategoria>')
-def editar_persona(idcategoria):
+def editar_categoria(idcategoria):
     consulta = 'SELECT * FROM categorias WHERE pk_categoria = %s'
     con = db.connect()
     cur = con.cursor()
@@ -128,6 +128,7 @@ def editar_persona(idcategoria):
 def actualizar_categoria():
     idCategoria = request.form['pk_categoria']
     nombreCategoria = request.form['nombreCategoria']
+    nombreCategoriaRespaldo = request.form['nombreCategoriaRespaldo']
     descripcionCategoria = request.form['descripcionCategoria']
     imagenCaratula = request.files['imagenCaratula']
     imagenCaratulaNombre = imagenCaratula.filename
@@ -142,19 +143,20 @@ def actualizar_categoria():
     imagen5 = request.files['imagen5']
     imagen5Nombre = imagen5.filename
     try:
+        
+        listaArchivos = os.listdir(f'./static/images/categorias/{nombreCategoria}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+        for archivo in listaArchivos:
+             os.remove(f'./static/images/categorias/{nombreCategoria}/{archivo}')#Borra el directorio junto con los archivos contenidos
+        consulta = "UPDATE categorias SET nombreCategoria = %s, descripcionCategoria = %s, imagenCaratula = %s, imagen1 = %s, imagen2 = %s, imagen3 = %s, imagen4 = %s, imagen5 = %s  WHERE pk_categoria = %s"  
+        con = db.connect() #Abre una conexion con MySQL
+        cur = con.cursor()
+        cur.execute(consulta,(nombreCategoria, descripcionCategoria, imagenCaratulaNombre, imagen1Nombre, imagen2Nombre, imagen3Nombre, imagen4Nombre, imagen5Nombre, idCategoria )) #Le enviamos parametros a la consulta
         imagenCaratula.save(f'./static/images/categorias/{nombreCategoria}/' +'caratula-'+ imagenCaratulaNombre)
-        os.chmod(f'./static/images/categorias/{nombreCategoria}', 0o777)
-        os.rmdir(f'./static/images/categorias/Nueva Categoria/caratula-1.jpg')#Borra el directorio junto con los archivos contenidos
-        #os.mkdir(f'./static/images/categorias/{nombreCategoria}/')#Crea nuevamente la carpeta
         imagen1.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen1-' + imagen1Nombre)
         imagen2.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen2-' + imagen2Nombre)
         imagen3.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen3-' + imagen3Nombre)
         imagen4.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen4-' + imagen4Nombre)
         imagen5.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen5-' + imagen5Nombre)
-        consulta = 'UPDATE categorias SET(pk_categoria=%s, nombreCategoria=%s, descripcionCategoria=%s, imagenCaratula=%s, imagen1=%s, imagen2=%s, imagen3=%s, imagen4=%s, imagen5=%s)  WHERE pk_categoria = %s' 
-        con = db.connect() #Abre una conexion con MySQL
-        cur = con.cursor()
-        cur.execute(consulta,(nombreCategoria, descripcionCategoria, imagenCaratulaNombre, imagen1Nombre, imagen2Nombre, imagen3Nombre, imagen4Nombre, imagen5Nombre, idCategoria )) #Le enviamos parametros a la consulta
         con.commit() #Guarda los cambios en la base de datos
         return redirect('/admin')
     except OSError as e:
@@ -162,8 +164,29 @@ def actualizar_categoria():
             raise
 
 
+@app.route('/eliminar-categoria/<int:idcategoria>')
+def eliminar_persona(idcategoria):
+    consultaTraerDatos = 'SELECT * FROM categorias WHERE pk_categoria = %s'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consultaTraerDatos,(idcategoria))
+    registro = cur.fetchone()
+    con.commit()
+    print(registro)
+    listaArchivos = os.listdir(f'./static/images/categorias/{registro[1]}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+    for archivo in listaArchivos:
+        os.remove(f'./static/images/categorias/{registro[1]}/{archivo}')#Borra el directorio junto con los archivos contenidos
+    os.rmdir(f'./static/images/categorias/{registro[1]}')
+    consulta = 'DELETE FROM categorias WHERE pk_categoria=%s'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta,(idcategoria))
+    con.commit()
+    return redirect('/admin')
+
+
 @app.route('/admin')
-def ver_personas():
+def admin():
     consulta = 'SELECT * FROM categorias'
     con = db.connect()
     cur = con.cursor()
@@ -190,5 +213,4 @@ def guardar_persona():
     return redirect('/personas')
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    app.run(host = '0.0.0.0',port=80,debug=True)
