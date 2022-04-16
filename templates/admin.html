@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../static/css/footer.css">
   <link rel="stylesheet" href="../static/css/admin.css">
   <script src="../../static/libraries/jquery3.6.0/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="../static/libraries/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../static/libraries/bootstrap-4.6.1-dist/css/bootstrap.min.css">
 </head>
 
@@ -52,9 +53,9 @@
             <td><img style="width: 7rem; height: 7rem;"
                 src="../static/images/categorias/{{datos[1]}}/caratula-{{datos[3]}}" alt=""> </td>
             <td>
-              <a href="/editar-categoria/{{datos[0]}}">Editar</a>
+              <a href="/editar-categoria/{{datos[0]}}"><i class="bi bi-pencil-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
               <!--Envia el id de la personas a la ruta de editar-->
-              <a href="/eliminar-categoria/{{datos[0]}}">Eliminar</a>
+              <a onclick="confirmarEliminar('/eliminar-categoria/{{datos[0]}}')"><i class="bi bi-trash-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
             </td>
           </tr>
           {% endfor %}
@@ -80,29 +81,29 @@
             <th scope="col">Producto</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Precio por unidad</th>
+            <th scope="col">Imagen</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
 
-          </tr>
+          {% for datos in productos %}
           <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
+            <td>{{datos[0]}}</td>
+            <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
+            <td>{{datos[2]}}</td>
+            <td>$ {{datos[3]}}</td>
+            <td><img style="width: 7rem; height: 7rem;"
+                src="../static/images/productos/{{datos[1]}}/imagen1p-{{datos[5]}}" alt=""> </td>
+            <td>
+              <a href="/editar-producto/{{datos[0]}}"><i class="bi bi-pencil-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
+              <!--Envia el id de la personas a la ruta de editar-->
+              <a onclick="confirmarEliminar('/eliminar-producto/{{datos[0]}}')"><i class="bi bi-trash-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
+            </td>
           </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {% endfor %}
+
+         
 
         </tbody>
       </table>
@@ -118,32 +119,26 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Cantidad de productos</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Ciudad</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
+          {% for datos in usuarios %}
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-
+            <td>{{datos[0]}}</td>
+            <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
+            <td>{{datos[3]}}</td>
+            <td>{{datos[4]}}</td>
+            <td>{{datos[5]}}</td>
+            <td>
+              <a onclick="confirmarEliminar('/eliminar-usuario/{{datos[0]}}')"><i class="bi bi-trash-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
+            </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {% endfor %}
 
         </tbody>
       </table>
@@ -183,27 +178,27 @@
                 <div class="col">
                   <label for="imagenCaratula">
                     <span>Imagen de la caratula</span>
-                    <input type="file" name="imagenCaratula" id="imagenCaratula">
+                    <input type="file" name="imagenCaratula" id="imagenCaratula" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                   <label for="imagen">
                     <span>Imagen 1</span>
-                    <input type="file" name="imagen1" id="imagen1">
+                    <input type="file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                   <label for="imagen2">
                     <span>Imagen 2</span>
-                    <input type="file" name="imagen2" id="imagen2">
+                    <input type="file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                   <label for="imagen3">
                     <span>Imagen 3</span>
-                    <input type="file" name="imagen3" id="imagen3">
+                    <input type="file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                   <label for="imagen4">
                     <span>Imagen 4</span>
-                    <input type="file" name="imagen4" id="imagen4">
+                    <input type="file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                   <label for="imagen5">
                     <span>Imagen 5</span>
-                    <input type="file" name="imagen5" id="imagen5">
+                    <input type="file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                 </div>
                 <div class="modal-footer">
@@ -218,7 +213,7 @@
       </div>
     </div>
 
-    <!-- ====== Modal Categoria ====== -->
+    <!-- ====== Modal Producto ====== -->
 
     <div class="modal fade" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="modalProductoLabel"
       aria-hidden="true">
@@ -232,7 +227,7 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <form action="">
+              <form action="/guardar-producto" method="POST" enctype="multipart/form-data">
                 <div class="col-sm-12">
                   <label for="nombreProducto">
                     <span>Nombre del producto</span>
@@ -255,32 +250,59 @@
                   </label>
                   <label for="imagen">
                     <span>Imagen 1</span>
-                    <input type="file" name="imagen1" id="imagen1">
+                    <input type="file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                   <label for="imagen2">
                     <span>Imagen 2</span>
-                    <input type="file" name="imagen2" id="imagen2">
+                    <input type="file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                   <label for="imagen3">
                     <span>Imagen 3</span>
-                    <input type="file" name="imagen3" id="imagen3">
+                    <input type="file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                   <label for="imagen4">
                     <span>Imagen 4</span>
-                    <input type="file" name="imagen4" id="imagen4">
+                    <input type="file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
                   <label for="imagen5">
                     <span>Imagen 5</span>
-                    <input type="file" name="imagen5" id="imagen5">
+                    <input type="file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
                   </label>
+                  <label for="imagen6">
+                    <span>Imagen 6</span>
+                    <input type="file" name="imagen6" id="imagen6" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                  </label>
+                  <label for="imagen7">
+                    <span>Imagen 7</span>
+                    <input type="file" name="imagen7" id="imagen7" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                  </label>
+                  <label for="imagen8">
+                    <span>Imagen 8</span>
+                    <input type="file" name="imagen8" id="imagen8" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                  </label>
+                  <label for="imagen9">
+                    <span>Imagen 9</span>
+                    <input type="file" name="imagen9" id="imagen9" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                  </label>
+                  <label for="imagen10">
+                    <span>Imagen 10</span>
+                    <input type="file" name="imagen10" id="imagen10" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                  </label>
+                  <select name="select-categoria" id="select-categoria">
+                  {% for categoria in categorias %}
+                    <option value="{{categoria[0]}}">{{categoria[1]}}</option>
+                  {% endfor %}
+                </select>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
               </form>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary">Guardar</button>
-          </div>
+         
         </div>
       </div>
     </div>
@@ -292,7 +314,14 @@
 
 
   <script src="../../static/libraries/bootstrap-4.6.1-dist/js/bootstrap.min.js "></script>
-
+ <script>
+  function confirmarEliminar(ruta){
+    let confirmacion = confirm("¿Desea eliminar el registro?")
+    if(confirmacion){
+      location.href = ruta
+    }
+  }
+ </script>
   {% endblock %}
 
 </body>

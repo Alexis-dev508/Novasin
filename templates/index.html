@@ -8,7 +8,7 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../static/libraries/bootstrap-4.6.1-dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../static/libraries/bootstrap-icons/font/bootstrap-icons.css">
   <!-- CSS -->
   <link rel="stylesheet" href="../static/css/main.css">
   <link rel="stylesheet" href="../static/css/main-cards.css">
@@ -23,7 +23,7 @@
   <!-- Navbar -->
   {% extends "./_html/_navbar.html" %}
   {% block contenido %}
-     <!-- Main -->
+  <!-- Main -->
   <div class="container-fluid">
     <!-- Logo -->
     <div class="row mx-auto">
@@ -72,20 +72,17 @@
     </div>
 
     <div class="row mx-auto" id="card-container">
+      {% for categoria in categorias %}
       <div class="col-sm-3">
         <div class="card" style="width: 80vw;">
-          <img src="../static/images/hojas.jpg" class="card-img-top" alt="...">
+          <img src="../static/images/categorias/{{categoria[1]}}/caratula-{{categoria[3]}}" class="card-img-top"
+            alt="...">
           <div class="card-body">
-            <h5 class="card-title">Muros verdes Artificiales </h5>
+            <h5 class="card-title">{{categoria[1]}} </h5>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <p class="card-text">
-                Proporcionan una estética similar
-                al jardín vertical vivo pero sin
-                mantenimiento, menor inversión
-                y con un sencillo método
-                de conservación.</p>
+              <p class="card-text">{{categoria[2]}}</p>
             </li>
             <li class="list-group-item">
               <!-- Boton con animacion -->
@@ -104,230 +101,8 @@
 
         </div>
       </div>
-      <div class="col-sm-3">
-        <div class="card" style="width: 80vw;">
-          <img src="../static/images/hojas.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Muros verdes Artificiales </h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <p class="card-text">
-                Proporcionan una estética similar
-                al jardín vertical vivo pero sin
-                mantenimiento, menor inversión
-                y con un sencillo método
-                de conservación.</p>
-            </li>
-            <li class="list-group-item">
-              <!-- Boton con animacion -->
-              <nav>
-                <ul>
-                  <li>
-                    <a href="productos.html" class="a-ver--mas"> Ver</a> <i class="bi bi-arrow-right-short"
-                      style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
+      {% endfor %}
 
-                    <span></span><span></span><span></span><span></span>
-                  </li>
-                </ul>
-              </nav>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card" style="width: 80vw;">
-          <img src="../static/images/hojas.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Muros verdes Artificiales </h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <p class="card-text">
-                Proporcionan una estética similar
-                al jardín vertical vivo pero sin
-                mantenimiento, menor inversión
-                y con un sencillo método
-                de conservación.</p>
-            </li>
-            <li class="list-group-item">
-              <!-- Boton con animacion -->
-              <nav>
-                <ul>
-                  <li>
-                    <a href="productos.html" class="a-ver--mas"> Ver mas</a> <i class="bi bi-arrow-right-short"
-                      style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
-
-                    <span></span><span></span><span></span><span></span>
-                  </li>
-                </ul>
-              </nav>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card" style="width: 80vw;">
-          <img src="../static/images/hojas.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Muros verdes Artificiales </h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <p class="card-text">
-                Proporcionan una estética similar
-                al jardín vertical vivo pero sin
-                mantenimiento, menor inversión
-                y con un sencillo método
-                de conservación.</p>
-            </li>
-            <li class="list-group-item">
-              <!-- Boton con animacion -->
-              <nav>
-                <ul>
-                  <li>
-                    <a href="productos.html" class="a-ver--mas"> Ver mas</a> <i class="bi bi-arrow-right-short"
-                      style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
-
-                    <span></span><span></span><span></span><span></span>
-                  </li>
-                </ul>
-              </nav>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card" style="width: 80vw;">
-          <img src="../static/images/hojas.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Muros verdes Artificiales </h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <p class="card-text">
-                Proporcionan una estética similar
-                al jardín vertical vivo pero sin
-                mantenimiento, menor inversión
-                y con un sencillo método
-                de conservación.</p>
-            </li>
-            <li class="list-group-item">
-              <!-- Boton con animacion -->
-              <nav>
-                <ul>
-                  <li>
-                    <a href="productos.html" class="a-ver--mas"> Ver mas</a> <i class="bi bi-arrow-right-short"
-                      style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
-
-                    <span></span><span></span><span></span><span></span>
-                  </li>
-                </ul>
-              </nav>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card" style="width: 80vw;">
-          <img src="../static/images/hojas.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Muros verdes Artificiales </h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <p class="card-text">
-                Proporcionan una estética similar
-                al jardín vertical vivo pero sin
-                mantenimiento, menor inversión
-                y con un sencillo método
-                de conservación.</p>
-            </li>
-            <li class="list-group-item">
-              <!-- Boton con animacion -->
-              <nav>
-                <ul>
-                  <li>
-                    <a href="productos.html" class="a-ver--mas"> Ver mas</a> <i class="bi bi-arrow-right-short"
-                      style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
-
-                    <span></span><span></span><span></span><span></span>
-                  </li>
-                </ul>
-              </nav>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card" style="width: 80vw;">
-          <img src="../static/images/hojas.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Muros verdes Artificiales </h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <p class="card-text">
-                Proporcionan una estética similar
-                al jardín vertical vivo pero sin
-                mantenimiento, menor inversión
-                y con un sencillo método
-                de conservación.</p>
-            </li>
-            <li class="list-group-item">
-              <!-- Boton con animacion -->
-              <nav>
-                <ul>
-                  <li>
-                    <a href="productos.html" class="a-ver--mas"> Ver mas</a> <i class="bi bi-arrow-right-short"
-                      style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
-
-                    <span></span><span></span><span></span><span></span>
-                  </li>
-                </ul>
-              </nav>
-            </li>
-          </ul>
-
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card" style="width: 80vw;">
-          <img src="../static/images/hojas.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Muros verdes Artificiales </h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <p class="card-text">
-                Proporcionan una estética similar
-                al jardín vertical vivo pero sin
-                mantenimiento, menor inversión
-                y con un sencillo método
-                de conservación.</p>
-            </li>
-            <li class="list-group-item">
-              <!-- Boton con animacion -->
-              <nav>
-                <ul>
-                  <li>
-                    <a href="productos.html" class="a-ver--mas"> Ver</a> <i class="bi bi-arrow-right-short"
-                      style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
-
-                    <span></span><span></span><span></span><span></span>
-                  </li>
-                </ul>
-              </nav>
-            </li>
-          </ul>
-
-        </div>
-      </div>
 
     </div>
 
@@ -336,11 +111,11 @@
   </div>
 
   <!-- ============ Galeria de imagenes =============== -->
-  <div class="container-fluid" style="margin-top: 15rem;">
+  <div class="container-fluid " style="margin-top: 15rem;">
     <div class="row">
       <div class="col-md image-container">
         <div class="wrap">
-          <div class="container">
+          <div class="container"  id="galery-hidden">
             <h1>EXTERIORISMO: ENVERDECE TU ESPACIO</h1>
             <br>
             <p class="card-text" style="text-align: center;">DISEÑAMOS Y TRANSFORMAMOS ESPACIOS AL AIRE LIBRE </p>
@@ -402,26 +177,30 @@
           <div class="downbanner">
             <div class="row ">
               <div class="col-sm-6" style="text-align: center;">
-                <br><br><br><br><br><br><br>
-                <div class="row mx-auto" >
+                
+                <div class="row mx-auto">
                   <div class="col">
                     <h1 style="font-size: 3.5rem; padding: 0.5rem;">Gran reconocimiento</h1>
                   </div>
-                 
+
                 </div>
                 <div class="row mx-auto">
                   <div class="col">
-                    <p style="text-align: justify; font-size: 1.5rem;">Contamos con el reconocimiento de más de 900 clientes satisfechos, un indicador del trabajo bien hecho. Para Te Quiero Verde es un honor poder contar con el respaldo y la confianza de hogares y organizaciones que han visto en nuestro servicio no sólo a un proveedor más, sino a una firma que trabaja y encuentra el diseño ideal para ellos.</p>
+                    <p style="text-align: justify; font-size: 1.5rem;">Contamos con el reconocimiento de más de 900
+                      clientes satisfechos, un indicador del trabajo bien hecho. Para Te Quiero Verde es un honor poder
+                      contar con el respaldo y la confianza de hogares y organizaciones que han visto en nuestro
+                      servicio no sólo a un proveedor más, sino a una firma que trabaja y encuentra el diseño ideal para
+                      ellos.</p>
                   </div>
-                 
+
                 </div>
               </div>
               <div class="col-sm-6 mx-auto">
                 <img src="../static/images/1 (1).jpeg" alt="">
               </div>
             </div>
-            
-            
+
+
           </div>
           {% include "./_html/_footer.html" %}
         </div>
@@ -432,7 +211,7 @@
     </div>
 
   </div>
-
+  <input type="text" id="validar_existe_inicio_sesion" hidden value="{{session['nombre_usuario']}}">
 
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -442,7 +221,15 @@
   <script src="https://cdn.bootcss.com/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
   <script>
     $(document).ready(function () {
-      $('.navbarContainer').load('./_html/_navbar.html');
+      let validarExisteInicioSesion = document.getElementById('validar_existe_inicio_sesion').value
+      let liIniciarSesion = document.getElementById('li_iniciar_sesion')
+      if (validarExisteInicioSesion != '') {
+        liIniciarSesion.innerHTML = 
+  `  <a  href="/cerrar-sesion" ><svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+    <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+  </svg>Cerrar Sesion</a></li>`
+
+      }
     });
     $(document).ready(function () {
       $('.footer-container').load('./_html/_footer.html');
@@ -460,10 +247,10 @@
 
 
   {% endblock %}
-  
 
 
- 
+
+
 </body>
 
 </html>

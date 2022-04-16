@@ -1,8 +1,6 @@
-# from ast import Try
-# from crypt import methods
 import email
 from encodings import normalize_encoding
-from flask import Flask, request
+from flask import Flask, request, session, flash
 from flask import render_template, redirect
 from flaskext.mysql import MySQL
 import os
@@ -11,18 +9,32 @@ import errno
 
 app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
-db = MySQL() #Instancia Mysql
+db = MySQL()
+
+# app.config['MYSQL_DATABASE_HOST'] = '35.238.174.237'
+# app.config['MYSQL_DATABASE_USER'] = 'admin'
+# app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
+# app.config['MYSQL_DATABASE_DB'] = 'novasin'
 
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = ''
 app.config['MYSQL_DATABASE_DB'] = 'novasin'
+app.secret_key = 'H%23^2FY6673HN'
+
+
 db.init_app(app)
 
 
 @app.route('/') #Sirve para señalar que cuando busque la diagonal, Flask cargue automaticamente el index
 def index(): #Funcion para cargar el index
-    return render_template('index.html') #Devuelve la vista del index y le manda variables
+    consulta = 'SELECT * FROM categorias'
+    con = db.connect() #Abre una conexion con MySQL
+    cur = con.cursor()
+    cur.execute(consulta) #Le enviamos parametros a la consulta
+    categorias = cur.fetchall() 
+    con.commit() #Guarda los cambios en la base de datos
+    return render_template('index.html', categorias = categorias) #Devuelve la vista del index y le manda variables
 
 
 @app.route('/registro')
@@ -59,7 +71,26 @@ def contacto():
 def politicas():
     return render_template('politicas.html')
 
+@app.route('/admin')
+def admin():
+    consulta_categorias = 'SELECT * FROM categorias'
+    consulta_productos = 'SELECT * FROM productos'
+    consulta_usuarios = 'SELECT * FROM usuarios'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta_categorias)
+    categorias = cur.fetchall() #Envia todos los datos de la consulta y los guarda en la variable persona
+
+    cur.execute(consulta_productos)
+    productos = cur.fetchall() #Envia todos los datos de la consulta y los guarda en la variable persona
     
+    cur.execute(consulta_usuarios)
+    usuarios = cur.fetchall() #Envia todos los datos de la consulta y los guarda en la variable persona
+    
+    con.commit()
+    return render_template('admin.html', categorias = categorias, productos = productos, usuarios = usuarios) #Le mandamos el array a la vista para poder usar los datos
+
+# /////////////////////USUARIOS//////////////////////
 @app.route('/guardar-usuario', methods=['POST']) #Ruta para hacer una insercion o POST
 def guardar_usuario():
     nombre = request.form['name'] #Recibiendo los datos del formulario, es importante poner el mismo nombre del input
@@ -74,10 +105,12 @@ def guardar_usuario():
         cur = con.cursor()
         cur.execute(consulta,(nombre,contrasena, email, telefono, ciudad, 'cliente')) #Le enviamos parametros a la consulta
         con.commit() #Guarda los cambios en la base de datos
-        return "Guardado" #Retorna el mensaje de guardado
+        return redirect('/registro') #Retorna el mensaje de guardado
     else:
         return 'Las contraseñas no coinciden'
 
+
+# /////////////////////////////CATEGORIAS///////////////////////////////////////
 @app.route('/guardar-categoria', methods=['POST'])
 def guardarCategoria():
     nombreCategoria = request.form['nombreCategoria']
@@ -124,6 +157,23 @@ def editar_categoria(idcategoria):
     return render_template('editar-categoria.html', registro=registro) #Le mandamos el array a la vista para poder usar los datos
 
 
+@app.route('/editar-producto/<int:pk_producto>')
+def editar_producto(pk_producto):
+    consulta_productos = 'SELECT * FROM productos WHERE pk_producto = %s'
+    consulta_categorias = 'SELECT * FROM categorias'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta_productos, (pk_producto))
+    registro = cur.fetchall()
+    con.commit()
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta_categorias)
+    categorias = cur.fetchall()
+    con.commit()
+    return render_template('editar-producto.html', registro=registro, categorias = categorias) #Le mandamos el array a la vista para poder usar los datos
+
+
 @app.route('/actualizar-categoria', methods=['POST']) #Ruta para hacer una insercion o POST
 def actualizar_categoria():
     idCategoria = request.form['pk_categoria']
@@ -143,7 +193,6 @@ def actualizar_categoria():
     imagen5 = request.files['imagen5']
     imagen5Nombre = imagen5.filename
     try:
-        
         listaArchivos = os.listdir(f'./static/images/categorias/{nombreCategoria}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
         for archivo in listaArchivos:
              os.remove(f'./static/images/categorias/{nombreCategoria}/{archivo}')#Borra el directorio junto con los archivos contenidos
@@ -165,7 +214,7 @@ def actualizar_categoria():
 
 
 @app.route('/eliminar-categoria/<int:idcategoria>')
-def eliminar_persona(idcategoria):
+def eliminar_categoria(idcategoria):
     consultaTraerDatos = 'SELECT * FROM categorias WHERE pk_categoria = %s'
     con = db.connect()
     cur = con.cursor()
@@ -184,33 +233,162 @@ def eliminar_persona(idcategoria):
     con.commit()
     return redirect('/admin')
 
+# ///////////////////////////// PRODUCTOS //////////////////////////////////
+@app.route('/guardar-producto', methods = ['POST'])
+def guardar_producto():
+    nombre_producto = request.form['nombreProducto']
+    descripcion_producto = request.form['descripcionProducto']
+    precio_producto = request.form['precioProducto']
+    status = 'v'
+    categoria = request.form['select-categoria']
+    imagen1p = request.files['imagen1']
+    imagen2p = request.files['imagen2']
+    imagen3p = request.files['imagen3']
+    imagen4p = request.files['imagen4']
+    imagen5p = request.files['imagen5']
+    imagen6p = request.files['imagen6']
+    imagen7p = request.files['imagen7']
+    imagen8p = request.files['imagen8']
+    imagen9p = request.files['imagen9']
+    imagen10p = request.files['imagen10']
+    imagen1pNombre = imagen1p.filename
+    imagen2pNombre = imagen2p.filename
+    imagen3pNombre = imagen3p.filename
+    imagen4pNombre = imagen4p.filename
+    imagen5pNombre = imagen5p.filename
+    imagen6pNombre = imagen6p.filename
+    imagen7pNombre = imagen7p.filename
+    imagen8pNombre = imagen8p.filename
+    imagen9pNombre = imagen9p.filename
+    imagen10pNombre = imagen10p.filename
+    try:
+        os.mkdir(f'./static/images/productos/{nombre_producto}') 
+        imagen1p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen1p-' + imagen1pNombre)
+        imagen2p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen2p-' + imagen2pNombre)
+        imagen3p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen3p-' + imagen3pNombre)
+        imagen4p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen4p-' + imagen4pNombre)
+        imagen5p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen5p-' + imagen5pNombre)
+        imagen6p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen6p-' + imagen6pNombre)
+        imagen7p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen7p-' + imagen7pNombre)
+        imagen8p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen8p-' + imagen8pNombre)
+        imagen9p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen9p-' + imagen9pNombre)
+        imagen10p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen10p-' + imagen10pNombre) 
+        consulta = 'INSERT INTO productos  VALUES (NULL, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+        con = db.connect() #Abre una conexion con MySQL
+        cur = con.cursor()
+        cur.execute(consulta,(nombre_producto, descripcion_producto, precio_producto, status, imagen1pNombre, imagen2pNombre,imagen3pNombre,imagen4pNombre,imagen5pNombre,imagen6pNombre,imagen7pNombre,imagen8pNombre,imagen9pNombre,imagen10pNombre, categoria)) #Le enviamos parametros a la consulta
+        con.commit() #Guarda los cambios en la base de datos
+        return redirect('/admin')
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            return ''
 
-@app.route('/admin')
-def admin():
-    # consulta = 'SELECT * FROM categorias'
-    # con = db.connect()
-    # cur = con.cursor()
-    # cur.execute(consulta)
-    # categorias = cur.fetchall() #Envia todos los datos de la consulta y los guarda en la variable persona
-    # con.commit()
-    return render_template('admin.html') #Le mandamos el array a la vista para poder usar los datos
-    
 
-
-@app.route('/guardar', methods=['POST']) #Ruta para hacer una insercion o POST
-def guardar_persona():
-    nombre = request.form['nombre'] #Recibiendo los datos del formulario, es importante poner el mismo nombre del input
-    apaterno = request.form['apaterno']
-    amaterno = request.form['amaterno']
-    image = request.files['image'] #Tomamos el archivo
-    nombre_foto= image.filename #Obtenemos el nombre del archivo
-    image.save('static/img/' + nombre_foto) #Guardar la imagen en local
-    consulta = 'INSERT INTO personas (pk_persona, nombre, apaterno, amaterno, image) VALUES(NULL, %s, %s, %s, %s)' 
-    con = db.connect() #Abre una conexion con MySQL
+@app.route('/eliminar-producto/<int:pk_producto>')
+def eliminar_producto(pk_producto):
+    consultaTraerDatos = 'SELECT * FROM productos WHERE pk_producto = %s'
+    con = db.connect()
     cur = con.cursor()
-    cur.execute(consulta,(nombre, apaterno, amaterno, nombre_foto)) #Le enviamos parametros a la consulta
-    con.commit() #Guarda los cambios en la base de datos
-    return redirect('/personas')
+    cur.execute(consultaTraerDatos,(pk_producto))
+    registro = cur.fetchone()
+    con.commit()
+    listaArchivos = os.listdir(f'./static/images/productos/{registro[1]}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+    for archivo in listaArchivos:
+        os.remove(f'./static/images/productos/{registro[1]}/{archivo}')#Borra el directorio junto con los archivos contenidos
+    os.rmdir(f'./static/images/productos/{registro[1]}')
+    consulta = 'DELETE FROM productos WHERE pk_producto=%s'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta,(pk_producto))
+    con.commit()
+    return redirect('/admin')
+
+
+@app.route('/actualizar-producto', methods=['POST']) #Ruta para hacer una insercion o POST
+def actualizar_producto():
+    nombre_producto = request.form['nombreProducto']
+    descripcion_producto = request.form['descripcionProducto']
+    precio_producto = request.form['precioProducto']
+    status = 'v'
+    categoria = request.form['select-categoria']
+    imagen1p = request.files['imagen1']
+    imagen2p = request.files['imagen2']
+    imagen3p = request.files['imagen3']
+    imagen4p = request.files['imagen4']
+    imagen5p = request.files['imagen5']
+    imagen6p = request.files['imagen6']
+    imagen7p = request.files['imagen7']
+    imagen8p = request.files['imagen8']
+    imagen9p = request.files['imagen9']
+    imagen10p = request.files['imagen10']
+    imagen1pNombre = imagen1p.filename
+    imagen2pNombre = imagen2p.filename
+    imagen3pNombre = imagen3p.filename
+    imagen4pNombre = imagen4p.filename
+    imagen5pNombre = imagen5p.filename
+    imagen6pNombre = imagen6p.filename
+    imagen7pNombre = imagen7p.filename
+    imagen8pNombre = imagen8p.filename
+    imagen9pNombre = imagen9p.filename
+    imagen10pNombre = imagen10p.filename
+    try:
+        listaArchivos = os.listdir(f'./static/images/productos/{nombre_producto}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+        for archivo in listaArchivos:
+            os.remove(f'./static/images/productos/{nombre_producto}/{archivo}')#Borra el directorio junto con los archivos contenidos
+        imagen1p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen1p-' + imagen1pNombre)
+        imagen2p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen2p-' + imagen2pNombre)
+        imagen3p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen3p-' + imagen3pNombre)
+        imagen4p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen4p-' + imagen4pNombre)
+        imagen5p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen5p-' + imagen5pNombre)
+        imagen6p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen6p-' + imagen6pNombre)
+        imagen7p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen7p-' + imagen7pNombre)
+        imagen8p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen8p-' + imagen8pNombre)
+        imagen9p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen9p-' + imagen9pNombre)
+        imagen10p.save(f'./static/images/productos/{nombre_producto}/' + 'imagen10p-' + imagen10pNombre) 
+        consulta = 'UPDATE productos SET nombre_producto=%s, descripcion_producto = %s, precio_producto = %s, imagen1 = %s, imagen2=%s,imagen3=%s,imagen4=%s,imagen5=%s,imagen6=%s,imagen7=%s,imagen8=%s,imagen9=%s,imagen10=%s, fk_categoria=%s'
+        con = db.connect() #Abre una conexion con MySQL
+        cur = con.cursor()
+        cur.execute(consulta,(nombre_producto, descripcion_producto, precio_producto, imagen1pNombre, imagen2pNombre,imagen3pNombre,imagen4pNombre,imagen5pNombre,imagen6pNombre,imagen7pNombre,imagen8pNombre,imagen9pNombre,imagen10pNombre, categoria)) #Le enviamos parametros a la consulta
+        con.commit() #Guarda los cambios en la base de datos
+        return 'Editado'
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            return 'Algo salio mal'
+
+
+# /////////////////////////////////USUARIOS///////////////////////////////////
+@app.route('/eliminar-usuario/<int:pk_usuario>')
+def eliminar_usuario(pk_usuario):
+    consulta = 'DELETE FROM usuarios WHERE pk_usuario=%s'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta,(pk_usuario))
+    con.commit()
+    return redirect('/admin')
+
+
+@app.route('/login', methods=['POST', 'GET'])
+def validar_usuario():
+    username = request.form['user']
+    pass1 = request.form['password']
+    consulta = 'SELECT * FROM usuarios WHERE nombre = %s AND password = %s'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta,(username, pass1))
+    usuario = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
+    con.commit()
+    if usuario != None:
+        session["nombre_usuario"]= usuario[1]
+        return redirect('/')
+    else:
+        flash('El usuario o la contraseña son incorrectos')
+        return render_template('./registro.html')
+
+@app.route('/cerrar-sesion')
+def cerrar_sesion():
+    session.clear()
+    return redirect('/')
+
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0',port=80,debug=True)
+    app.run(debug=True)

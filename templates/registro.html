@@ -23,9 +23,18 @@
         <div class="row mx-auto">
             <div class="col-sm-12">
 
-                <form id="user_form">
+                <form action="/login" method="POST" id="user_form">
                     <img class="imgLogo" src="../static/images/logo.png" alt="Logo de Novasin">
                     <br>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <span style="color: orange; font-size: 1rem;" id="flash_span">{{message}}</span>
+                        {% endfor %}
+                    {% endif %}
+                        
+                    {% endwith %}
+
                     <label for="user" class="label-form">
                         <span>Nombre de usuario</span>
                         <br>
@@ -83,8 +92,8 @@
                     <input type="tel" name="phone" id="phone" minlength="10" maxlength="10" required placeholder="Ej. 6681530000">
                 </label>
                 <label for="ciudad">
-                    <span>Correo electronico </span>
-                    <input type="text" name="ciudad" id="ciudad"  required placeholder="Indique la ciudad donde vive">
+                    <span>Ciudad y Estado </span>
+                    <input type="text" name="ciudad" id="ciudad"  required placeholder="Indique la ciudad y el estado donde vive">
                 </label>
                 <label for="recaptcha">
                     <span>Valida el captcha para continuar</span>

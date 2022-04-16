@@ -48,7 +48,7 @@ html {
   padding: 1rem 3.5rem 1rem 1.5rem;
 }
 .logo-img {
-  margin: 10% 0 2rem 0;
+  margin: 5% 0 2rem 0;
   width: 80vw;
   height: 8rem;
 }
@@ -212,9 +212,12 @@ html {
     padding: 2rem 2rem 2rem 1.2rem;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .image {
     flex: 100%;
+  }
+  #galery-hidden{
+    display: none;
   }
   .logo-img {
     margin: 22% 0 2rem 0;
@@ -222,6 +225,9 @@ html {
   }
   .wrap {
     margin-top: 30vh;
+  }
+  .card{
+    margin-top: 20vh;
   }
   .downbanner {
 
