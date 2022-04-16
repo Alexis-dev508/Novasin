@@ -11,15 +11,15 @@ app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
 db = MySQL()
 
-# app.config['MYSQL_DATABASE_HOST'] = '35.238.174.237'
-# app.config['MYSQL_DATABASE_USER'] = 'admin'
-# app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
-# app.config['MYSQL_DATABASE_DB'] = 'novasin'
-
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_HOST'] = '35.238.174.237'
+app.config['MYSQL_DATABASE_USER'] = 'admin'
+app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
 app.config['MYSQL_DATABASE_DB'] = 'novasin'
+
+# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+# app.config['MYSQL_DATABASE_USER'] = 'root'
+# app.config['MYSQL_DATABASE_PASSWORD'] = ''
+# app.config['MYSQL_DATABASE_DB'] = 'novasin'
 app.secret_key = 'H%23^2FY6673HN'
 
 
