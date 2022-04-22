@@ -58,6 +58,9 @@ html {
 .btn-group {
   font-weight: bold;
 }
+.contenedor-princial-galeria{
+  margin-top: 15rem;
+}
 .button-home {
   font-size: 1.3rem;
   padding: 0.56rem;
@@ -218,6 +221,9 @@ html {
   }
   #galery-hidden{
     display: none;
+  }
+  .contenedor-princial-galeria{
+    margin-top: 0rem;
   }
   .logo-img {
     margin: 22% 0 2rem 0;

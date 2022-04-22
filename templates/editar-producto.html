@@ -27,7 +27,7 @@
     {% extends "./_html/_navbar.html" %}
     {% block contenido %}
     <div class="container">
-        {% for datos in registro %}
+        {% for datos in producto %}
 
 
         <div class="row mx-auto">
@@ -54,7 +54,7 @@
                         <br>
                         <span>Precio del producto</span>
                         <br>
-                        <input type="number" value="{{datos[3]}}" name="precioProducto" id="precioProducto">
+                        <input type="text" value="{{datos[3]}}" name="precioProducto" placeholder="Ej. $100 por metro cuadrado" id="precioProducto">
                     </label>
                 </div>
                 <div class="col-sm-12">
@@ -140,8 +140,12 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <input type="submit" class="btn btn-primary" value="Guardar">
+                    <div class="col-sm-12">
+                        <input type="submit" class="btn btn-primary" value="Guardar" style="width: 100%; height: 3rem;">
+                    </div>
+                    <div class="col-sm-12">
+                        <a href="/admin"><button type="button" class="btn btn-secondary" style="width: 100%; height: 3rem;">Cancelar</button></a>
+                    </div>
                 </div>
             </form>
         </div>

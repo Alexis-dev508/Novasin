@@ -22,6 +22,7 @@
 
   {% extends "./_html/_navbar.html" %}
   {% block contenido %}
+  <!-- <input type="text" id="validar_existe_inicio_sesion" hidden value="{{session['tipo_usuario']}}"> -->
   <br>
   <br>
   <div class="container">
@@ -30,6 +31,7 @@
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategoria"
         style="font-size: 1.5rem; font-weight: bold;">
         + Añadir nueva categoria
+
       </button>
     </div>
     <br>
@@ -50,12 +52,14 @@
             <td>{{datos[0]}}</td>
             <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
             <td>{{datos[2]}}</td>
-            <td><img style="width: 7rem; height: 7rem;"
-                src="../static/images/categorias/{{datos[1]}}/caratula-{{datos[3]}}" alt=""> </td>
+            <td><img style="width: 7rem; height: 7rem;" src="../static/images/categorias/{{datos[1]}}/{{datos[3]}}"
+                alt=""> </td>
             <td>
-              <a href="/editar-categoria/{{datos[0]}}"><i class="bi bi-pencil-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
+              <a href="/editar-categoria/{{datos[0]}}"><i class="bi bi-pencil-fill"
+                  style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
               <!--Envia el id de la personas a la ruta de editar-->
-              <a onclick="confirmarEliminar('/eliminar-categoria/{{datos[0]}}')"><i class="bi bi-trash-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
+              <a onclick="confirmarEliminar('/eliminar-categoria/{{datos[0]}}')"><i class="bi bi-trash-fill"
+                  style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
             </td>
           </tr>
           {% endfor %}
@@ -92,18 +96,20 @@
             <td>{{datos[0]}}</td>
             <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
             <td>{{datos[2]}}</td>
-            <td>$ {{datos[3]}}</td>
-            <td><img style="width: 7rem; height: 7rem;"
-                src="../static/images/productos/{{datos[1]}}/imagen1p-{{datos[5]}}" alt=""> </td>
+            <td>{{datos[3]}}</td>
+            <td><img style="width: 7rem; height: 7rem;" src="../static/images/productos/{{datos[1]}}/{{datos[5]}}"
+                alt=""> </td>
             <td>
-              <a href="/editar-producto/{{datos[0]}}"><i class="bi bi-pencil-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
+              <a href="/editar-producto/{{datos[0]}}"><i class="bi bi-pencil-fill"
+                  style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
               <!--Envia el id de la personas a la ruta de editar-->
-              <a onclick="confirmarEliminar('/eliminar-producto/{{datos[0]}}')"><i class="bi bi-trash-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
+              <a onclick="confirmarEliminar('/eliminar-producto/{{datos[0]}}')"><i class="bi bi-trash-fill"
+                  style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
             </td>
           </tr>
           {% endfor %}
 
-         
+
 
         </tbody>
       </table>
@@ -135,14 +141,27 @@
             <td>{{datos[4]}}</td>
             <td>{{datos[5]}}</td>
             <td>
-              <a onclick="confirmarEliminar('/eliminar-usuario/{{datos[0]}}')"><i class="bi bi-trash-fill" style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
+              <a onclick="confirmarEliminar('/eliminar-usuario/{{datos[0]}}')"><i class="bi bi-trash-fill"
+                  style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
             </td>
           </tr>
           {% endfor %}
-
         </tbody>
       </table>
     </div>
+    <div class="row pt-5">
+      <div class="col-sm-12 mb-3" style="background:rgba(34, 34, 34, 0.968); color: white;">
+        <h1 style="padding: 0.5rem;">Mas funciones</h1>
+      </div>    
+      
+      <button type="button" style="border-radius: 10px;" class="btn btn-primary" data-toggle="modal" data-target="#modalCarrusel"
+        style="font-size: 1.5rem; font-weight: bold;">
+        <i class="bi bi-card-heading" style="font-size: 7rem;"></i>
+        <br>
+        Cambiar el carrusel principal
+      </button>
+    </div>
+
   </div>
 
   <div class="container">
@@ -165,7 +184,7 @@
                   <label for="nombreCategoria">
                     <span>Nombre de la categoria</span>
                     <br>
-                    <input type="text" name="nombreCategoria" id="nombreCategoria">
+                    <input type="text"  name="nombreCategoria" id="nombreCategoria">
                   </label>
                 </div>
                 <div class="col-sm-12">
@@ -178,32 +197,37 @@
                 <div class="col">
                   <label for="imagenCaratula">
                     <span>Imagen de la caratula</span>
-                    <input type="file" name="imagenCaratula" id="imagenCaratula" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagenCaratula" id="imagenCaratula"
+                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
                   </label>
                   <label for="imagen">
                     <span>Imagen 1</span>
-                    <input type="file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen2">
                     <span>Imagen 2</span>
-                    <input type="file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen3">
                     <span>Imagen 3</span>
-                    <input type="file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen4">
                     <span>Imagen 4</span>
-                    <input type="file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen5">
                     <span>Imagen 5</span>
-                    <input type="file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <input type="submit" class="btn btn-primary" value="Guardar">
+                  <input type="submit" class="btn btn-primary btn-guardar" value="Guardar">
                 </div>
               </form>
             </div>
@@ -212,15 +236,99 @@
         </div>
       </div>
     </div>
+    <!-- =========== MODAL CARRUSEL =========== -->
+    <div class="modal fade" id="modalCarrusel" tabindex="-1" role="dialog" aria-labelledby="modalCategoriaLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCarruselLabel">Cambiar carrusel</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <form action="/guardar-imagenes-carrusel" method="POST" enctype="multipart/form-data">
+                <div class="col-sm-12">
+                  <label for="titulo_imagen_1">
+                    <span>Titulo de la primera imagen</span>
+                    <br>
+                    <input type="text" style="width:100%" name="titulo_imagen_1" id="titulo_imagen_1">
+                  </label>
+                </div>
+                <div class="col-sm-12">
+                  <label for="titulo_imagen_2">
+                    <span>Titulo de la segunda imagen</span>
+                    <br>
+                    <input type="text" style="width:100%" name="titulo_imagen_2" id="titulo_imagen_2">
+                  </label>
+                </div>
+                <div class="col-sm-12">
+                  <label for="titulo_imagen_3">
+                    <span>Titulo de la tercera imagen</span>
+                    <br>
+                    <input type="text" style="width:100%" name="titulo_imagen_3" id="titulo_imagen_3">
+                  </label>
+                </div>
+                <div class="col-sm-12">
+                  <label for="titulo_imagen_4">
+                    <span>Titulo de la cuarta imagen</span>
+                    <br>
+                    <input type="text" style="width:100%" name="titulo_imagen_4" id="titulo_imagen_4">
+                  </label>
+                </div>
+                <div class="col-sm-12">
+                  <label for="titulo_imagen_5">
+                    <span>Titulo de la quinta imagen</span>
+                    <br>
+                    <input type="text" style="width:100%" name="titulo_imagen_5" id="titulo_imagen_5">
+                  </label>
+                </div>
+                <div class="col">
+                  <label for="imagen1c">
+                    <span>Imagen 1</span>
+                    <input type="file" name="imagen1c" id="imagen1c"
+                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                  </label>
+                  <label for="imagen2c">
+                    <span>Imagen 2</span>
+                    <input type="file" name="imagen2c" id="imagen2c"
+                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                  </label>
+                  <label for="imagen3c">
+                    <span>Imagen 3</span>
+                    <input type="file" name="imagen3c" id="imagen3c"
+                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                  </label>
+                  <label for="imagen4c">
+                    <span>Imagen 4</span>
+                    <input type="file" name="imagen4c" id="imagen4c"
+                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                  </label>
+                  <label for="imagen5c">
+                    <span>Imagen 5</span>
+                    <input type="file" name="imagen5c" id="imagen5c"
+                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                  </label>
+                </div>
+                <div class="modal-footer">
+                  <input type="submit" class="btn btn-primary btn-guardar" value="Guardar">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ====== Modal Producto ====== -->
-
     <div class="modal fade" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="modalProductoLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalProductoLabel">Nueva categoria</h5>
+            <h5 class="modal-title" id="modalProductoLabel">Nuevo producto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -232,7 +340,7 @@
                   <label for="nombreProducto">
                     <span>Nombre del producto</span>
                     <br>
-                    <input type="text" name="nombreProducto" id="nombreProducto">
+                    <input type="text" name="nombreProducto" id="nombreProducto" style="text-align: center;">
                   </label>
                 </div>
                 <div class="col-sm-12">
@@ -246,63 +354,79 @@
                   <label for="precioProducto">
                     <span>Precio del producto</span>
                     <br>
-                    <input type="number" name="precioProducto" id="precioProducto">
+                    <input type="text" name="precioProducto" id="precioProducto"
+                      placeholder="Ej. $100 por metro cuadrado" style="width: 100%; text-align:center;">
                   </label>
+                  <span>Seleccione la categoria del producto</span>
+                  <br>
+                  <select name="select-categoria" id="select-categoria"
+                    style="width: 100%; text-align:center; margin-bottom:1rem;">
+                    {% for categoria in categorias %}
+                    <option value="{{categoria[0]}}">{{categoria[1]}}</option>
+                    {% endfor %}
+                  </select>
+                  <br>
                   <label for="imagen">
                     <span>Imagen 1</span>
-                    <input type="file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen2">
                     <span>Imagen 2</span>
-                    <input type="file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen3">
                     <span>Imagen 3</span>
-                    <input type="file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen4">
                     <span>Imagen 4</span>
-                    <input type="file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen5">
                     <span>Imagen 5</span>
-                    <input type="file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen6">
                     <span>Imagen 6</span>
-                    <input type="file" name="imagen6" id="imagen6" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen6" id="imagen6" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen7">
                     <span>Imagen 7</span>
-                    <input type="file" name="imagen7" id="imagen7" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen7" id="imagen7" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen8">
                     <span>Imagen 8</span>
-                    <input type="file" name="imagen8" id="imagen8" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen8" id="imagen8" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen9">
                     <span>Imagen 9</span>
-                    <input type="file" name="imagen9" id="imagen9" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen9" id="imagen9" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required>
                   </label>
                   <label for="imagen10">
                     <span>Imagen 10</span>
-                    <input type="file" name="imagen10" id="imagen10" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>>
+                    <input type="file" name="imagen10" id="imagen10"
+                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
                   </label>
-                  <select name="select-categoria" id="select-categoria">
-                  {% for categoria in categorias %}
-                    <option value="{{categoria[0]}}">{{categoria[1]}}</option>
-                  {% endfor %}
-                </select>
+
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="submit" class="btn btn-primary">Guardar</button>
+
+                  <button type="submit" class="btn btn-primary btn-guardar">Guardar</button>
                 </div>
               </form>
             </div>
           </div>
-         
+
         </div>
       </div>
     </div>
@@ -314,14 +438,16 @@
 
 
   <script src="../../static/libraries/bootstrap-4.6.1-dist/js/bootstrap.min.js "></script>
- <script>
-  function confirmarEliminar(ruta){
-    let confirmacion = confirm("¿Desea eliminar el registro?")
-    if(confirmacion){
-      location.href = ruta
+
+  <script>
+    function confirmarEliminar(ruta) {
+      let confirmacion = confirm("¿Desea eliminar el registro?")
+      if (confirmacion) {
+        location.href = ruta
+      }
     }
-  }
- </script>
+
+  </script>
   {% endblock %}
 
 </body>

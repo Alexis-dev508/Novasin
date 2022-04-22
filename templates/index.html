@@ -33,8 +33,6 @@
         </figure>
       </div>
     </div>
-
-
     <div class="row">
       <div class="col-12 slider pt-5 p-0">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -43,18 +41,27 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
+  
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <h4 class="text-over--carousel">Especialistas en exteriores</h4>
-              <img src="../static/images/1 (1).jpeg" class="d-block w-100" alt="Imagen 1 de carrusel">
+              <h4 class="text-over--carousel">{{carruseles[1]}}</h4>
+              <img src="../static/images/carrusel/imagen1c-{{carruseles[6]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
             </div>
             <div class="carousel-item">
-              <h4 class="text-over--carousel">Persianas</h4>
-              <img src="../static/images/1 (2).jpeg" class="d-block w-100" alt="Imagen 1 de carrusel">
+              <h4 class="text-over--carousel">{{carruseles[2]}}</h4>
+              <img src="../static/images/carrusel/imagen2c-{{carruseles[7]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
             </div>
             <div class="carousel-item">
-              <h4 class="text-over--carousel">Piso laminado</h4>
-              <img src="../static/images/1 (3).jpeg" class="d-block w-100" alt="Imagen 1 de carrusel">
+              <h4 class="text-over--carousel">{{carruseles[3]}}</h4>
+              <img src="../static/images/carrusel/imagen3c-{{carruseles[8]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
+            </div>
+            <div class="carousel-item">
+              <h4 class="text-over--carousel">{{carruseles[4]}}</h4>
+              <img src="../static/images/carrusel/imagen4c-{{carruseles[9]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
+            </div>
+            <div class="carousel-item">
+              <h4 class="text-over--carousel">{{carruseles[5]}}</h4>
+              <img src="../static/images/carrusel/imagen5c-{{carruseles[10]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators"
@@ -75,7 +82,7 @@
       {% for categoria in categorias %}
       <div class="col-sm-3">
         <div class="card" style="width: 80vw;">
-          <img src="../static/images/categorias/{{categoria[1]}}/caratula-{{categoria[3]}}" class="card-img-top"
+          <img src="../static/images/categorias/{{categoria[1]}}/{{categoria[3]}}" class="card-img-top"
             alt="...">
           <div class="card-body">
             <h5 class="card-title">{{categoria[1]}} </h5>
@@ -89,7 +96,7 @@
               <nav>
                 <ul>
                   <li>
-                    <a href="productos.html" class="a-ver--mas"> Ver</a> <i class="bi bi-arrow-right-short"
+                    <a href="/mostrar-productos-categoria/{{categoria[0]}}" class="a-ver--mas"> Ver mas</a> <i class="bi bi-arrow-right-short"
                       style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
 
                     <span></span><span></span><span></span><span></span>
@@ -111,7 +118,7 @@
   </div>
 
   <!-- ============ Galeria de imagenes =============== -->
-  <div class="container-fluid " style="margin-top: 15rem;">
+  <div class="container-fluid contenedor-princial-galeria" >
     <div class="row">
       <div class="col-md image-container">
         <div class="wrap">
@@ -211,7 +218,7 @@
     </div>
 
   </div>
-  <input type="text" id="validar_existe_inicio_sesion" hidden value="{{session['nombre_usuario']}}">
+ 
 
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -219,22 +226,7 @@
   <script src="../static/libraries/jquery3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../static/libraries/bootstrap-4.6.1-dist/js/bootstrap.min.js"></script>
   <script src="https://cdn.bootcss.com/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      let validarExisteInicioSesion = document.getElementById('validar_existe_inicio_sesion').value
-      let liIniciarSesion = document.getElementById('li_iniciar_sesion')
-      if (validarExisteInicioSesion != '') {
-        liIniciarSesion.innerHTML = 
-  `  <a  href="/cerrar-sesion" ><svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
-    <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
-  </svg>Cerrar Sesion</a></li>`
 
-      }
-    });
-    $(document).ready(function () {
-      $('.footer-container').load('./_html/_footer.html');
-    });
-  </script>
   <script>
     $(".images").magnificPopup({
       delegate: 'a',
@@ -245,7 +237,12 @@
     });
   </script>
 
-
+  <script>
+    $(window).ready(function (){
+      
+      console.log('{{session["tipo_usuario"]}}')
+    })
+  </script>
   {% endblock %}
 
 

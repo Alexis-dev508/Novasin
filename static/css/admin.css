@@ -20,3 +20,8 @@ span{
 #descripcionProducto{
     height: 10rem;
 }
+.btn-guardar{
+    width: 100%;
+    height: 3.5rem;
+    font-weight: bold;
+}
