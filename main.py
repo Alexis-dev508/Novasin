@@ -5,26 +5,29 @@ from flask import Flask, request, session, flash
 from flask import render_template, redirect
 from flask_login import login_required
 from flaskext.mysql import MySQL
+from flask_sqlalchemy import SQLAlchemy
 import os
 import errno
 
-
 app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
-db = MySQL()
-
-# app.config['MYSQL_DATABASE_HOST'] = '35.238.174.237'
-# app.config['MYSQL_DATABASE_USER'] = 'admin'
-# app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="alexisdev508",
+    password="123456guessanovasin",
+    hostname="alexisdev508.mysql.pythonanywhere-services.com",
+    databasename="alexisdev508$novasin",
+)
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.secret_key = 'H%23^2FY6673HN'
+# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+# app.config['MYSQL_DATABASE_USER'] = 'root'
+# app.config['MYSQL_DATABASE_PASSWORD'] = ''
 # app.config['MYSQL_DATABASE_DB'] = 'novasin'
 
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_DB'] = 'novasin'
-app.secret_key = 'H%23^2FY6673HN'
 
-
+db = SQLAlchemy(app)
 db.init_app(app)
 
 
