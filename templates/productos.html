@@ -106,7 +106,7 @@
             </div>
             <div class="card-flap flap2">
               <div class="card-actions">
-                <a href="#" class="btn">Cotizar</a>
+                <a onclick="iralaurl(`https://wa.me/526676973437?text=Me%20interesa%20el%20producto%20{{producto[1]}}`)" class="btn">Cotizar</a>
               </div>
             </div>
           </div>
@@ -157,6 +157,9 @@
   </script>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
+    function iralaurl(url){
+      location.href = url
+    }
     AOS.init();
     $(document).ready(function(){
       var zindex = 10;
