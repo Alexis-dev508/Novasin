@@ -28,7 +28,45 @@ app.secret_key = 'H%23^2FY6673HN'
 
 
 db = SQLAlchemy(app)
-db.init_app(app)
+
+class Carrusel(db.Model):
+
+    __tablename__ = "carruseles"
+    pk_carrusel = db.Column(db.Integer, primary_key = True, autoincrement=True)
+    titulo1=db.Column(db.String(4096), nullable=False)
+    titulo2=db.Column(db.String(4096), nullable=False)
+    titulo3=db.Column(db.String(4096), nullable=False)
+    titulo4=db.Column(db.String(4096), nullable=False)
+    titulo5=db.Column(db.String(4096), nullable=False)
+    imagen1= db.Column(db.String(4096), nullable=False)
+    imagen2= db.Column(db.String(4096), nullable=False)
+    imagen3= db.Column(db.String(4096), nullable=False)
+    imagen4= db.Column(db.String(4096), nullable=False)
+    imagen5= db.Column(db.String(4096), nullable=False)
+
+class Categoria(db.Model):
+    __tablename__ = "categorias"
+    pk_categoria= db.Column(db.Integer, primary_key = True, autoincrement=True) 
+    nombreCategoria= db.Column(db.String(4096), nullable=False) 
+    descripcionCategoria= db.Column(db.String(4096), nullable=False) 
+    imagenCaratula= db.Column(db.String(4096), nullable=False) 
+    imagen1= db.Column(db.String(4096), nullable=False) 
+    imagen2= db.Column(db.String(4096), nullable=False) 
+    imagen3= db.Column(db.String(4096), nullable=False) 
+    imagen4= db.Column(db.String(4096), nullable=False) 
+    imagen5= db.Column(db.String(4096), nullable=False)
+
+class Usuario(db.Model):
+    __tablename__ = "usuarios"
+    pk_usuario = db.Column(db.Integer, primary_key = True, autoincrement=True, nullable=False)
+    nombre = db.Column(db.String(4096), nullable=False) 
+    password = db.Column(db.String(4096), nullable=False)
+    email_usuario = db.Column(db.String(4096), nullable=False)
+    telefono = db.Column(db.String(4096), nullable=False) 
+    ciudad = db.Column(db.String(4096), nullable=False)
+    tipo_usuario = db.Column(db.String(4096), nullable=False) 
+
+
 
 
 @app.route('/') #Sirve para señalar que cuando busque la diagonal, Flask cargue automaticamente el index
