@@ -79,7 +79,7 @@ class Producto(db.Model):
     imagen8 = db.Column(db.String(300), nullable=False) 
     imagen9 = db.Column(db.String(300), nullable=False) 
     imagen10 = db.Column(db.String(300), nullable=False) 
-    fk_categoria = db.Column(db.Integer, db.ForeignKey(db.categorias.pk_categoria), nullable=False)
+    fk_categoria = db.Column(db.Integer, db.ForeignKey(categorias.pk_categoria), nullable=False)
 
 @app.route('/') #Sirve para señalar que cuando busque la diagonal, Flask cargue automaticamente el index
 def index(): #Funcion para cargar el index
