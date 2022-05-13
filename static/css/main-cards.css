@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 .card{
     margin: 0 auto;
+    z-index: 999999999;
 }
 .card-body{
     background-color: var(--main-green); 

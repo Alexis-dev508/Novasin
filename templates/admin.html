@@ -184,7 +184,7 @@
                   <label for="nombreCategoria">
                     <span>Nombre de la categoria</span>
                     <br>
-                    <input type="text"  name="nombreCategoria" id="nombreCategoria">
+                    <input type="text" name="nombreCategoria" id="nombreCategoria">
                   </label>
                 </div>
                 <div class="col-sm-12">
@@ -194,37 +194,50 @@
                     <textarea name="descripcionCategoria" id="descripcionCategoria"></textarea>
                   </label>
                 </div>
-                <div class="col">
-                  <label for="imagenCaratula">
-                    <span>Imagen de la caratula</span>
-                    <input type="file" name="imagenCaratula" id="imagenCaratula"
-                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
+                <div class="row mx-auto">
+                  <div class="col-md-4">
+                    <label for="imagenCaratula">
+                      <!-- Caratula -->
+                       <a onclick="mostrarFile('imagenCaratula')"><img src="../static/icono-imagen.png" id="imgImagenCaratula" alt="Cargar una imagen" class="icono-imagen"></a>
+                       <input type="file" hidden name="imagenCaratula" id="imagenCaratula"
+                         accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required onchange="vista_preeliminar(event, 'imgImagenCaratula')">
+                     </label>
+                  </div>
+                 <div class="col-md-4">
+                  <label for="imagen1">
+                    <a onclick="mostrarFile('imagen1')"><img src="../static/icono-imagen.png" id="imgImagen1" alt="Cargar una imagen" class="icono-imagen"></a>
+                    <input type="file" hidden hidden name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required onchange="vista_preeliminar(event, 'imgImagen1')">
                   </label>
-                  <label for="imagen">
-                    <span>Imagen 1</span>
-                    <input type="file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required>
-                  </label>
+                 </div>
+                 <div class="col-md-4">
                   <label for="imagen2">
-                    <span>Imagen 2</span>
-                    <input type="file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required>
+                    <a onclick="mostrarFile('imagen2')"><img src="../static/icono-imagen.png" id="imgImagen2" alt="Cargar una imagen" class="icono-imagen"></a>
+                    <input type="file" hidden name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required onchange="vista_preeliminar(event, 'imgImagen2')">
                   </label>
+                 </div>
+                 <div class="col-md-4">
                   <label for="imagen3">
-                    <span>Imagen 3</span>
-                    <input type="file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required>
+                    <a onclick="mostrarFile('imagen3')"><img src="../static/icono-imagen.png" id="imgImagen3" alt="Cargar una imagen" class="icono-imagen"></a>
+                    <input type="file" hidden name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                      required onchange="vista_preeliminar(event, 'imgImagen3')">
                   </label>
-                  <label for="imagen4">
-                    <span>Imagen 4</span>
-                    <input type="file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required>
-                  </label>
-                  <label for="imagen5">
-                    <span>Imagen 5</span>
-                    <input type="file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required>
-                  </label>
+                 </div>
+                  <div class="col-md-4">
+                    <label for="imagen4">
+                      <a onclick="mostrarFile('imagen4')"><img src="../static/icono-imagen.png" id="imgImagen4" alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                        required onchange="vista_preeliminar(event, 'imgImagen4')">
+                    </label>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="imagen5">
+                      <a onclick="mostrarFile('imagen5')"><img src="../static/icono-imagen.png" id="imgImagen5" alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                        required onchange="vista_preeliminar(event, 'imgimagen5')">
+                    </label>
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <input type="submit" class="btn btn-primary btn-guardar" value="Guardar">
@@ -288,27 +301,27 @@
                 <div class="col">
                   <label for="imagen1c">
                     <span>Imagen 1</span>
-                    <input type="file" name="imagen1c" id="imagen1c"
+                    <input type="file" hidden name="imagen1c" id="imagen1c"
                       accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
                   </label>
                   <label for="imagen2c">
                     <span>Imagen 2</span>
-                    <input type="file" name="imagen2c" id="imagen2c"
+                    <input type="file" hidden name="imagen2c" id="imagen2c"
                       accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
                   </label>
                   <label for="imagen3c">
                     <span>Imagen 3</span>
-                    <input type="file" name="imagen3c" id="imagen3c"
+                    <input type="file" hidden name="imagen3c" id="imagen3c"
                       accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
                   </label>
                   <label for="imagen4c">
                     <span>Imagen 4</span>
-                    <input type="file" name="imagen4c" id="imagen4c"
+                    <input type="file" hidden name="imagen4c" id="imagen4c"
                       accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
                   </label>
                   <label for="imagen5c">
                     <span>Imagen 5</span>
-                    <input type="file" name="imagen5c" id="imagen5c"
+                    <input type="file" hidden name="imagen5c" id="imagen5c"
                       accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
                   </label>
                 </div>
@@ -368,52 +381,52 @@
                   <br>
                   <label for="imagen">
                     <span>Imagen 1</span>
-                    <input type="file" name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                    <input type="file" hidden name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
                       required>
                   </label>
                   <label for="imagen2">
                     <span>Imagen 2</span>
-                    <input type="file" name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                    <input type="file" hidden name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
                       required>
                   </label>
                   <label for="imagen3">
                     <span>Imagen 3</span>
-                    <input type="file" name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                    <input type="file" hidden name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
                       required>
                   </label>
                   <label for="imagen4">
                     <span>Imagen 4</span>
-                    <input type="file" name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                    <input type="file" hidden name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
                       required>
                   </label>
                   <label for="imagen5">
                     <span>Imagen 5</span>
-                    <input type="file" name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                    <input type="file" hidden name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
                       required>
                   </label>
                   <label for="imagen6">
                     <span>Imagen 6</span>
-                    <input type="file" name="imagen6" id="imagen6" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                    <input type="file" hidden name="imagen6" id="imagen6" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
                       required>
                   </label>
                   <label for="imagen7">
                     <span>Imagen 7</span>
-                    <input type="file" name="imagen7" id="imagen7" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                    <input type="file" hidden name="imagen7" id="imagen7" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
                       required>
                   </label>
                   <label for="imagen8">
                     <span>Imagen 8</span>
-                    <input type="file" name="imagen8" id="imagen8" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                    <input type="file" hidden name="imagen8" id="imagen8" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
                       required>
                   </label>
                   <label for="imagen9">
                     <span>Imagen 9</span>
-                    <input type="file" name="imagen9" id="imagen9" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
+                    <input type="file" hidden name="imagen9" id="imagen9" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
                       required>
                   </label>
                   <label for="imagen10">
                     <span>Imagen 10</span>
-                    <input type="file" name="imagen10" id="imagen10"
+                    <input type="file"hidden name="imagen10" id="imagen10"
                       accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
                   </label>
 
@@ -440,6 +453,20 @@
   <script src="../../static/libraries/bootstrap-4.6.1-dist/js/bootstrap.min.js "></script>
 
   <script>
+    let vista_preeliminar = (event, fileImg) =>{
+      let leer_img = new FileReader();
+      let id_img = document.getElementById(fileImg);
+
+      leer_img.onload = () =>{
+        if(leer_img.readyState == 2){
+          id_img.src = leer_img.result;
+        }
+      }
+      leer_img.readAsDataURL(event.target.files[0]);
+    }
+    function mostrarFile(fileId){
+      $(`#${fileId}`).trigger('click');
+    }
     function confirmarEliminar(ruta) {
       let confirmacion = confirm("¿Desea eliminar el registro?")
       if (confirmacion) {

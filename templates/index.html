@@ -34,6 +34,7 @@
       </div>
     </div>
     <div class="row">
+      <!-- ======= CARRUSEL ======= -->
       <div class="col-12 slider pt-5 p-0">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -74,14 +75,18 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </button>
+          <div class="col categoria-h1-div">
+            <h1>Nuestros productos</h1>
+          </div>
         </div>
+        
       </div>
+     
     </div>
-
     <div class="row mx-auto" id="card-container">
       {% for categoria in categorias %}
       <div class="col-sm-3">
-        <div class="card" style="width: 80vw;">
+        <div class="card" >
           <img src="../static/images/categorias/{{categoria[1]}}/{{categoria[3]}}" class="card-img-top"
             alt="...">
           <div class="card-body">
@@ -96,11 +101,11 @@
               <nav>
                 <ul>
                   <li>
-                    <a href="/mostrar-productos-categoria/{{categoria[0]}}" class="a-ver--mas"> Ver mas</a> <i class="bi bi-arrow-right-short"
+                    <a href="/mostrar-productos-categoria/{{categoria[0]}}" class="a-ver--mas"> Ver mas <i class="bi bi-arrow-right-short"
                       style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
 
                     <span></span><span></span><span></span><span></span>
-                  </li>
+                  </li></a>
                 </ul>
               </nav>
             </li>
@@ -194,7 +199,7 @@
                 <div class="row mx-auto">
                   <div class="col">
                     <p style="text-align: justify; font-size: 1.5rem;">Contamos con el reconocimiento de más de 900
-                      clientes satisfechos, un indicador del trabajo bien hecho. Para Te Quiero Verde es un honor poder
+                      clientes satisfechos, un indicador del trabajo bien hecho. Para Novasin es un honor poder
                       contar con el respaldo y la confianza de hogares y organizaciones que han visto en nuestro
                       servicio no sólo a un proveedor más, sino a una firma que trabaja y encuentra el diseño ideal para
                       ellos.</p>

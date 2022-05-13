@@ -203,4 +203,10 @@
   div.card.show div.flap2 {
     transition: all 0.3s 0.2s ease-out;
   }
+  @media screen and (min-width: 1000px) {
+    div.cards {
+      margin-top: 10rem;
+    }
+    
+  }
   

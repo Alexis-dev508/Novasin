@@ -84,7 +84,7 @@ section {
 	padding:20px;
 }
 
-@media screen and (max-width:800px ) {
+@media screen and (max-width:850px ) {
 	header nav {
 		width:80%;
 		height:100%;
@@ -162,6 +162,14 @@ section {
 	.menu_bar span {
 		float:right;
 		font-size:4rem;
+	}
+	.card{
+		margin: 0 auto;
+	}
+	.card-container{
+		text-align: center;
+		margin: 0 auto;
+		padding-top: 150rem;
 	}
 	
 }

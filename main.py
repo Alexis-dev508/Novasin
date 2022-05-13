@@ -4,6 +4,7 @@ from encodings import normalize_encoding
 from flask import Flask, request, session, flash
 from flask import render_template, redirect
 from flask_login import login_required
+from flask_sqlalchemy import SQLAlchemy
 from flaskext.mysql import MySQL
 import os
 import errno
@@ -11,22 +12,75 @@ import errno
 
 app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
-db = MySQL()
 
-# app.config['MYSQL_DATABASE_HOST'] = '35.238.174.237'
-# app.config['MYSQL_DATABASE_USER'] = 'admin'
-# app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
-# app.config['MYSQL_DATABASE_DB'] = 'novasin'
-
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_DB'] = 'novasin'
+SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="alexisdev508",
+    password="123456guessanovasin",
+    hostname="alexisdev508.mysql.pythonanywhere-services.com",
+    databasename="alexisdev508$novasin",
+)
+app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = 'H%23^2FY6673HN'
 
+db = SQLAlchemy(app)
 
-db.init_app(app)
+class Carrusel(db.Model):
 
+    __tablename__ = "carruseles"
+    pk_carrusel = db.Column(db.Integer, primary_key = True, autoincrement=True)
+    titulo1=db.Column(db.String(300), nullable=False)
+    titulo2=db.Column(db.String(300), nullable=False)
+    titulo3=db.Column(db.String(300), nullable=False)
+    titulo4=db.Column(db.String(300), nullable=False)
+    titulo5=db.Column(db.String(300), nullable=False)
+    imagen1= db.Column(db.String(300), nullable=False)
+    imagen2= db.Column(db.String(300), nullable=False)
+    imagen3= db.Column(db.String(300), nullable=False)
+    imagen4= db.Column(db.String(300), nullable=False)
+    imagen5= db.Column(db.String(300), nullable=False)
+
+class Categoria(db.Model):
+    __tablename__ = "categorias"
+    pk_categoria= db.Column(db.Integer, primary_key = True, autoincrement=True) 
+    nombreCategoria= db.Column(db.String(300), nullable=False) 
+    descripcionCategoria= db.Column(db.String(300), nullable=False) 
+    imagenCaratula= db.Column(db.String(300), nullable=False) 
+    imagen1= db.Column(db.String(300), nullable=False) 
+    imagen2= db.Column(db.String(300), nullable=False) 
+    imagen3= db.Column(db.String(300), nullable=False) 
+    imagen4= db.Column(db.String(300), nullable=False) 
+    imagen5= db.Column(db.String(300), nullable=False)
+
+class Usuario(db.Model):
+    __tablename__ = "usuarios"
+    pk_usuario = db.Column(db.Integer, primary_key = True, autoincrement=True, nullable=False)
+    nombre = db.Column(db.String(300), nullable=False) 
+    password = db.Column(db.String(300), nullable=False)
+    email_usuario = db.Column(db.String(300), nullable=False)
+    telefono = db.Column(db.String(300), nullable=False) 
+    ciudad = db.Column(db.String(300), nullable=False)
+    tipo_usuario = db.Column(db.String(300), nullable=False) 
+
+class Producto(db.Model):
+    __tablename__: "productos"
+    pk_producto = db.Column(db.Integer, primary_key = True, autoincrement=True, nullable=False)
+    nombre_producto = db.Column(db.String(300))
+    descripcion_producto = db.Column(db.String(1000))
+    precio_producto = db.Column(db.String(300), nullable=False)
+    estatus = db.Column(db.String(300), nullable=False)
+    imagen1 = db.Column(db.String(300), nullable=False) 
+    imagen2 = db.Column(db.String(300), nullable=False) 
+    imagen3 = db.Column(db.String(300), nullable=False) 
+    imagen4 = db.Column(db.String(300), nullable=False) 
+    imagen5 = db.Column(db.String(300), nullable=False) 
+    imagen6 = db.Column(db.String(300), nullable=False) 
+    imagen7 = db.Column(db.String(300), nullable=False) 
+    imagen8 = db.Column(db.String(300), nullable=False) 
+    imagen9 = db.Column(db.String(300), nullable=False) 
+    imagen10 = db.Column(db.String(300), nullable=False) 
+    fk_categoria = db.Column(db.Integer, db.ForeignKey(db.categorias.pk_categoria), nullable=False)
 
 @app.route('/') #Sirve para señalar que cuando busque la diagonal, Flask cargue automaticamente el index
 def index(): #Funcion para cargar el index

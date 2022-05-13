@@ -5,12 +5,21 @@ form{
 label{
     width: 100%;
 }
+.col-sm-3 label{
+    width: 10%;
+}
 span{
     font-weight: bold;
 }
 #nombreCategoria, #descripcionCategoria{
     width: 100%;
 }
+.icono-imagen{
+    width: 10rem;
+    height: 10rem;
+    max-width: 10rem;
+    max-height: 10rem;
+  }
 #descripcionCategoria{
     height: 10rem;
 }

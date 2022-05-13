@@ -8,6 +8,15 @@
   margin: 0px;
   padding: 0px;
 }
+.categoria-h1-div{
+  background-color: var(--main-green);
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 2.5rem;
+}
 .navbar-light {
   background-color: var(--main-blue) !important;
   color: white !important;
@@ -144,9 +153,7 @@ html {
   height: 100%;
   animation: 0.4s;
 }
-.image:hover img {
-  transform: scale(1.5) rotate(15deg);
-}
+
 .downbanner {
   display: inline-block;
   background-color: rgba(29, 248, 0, 0.1) ;;
@@ -185,6 +192,9 @@ html {
     font-size: 1.8rem;
     border-radius: 0.3rem;
   }
+  .card{
+    margin-top: 10rem;
+  }
   .button-home {
     font-size: 2rem;
     padding: 0.5rem 1rem 0.5rem 0.5rem;
@@ -206,7 +216,7 @@ html {
     z-index: 0;
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   .image {
     flex: 50%;
   }
@@ -214,12 +224,34 @@ html {
 
     padding: 2rem 2rem 2rem 1.2rem;
   }
+  #card-container{
+   margin-top: 55rem;
+  }
+  .card{
+    margin: 15rem;
+    width: 200%;
+  }
+ 
+  #card-container{
+    width: 100%;
+  }
+  .card-body{
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  .card-img-top{
+    width: 100%;
+  }
 }
 @media screen and (max-width: 450px) {
   .image {
     flex: 100%;
   }
   #galery-hidden{
+    display: none;
+  }
+  .categoria-h1-div{
     display: none;
   }
   .contenedor-princial-galeria{
