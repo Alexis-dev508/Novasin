@@ -6,12 +6,11 @@ from flask import render_template, redirect
 from flask_login import login_required
 from flask_sqlalchemy import SQLAlchemy
 from flaskext.mysql import MySQL
+from flask_sqlalchemy import SQLAlchemy
 import os
 import errno
 
-
 app = Flask(__name__) #Le asigna el mismo nombre que el archivo
-
 
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
     username="alexisdev508",
