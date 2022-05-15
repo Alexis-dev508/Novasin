@@ -4,7 +4,9 @@ from flask import Flask, request, session, flash
 from flask import render_template, redirect
 from flask_login import login_required
 from flask_sqlalchemy import SQLAlchemy
-from flask_sqlalchemy import SQLAlchemy
+import flask_login
+# from requests import Session
+from sqlalchemy import select
 import os
 import errno
 # ///// Trayendo los modelos de las tablas
@@ -82,22 +84,24 @@ def admin():
     try:
         if session['tipo_usuario'] != 'admin':
             return redirect('/401')
-        else:
-            consulta_categorias = 'SELECT * FROM categorias'
-            consulta_productos = 'SELECT * FROM productos'
-            consulta_usuarios = 'SELECT * FROM usuarios'
-            con = db.connect()
-            cur = con.cursor()
-            cur.execute(consulta_categorias)
-            categorias = cur.fetchall() 
+        else: 
+            usuarios = Usuario.query.all()
+            # consulta_categorias = 'SELECT * FROM categorias'
+            # consulta_productos = 'SELECT * FROM productos'
+            # consulta_usuarios = 'SELECT * FROM usuarios'
+            # con = db.connect()
+            # cur = con.cursor()
+            # cur.execute(consulta_categorias)
+            # categorias = cur.fetchall() 
 
-            cur.execute(consulta_productos)
-            productos = cur.fetchall() 
+            # cur.execute(consulta_productos)
+            # productos = cur.fetchall() 
             
-            cur.execute(consulta_usuarios)
-            usuarios = cur.fetchall() 
-            con.commit()
-            return render_template('admin.html', categorias = categorias, productos = productos, usuarios = usuarios) #Le mandamos el array a la vista para poder usar los datos
+            # cur.execute(consulta_usuarios)
+            # usuarios = cur.fetchall() 
+            # con.commit()
+            #  categorias = categorias, productos = productos, 
+            return render_template('admin.html', usuarios = usuarios) #Le mandamos el array a la vista para poder usar los datos
     except:
         return redirect('/401')
 
@@ -396,21 +400,26 @@ def eliminar_usuario(pk_usuario):
 def validar_usuario():
     username = request.form['user']
     pass1 = request.form['password']
-    consulta = 'SELECT * FROM usuarios WHERE nombre = %s AND password = %s'
-    con = db.connect()
-    cur = con.cursor()
-    cur.execute(consulta,(username, pass1))
-    usuario = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
-    con.commit()
-    if usuario != None:
-        session["nombre_usuario"]= usuario[1]
-        session["tipo_usuario"]= usuario[6]
-        session['pk_usuario'] = usuario[0]
 
-        return redirect('/')
-    else:
-        flash('El usuario o la contraseña son incorrectos')
-        return render_template('./registro.html')
+    
+    # consulta = 'SELECT * FROM usuarios WHERE nombre = %s AND password = %s'
+    # con = db.connect()
+    # cur = con.cursor()
+    # cur.execute(consulta,(username, pass1))
+    # usuario = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
+    # con.commit()
+    user = session.query(Usuario).filter(Usuario.nombre == 'novasinculiacan')
+    print(user)
+    return f'Hola {user}'
+    # if usuario != None:
+    #     session["nombre_usuario"]= usuario[1]
+    #     session["tipo_usuario"]= usuario[6]
+    #     session['pk_usuario'] = usuario[0]
+
+    #     return redirect('/')
+    # else:
+    #     flash('El usuario o la contraseña son incorrectos')
+    #     return render_template('./registro.html')
 
 
 @app.route('/cerrar-sesion')
