@@ -1,14 +1,15 @@
 
 
-from flask import Flask, request, session, flash
+from flask import Flask,session, request, flash
 from flask import render_template, redirect
 from flask_login import login_required
 from flask_sqlalchemy import SQLAlchemy
-import flask_login
 # from requests import Session
-from sqlalchemy import select
 import os
 import errno
+
+ # Crear objeto de sesión (objeto de operación mysql)
+
 # ///// Trayendo los modelos de las tablas
 # from models.carrusel import Carrusel
 # from models.categoria import Categoria
@@ -408,9 +409,9 @@ def validar_usuario():
     # cur.execute(consulta,(username, pass1))
     # usuario = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
     # con.commit()
-    user = Usuario.query.all()
+    user = Usuario.query.filter(Usuario.nombre == "novasinculiacan").all()
 
-    redirect user
+    return user
     # if usuario != None:
     #     session["nombre_usuario"]= usuario[1]
     #     session["tipo_usuario"]= usuario[6]
