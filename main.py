@@ -409,7 +409,7 @@ def validar_usuario():
     # cur.execute(consulta,(username, pass1))
     # usuario = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
     # con.commit()
-    user = Usuario.query.filter(Usuario.nombre == "novasinculiacan").all()
+    user = Usuario.query.all()
 
     return user
     # if usuario != None:
