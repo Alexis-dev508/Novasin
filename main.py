@@ -1,20 +1,23 @@
-from distutils.log import error
-import email
-from encodings import normalize_encoding
+
+
 from flask import Flask, request, session, flash
 from flask import render_template, redirect
 from flask_login import login_required
 from flask_sqlalchemy import SQLAlchemy
-from flaskext.mysql import MySQL
 from flask_sqlalchemy import SQLAlchemy
 import os
 import errno
+# ///// Trayendo los modelos de las tablas
+# from models.carrusel import Carrusel
+# from models.categoria import Categoria
+from models.usuario import Usuario
+# from models.producto import Producto
 
 app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
     username="alexisdev508",
-    password="123456guessanovasin",
+    password="123456guessa",
     hostname="alexisdev508.mysql.pythonanywhere-services.com",
     databasename="alexisdev508$novasin",
 )
@@ -24,78 +27,20 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = 'H%23^2FY6673HN'
 
 db = SQLAlchemy(app)
-
-class Carrusel(db.Model):
-
-    __tablename__ = "carruseles"
-    pk_carrusel = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    titulo1=db.Column(db.String(300), nullable=False)
-    titulo2=db.Column(db.String(300), nullable=False)
-    titulo3=db.Column(db.String(300), nullable=False)
-    titulo4=db.Column(db.String(300), nullable=False)
-    titulo5=db.Column(db.String(300), nullable=False)
-    imagen1= db.Column(db.String(300), nullable=False)
-    imagen2= db.Column(db.String(300), nullable=False)
-    imagen3= db.Column(db.String(300), nullable=False)
-    imagen4= db.Column(db.String(300), nullable=False)
-    imagen5= db.Column(db.String(300), nullable=False)
-
-class Categoria(db.Model):
-    __tablename__ = "categorias"
-    pk_categoria= db.Column(db.Integer, primary_key = True, autoincrement=True) 
-    nombreCategoria= db.Column(db.String(300), nullable=False) 
-    descripcionCategoria= db.Column(db.String(300), nullable=False) 
-    imagenCaratula= db.Column(db.String(300), nullable=False) 
-    imagen1= db.Column(db.String(300), nullable=False) 
-    imagen2= db.Column(db.String(300), nullable=False) 
-    imagen3= db.Column(db.String(300), nullable=False) 
-    imagen4= db.Column(db.String(300), nullable=False) 
-    imagen5= db.Column(db.String(300), nullable=False)
-    productos = db.relationship('productos', lazy='dynamic')
-
-class Usuario(db.Model):
-    __tablename__ = "usuarios"
-    pk_usuario = db.Column(db.Integer, primary_key = True, autoincrement=True, nullable=False)
-    nombre = db.Column(db.String(300), nullable=False) 
-    password = db.Column(db.String(300), nullable=False)
-    email_usuario = db.Column(db.String(300), nullable=False)
-    telefono = db.Column(db.String(300), nullable=False) 
-    ciudad = db.Column(db.String(300), nullable=False)
-    tipo_usuario = db.Column(db.String(300), nullable=False) 
-
-class Producto(db.Model):
-    __tablename__: "productos"
-    pk_producto = db.Column(db.Integer, primary_key = True, autoincrement=True, nullable=False)
-    nombre_producto = db.Column(db.String(300))
-    descripcion_producto = db.Column(db.String(1000))
-    precio_producto = db.Column(db.String(300), nullable=False)
-    estatus = db.Column(db.String(300), nullable=False)
-    imagen1 = db.Column(db.String(300), nullable=False) 
-    imagen2 = db.Column(db.String(300), nullable=False) 
-    imagen3 = db.Column(db.String(300), nullable=False) 
-    imagen4 = db.Column(db.String(300), nullable=False) 
-    imagen5 = db.Column(db.String(300), nullable=False) 
-    imagen6 = db.Column(db.String(300), nullable=False) 
-    imagen7 = db.Column(db.String(300), nullable=False) 
-    imagen8 = db.Column(db.String(300), nullable=False) 
-    imagen9 = db.Column(db.String(300), nullable=False) 
-    imagen10 = db.Column(db.String(300), nullable=False) 
-    fk_categoria = db.Column(db.Integer, db.ForeignKey('categorias.pk_categoria'))
-    categoria = db.relationship("Categoria")
   
-
 @app.route('/') #Sirve para señalar que cuando busque la diagonal, Flask cargue automaticamente el index
 def index(): #Funcion para cargar el index
-    consulta_categorias = 'SELECT * FROM categorias'
-    consulta_carrusel = 'SELECT * FROM carruseles LIMIT 1'
-    con = db.connect()
-    cur = con.cursor()
-    cur.execute(consulta_categorias) 
-    categorias = cur.fetchall() 
-    cur.execute(consulta_carrusel) 
-    carrusel = cur.fetchone() 
-    con.commit() 
-    return render_template('index.html', categorias = categorias, carruseles = carrusel) #Devuelve la vista del index y le manda variables
+    # consulta_categorias = 'SELECT * FROM categorias'
+    # consulta_carrusel = 'SELECT * FROM carruseles LIMIT 1'
+    # con = db.connect()
+    # cur = con.cursor()
+    # cur.execute(consulta_categorias) 
+    # categorias = cur.fetchall() 
+    # cur.execute(consulta_carrusel) 
+    # carrusel = cur.fetchone() 
+    # con.commit() 
+    # , categorias = categorias, carruseles = carrusel
+    return render_template('index.html') #Devuelve la vista del index y le manda variables
 
 
 @app.route('/registro')
@@ -167,11 +112,10 @@ def guardar_usuario():
     email = request.form['email']
     ciudad = request.form['ciudad']
     if contrasena == confirmarContrasena:
-        consulta = 'INSERT INTO usuarios (pk_usuario, nombre,password, email_usuario, telefono, ciudad, tipo_usuario) VALUES(NULL, %s,%s, %s, %s, %s, %s)' 
-        con = db.connect() #Abre una conexion con MySQL
-        cur = con.cursor()
-        cur.execute(consulta,(nombre,contrasena, email, telefono, ciudad, 'cliente')) #Le enviamos parametros a la consulta
-        con.commit() #Guarda los cambios en la base de datos
+        nuevo_usuario=Usuario(nombre, contrasena, email,telefono, ciudad, 'cliente')
+        db.session.add(nuevo_usuario)
+        db.session.commit()
+
         return redirect('/registro') #Retorna el mensaje de guardado
     else:
         return 'Las contraseñas no coinciden'
