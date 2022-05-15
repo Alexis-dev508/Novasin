@@ -1,10 +1,12 @@
 
 
-from flask import Flask, request, flash
+from flask import Flask, request,session, flash
 from flask import render_template, redirect
 from flask_login import login_required
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
+from flask_login import login_required
+from flaskext.mysql import MySQL
 # from requests import Session
 import os
 import errno
@@ -16,37 +18,46 @@ from requests import Session
 # ///// Trayendo los modelos de las tablas
 # from models.carrusel import Carrusel
 # from models.categoria import Categoria
-from models.usuario import Usuario
+# from models.usuario import Usuario
 # from models.producto import Producto
 
 app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
-SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-    username="alexisdev508",
-    password="123456guessa",
-    hostname="alexisdev508.mysql.pythonanywhere-services.com",
-    databasename="alexisdev508$novasin",
-)
-app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+#     username="alexisdev508",
+#     password="123456guessa",
+#     hostname="alexisdev508.mysql.pythonanywhere-services.com",
+#     databasename="alexisdev508$novasin",
+# )
+# app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+# app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# app.secret_key = 'H%23^2FY6673HN'
+
+# db = SQLAlchemy(app)
+db = MySQL()
+
+app.config['MYSQL_DATABASE_HOST'] = 'alexisdev508.mysql.pythonanywhere-services.com'
+app.config['MYSQL_DATABASE_USER'] = 'alexisdev508'
+app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
+app.config['MYSQL_DATABASE_DB'] = 'alexisdev508$novasin'
 app.secret_key = 'H%23^2FY6673HN'
 
-db = SQLAlchemy(app)
+
+db.init_app(app)
   
 @app.route('/') #Sirve para señalar que cuando busque la diagonal, Flask cargue automaticamente el index
 def index(): #Funcion para cargar el index
-    # consulta_categorias = 'SELECT * FROM categorias'
-    # consulta_carrusel = 'SELECT * FROM carruseles LIMIT 1'
-    # con = db.connect()
-    # cur = con.cursor()
-    # cur.execute(consulta_categorias) 
-    # categorias = cur.fetchall() 
-    # cur.execute(consulta_carrusel) 
-    # carrusel = cur.fetchone() 
-    # con.commit() 
-    # , categorias = categorias, carruseles = carrusel
-    return render_template('index.html') #Devuelve la vista del index y le manda variables
+    consulta_categorias = 'SELECT * FROM categorias'
+    consulta_carrusel = 'SELECT * FROM carruseles LIMIT 1'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta_categorias) 
+    categorias = cur.fetchall() 
+    cur.execute(consulta_carrusel) 
+    carrusel = cur.fetchone() 
+    con.commit() 
+    return render_template('index.html', categorias = categorias, carruseles = carrusel) #Devuelve la vista del index y le manda variables
 
 
 @app.route('/registro')
@@ -403,29 +414,24 @@ def eliminar_usuario(pk_usuario):
 @app.route('/login', methods=['POST', 'GET'])
 def validar_usuario():
     username = request.form['user']
-    pass1 = request.form['password']
+    pass1 = request.form['password']    
+    # stmt = select(Usuario).where(Usuario.nombre == 'novasinculiacan')
+    # result = session.execute(stmt)
+    consulta = 'SELECT * FROM usuarios WHERE nombre = %s AND password = %s'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta,(username, pass1))
+    usuario = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
+    con.commit()
+    if usuario != None:
+        session["nombre_usuario"]= usuario[1]
+        session["tipo_usuario"]= usuario[6]
+        session['pk_usuario'] = usuario[0]
 
-    
-    stmt = select(Usuario).where(Usuario.nombre == 'novasinculiacan')
-
-    # consulta = 'SELECT * FROM usuarios WHERE nombre = %s AND password = %s'
-    # con = db.connect()
-    # cur = con.cursor()
-    # cur.execute(consulta,(username, pass1))
-    # usuario = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
-    # con.commit()
-    user = Usuario.query.all()
-
-    return user
-    # if usuario != None:
-    #     session["nombre_usuario"]= usuario[1]
-    #     session["tipo_usuario"]= usuario[6]
-    #     session['pk_usuario'] = usuario[0]
-
-    #     return redirect('/')
-    # else:
-    #     flash('El usuario o la contraseña son incorrectos')
-    #     return render_template('./registro.html')
+        return redirect('/')
+    else:
+        flash('El usuario o la contraseña son incorrectos')
+        return render_template('./registro.html')
 
 
 @app.route('/cerrar-sesion')
