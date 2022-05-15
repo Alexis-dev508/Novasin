@@ -408,9 +408,9 @@ def validar_usuario():
     # cur.execute(consulta,(username, pass1))
     # usuario = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
     # con.commit()
-    user = session.query(Usuario).filter(Usuario.nombre == 'novasinculiacan')
-    print(user)
-    return f'Hola {user}'
+    user = Usuario.query.all()
+
+    redirect user
     # if usuario != None:
     #     session["nombre_usuario"]= usuario[1]
     #     session["tipo_usuario"]= usuario[6]
