@@ -1,12 +1,15 @@
 
 
-from flask import Flask,session, request, flash
+from flask import Flask, request, flash
 from flask import render_template, redirect
 from flask_login import login_required
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import select
 # from requests import Session
 import os
 import errno
+
+from requests import Session
 
  # Crear objeto de sesión (objeto de operación mysql)
 
@@ -403,6 +406,8 @@ def validar_usuario():
     pass1 = request.form['password']
 
     
+    stmt = select(Usuario).where(Usuario.nombre == 'novasinculiacan')
+
     # consulta = 'SELECT * FROM usuarios WHERE nombre = %s AND password = %s'
     # con = db.connect()
     # cur = con.cursor()
