@@ -131,10 +131,11 @@ def guardar_usuario():
     email = request.form['email']
     ciudad = request.form['ciudad']
     if contrasena == confirmarContrasena:
-        nuevo_usuario=Usuario(nombre, contrasena, email,telefono, ciudad, 'cliente')
-        db.session.add(nuevo_usuario)
-        db.session.commit()
-
+        consulta = 'INSERT INTO usuarios (pk_usuario, nombre,password, email_usuario, telefono, ciudad, tipo_usuario) VALUES(NULL, %s,%s, %s, %s, %s, %s)' 
+        con = db.connect() #Abre una conexion con MySQL
+        cur = con.cursor()
+        cur.execute(consulta,(nombre,contrasena, email, telefono, ciudad, 'cliente')) #Le enviamos parametros a la consulta
+        con.commit() #Guarda los cambios en la base de datos
         return redirect('/registro') #Retorna el mensaje de guardado
     else:
         return 'Las contraseñas no coinciden'
