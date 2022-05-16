@@ -99,24 +99,23 @@ def admin():
     try:
         if session['tipo_usuario'] != 'admin':
             return redirect('/401')
-        else: 
-            usuarios = Usuario.query.all()
-            # consulta_categorias = 'SELECT * FROM categorias'
-            # consulta_productos = 'SELECT * FROM productos'
-            # consulta_usuarios = 'SELECT * FROM usuarios'
-            # con = db.connect()
-            # cur = con.cursor()
-            # cur.execute(consulta_categorias)
-            # categorias = cur.fetchall() 
+        else:    
+            consulta_categorias = 'SELECT * FROM categorias'
+            consulta_productos = 'SELECT * FROM productos'
+            consulta_usuarios = 'SELECT * FROM usuarios'
+            con = db.connect()
+            cur = con.cursor()
+            cur.execute(consulta_categorias)
+            categorias = cur.fetchall() 
 
-            # cur.execute(consulta_productos)
-            # productos = cur.fetchall() 
+            cur.execute(consulta_productos)
+            productos = cur.fetchall() 
             
-            # cur.execute(consulta_usuarios)
-            # usuarios = cur.fetchall() 
-            # con.commit()
-            #  categorias = categorias, productos = productos, 
-            return render_template('admin.html', usuarios = usuarios) #Le mandamos el array a la vista para poder usar los datos
+            cur.execute(consulta_usuarios)
+            usuarios = cur.fetchall() 
+            con.commit()
+             
+            return render_template('admin.html', usuarios = usuarios, categorias = categorias, productos = productos, ) #Le mandamos el array a la vista para poder usar los datos
     except:
         return redirect('/401')
 
@@ -132,7 +131,7 @@ def guardar_usuario():
     ciudad = request.form['ciudad']
     if contrasena == confirmarContrasena:
         consulta = 'INSERT INTO usuarios (pk_usuario, nombre,password, email_usuario, telefono, ciudad, tipo_usuario) VALUES(NULL, %s,%s, %s, %s, %s, %s)' 
-        con = db.connect() #Abre una conexion con MySQL
+        con = db.connect() #Abre una conexion con MySQLq
         cur = con.cursor()
         cur.execute(consulta,(nombre,contrasena, email, telefono, ciudad, 'cliente')) #Le enviamos parametros a la consulta
         con.commit() #Guarda los cambios en la base de datos
