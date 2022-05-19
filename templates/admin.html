@@ -50,7 +50,7 @@
           {% for datos in categorias %}
           <tr>
             <td>{{datos[0]}}</td>
-            <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
+            <td>{{datos[1].strip().replace(' ', '-')}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
             <td>{{datos[2]}}</td>
             <td><img style="width: 7rem; height: 7rem;" src="../static/images/categorias/{{datos[1]}}/{{datos[3]}}"
                 alt=""> </td>
@@ -94,7 +94,7 @@
           {% for datos in productos %}
           <tr>
             <td>{{datos[0]}}</td>
-            <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
+            <td>{{datos[1].strip().replace(' ', '-')}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
             <td>{{datos[2]}}</td>
             <td>{{datos[3]}}</td>
             <td><img style="width: 7rem; height: 7rem;" src="../static/images/productos/{{datos[1]}}/{{datos[5]}}"
