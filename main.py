@@ -42,6 +42,12 @@ app.config['MYSQL_DATABASE_USER'] = 'alexisdev508'
 app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
 app.config['MYSQL_DATABASE_DB'] = 'alexisdev508$novasin'
 app.secret_key = 'H%23^2FY6673HN'
+# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+# app.config['MYSQL_DATABASE_USER'] = 'root'
+# app.config['MYSQL_DATABASE_PASSWORD'] = ''
+# app.config['MYSQL_DATABASE_DB'] = 'novasin'
+# app.secret_key = 'H%23^2FY6673HN'
+
 
 
 db.init_app(app)
@@ -174,6 +180,7 @@ def guardarCategoria():
     except OSError as e:
         if e.errno != errno.EEXIST:
             raise
+        return 'Error'
 
 
 @app.route('/editar-categoria/<int:idcategoria>')
