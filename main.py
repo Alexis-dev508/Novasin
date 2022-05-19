@@ -164,13 +164,13 @@ def guardarCategoria():
     imagen5 = request.files['imagen5']
     imagen5Nombre = 'imagen5-'+ imagen5.filename
     try:
-        os.mkdir(f'./static/images/categorias/{nombreCategoria}')
-        imagenCaratula.save(f'./static/images/categorias/{nombreCategoria}/' + imagenCaratulaNombre)
-        imagen1.save(f'./static/images/categorias/{nombreCategoria}/' + imagen1Nombre)
-        imagen2.save(f'./static/images/categorias/{nombreCategoria}/' + imagen2Nombre)
-        imagen3.save(f'./static/images/categorias/{nombreCategoria}/' + imagen3Nombre)
-        imagen4.save(f'./static/images/categorias/{nombreCategoria}/' + imagen4Nombre)
-        imagen5.save(f'./static/images/categorias/{nombreCategoria}/' + imagen5Nombre)
+        os.mkdir(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}')
+        imagenCaratula.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagenCaratulaNombre)
+        imagen1.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen1Nombre)
+        imagen2.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen2Nombre)
+        imagen3.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen3Nombre)
+        imagen4.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen4Nombre)
+        imagen5.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen5Nombre)
         consulta = 'INSERT INTO categorias (pk_categoria, nombreCategoria, descripcionCategoria, imagenCaratula, imagen1, imagen2, imagen3, imagen4, imagen5)  VALUES(NULL, %s, %s, %s, %s, %s,%s,%s,%s)' 
         con = db.connect() #Abre una conexion con MySQL
         cur = con.cursor()
@@ -215,19 +215,19 @@ def actualizar_categoria():
     imagen5 = request.files['imagen5']
     imagen5Nombre = imagen5.filename
     try:
-        listaArchivos = os.listdir(f'./static/images/categorias/{nombreCategoria}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+        listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
         for archivo in listaArchivos:
-             os.remove(f'./static/images/categorias/{nombreCategoria}/{archivo}')#Borra el directorio junto con los archivos contenidos
+             os.remove(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/{archivo}')#Borra el directorio junto con los archivos contenidos
         consulta = "UPDATE categorias SET nombreCategoria = %s, descripcionCategoria = %s, imagenCaratula = %s, imagen1 = %s, imagen2 = %s, imagen3 = %s, imagen4 = %s, imagen5 = %s  WHERE pk_categoria = %s"  
         con = db.connect() #Abre una conexion con MySQL
         cur = con.cursor()
         cur.execute(consulta,(nombreCategoria, descripcionCategoria, imagenCaratulaNombre, imagen1Nombre, imagen2Nombre, imagen3Nombre, imagen4Nombre, imagen5Nombre, idCategoria )) #Le enviamos parametros a la consulta
-        imagenCaratula.save(f'./static/images/categorias/{nombreCategoria}/' +'caratula-'+ imagenCaratulaNombre)
-        imagen1.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen1-' + imagen1Nombre)
-        imagen2.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen2-' + imagen2Nombre)
-        imagen3.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen3-' + imagen3Nombre)
-        imagen4.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen4-' + imagen4Nombre)
-        imagen5.save(f'./static/images/categorias/{nombreCategoria}/' + 'imagen5-' + imagen5Nombre)
+        imagenCaratula.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' +'caratula-'+ imagenCaratulaNombre)
+        imagen1.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + 'imagen1-' + imagen1Nombre)
+        imagen2.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + 'imagen2-' + imagen2Nombre)
+        imagen3.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + 'imagen3-' + imagen3Nombre)
+        imagen4.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + 'imagen4-' + imagen4Nombre)
+        imagen5.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + 'imagen5-' + imagen5Nombre)
         con.commit() #Guarda los cambios en la base de datos
         return redirect('/admin')
     except OSError as e:
@@ -244,10 +244,10 @@ def eliminar_categoria(idcategoria):
     registro = cur.fetchone()
     con.commit()
     print(registro)
-    listaArchivos = os.listdir(f'./static/images/categorias/{registro[1]}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+    listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/categorias/{registro[1]}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
     for archivo in listaArchivos:
-        os.remove(f'./static/images/categorias/{registro[1]}/{archivo}')#Borra el directorio junto con los archivos contenidos
-    os.rmdir(f'./static/images/categorias/{registro[1]}')
+        os.remove(f'/home/alexisdev508/Novasin/static/images/categorias/{registro[1]}/{archivo}')#Borra el directorio junto con los archivos contenidos
+    os.rmdir(f'/home/alexisdev508/Novasin/static/images/categorias/{registro[1]}')
     consulta = 'DELETE FROM categorias WHERE pk_categoria=%s'
     con = db.connect()
     cur = con.cursor()
@@ -313,17 +313,17 @@ def guardar_producto():
     imagen9pNombre = 'imagen9p-' + imagen9p.filename
     imagen10pNombre = 'imagen10-' + imagen10p.filename
     try:
-        os.mkdir(f'./static/images/productos/{nombre_producto}') 
-        imagen1p.save(f'./static/images/productos/{nombre_producto}/' + imagen1pNombre)
-        imagen2p.save(f'./static/images/productos/{nombre_producto}/' + imagen2pNombre)
-        imagen3p.save(f'./static/images/productos/{nombre_producto}/' + imagen3pNombre)
-        imagen4p.save(f'./static/images/productos/{nombre_producto}/' + imagen4pNombre)
-        imagen5p.save(f'./static/images/productos/{nombre_producto}/' + imagen5pNombre)
-        imagen6p.save(f'./static/images/productos/{nombre_producto}/' + imagen6pNombre)
-        imagen7p.save(f'./static/images/productos/{nombre_producto}/' + imagen7pNombre)
-        imagen8p.save(f'./static/images/productos/{nombre_producto}/' + imagen8pNombre)
-        imagen9p.save(f'./static/images/productos/{nombre_producto}/' + imagen9pNombre)
-        imagen10p.save(f'./static/images/productos/{nombre_producto}/' + imagen10pNombre) 
+        os.mkdir(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}') 
+        imagen1p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen1pNombre)
+        imagen2p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen2pNombre)
+        imagen3p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen3pNombre)
+        imagen4p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen4pNombre)
+        imagen5p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen5pNombre)
+        imagen6p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen6pNombre)
+        imagen7p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen7pNombre)
+        imagen8p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen8pNombre)
+        imagen9p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen9pNombre)
+        imagen10p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen10pNombre) 
         consulta = 'INSERT INTO productos  VALUES (NULL, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         con = db.connect() #Abre una conexion con MySQL
         cur = con.cursor()
@@ -332,7 +332,7 @@ def guardar_producto():
         return redirect('/admin')
     except OSError as e:
         if e.errno != errno.EEXIST:
-            return ''
+            return 'Ha ocurrido un error, intentelo de nuevo o pongase en contacto con el desarrollador'
 
 
 @app.route('/eliminar-producto/<int:pk_producto>')
@@ -343,10 +343,10 @@ def eliminar_producto(pk_producto):
     cur.execute(consultaTraerDatos,(pk_producto))
     registro = cur.fetchone()
     con.commit()
-    listaArchivos = os.listdir(f'./static/images/productos/{registro[1]}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+    listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/productos/{registro[1]}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
     for archivo in listaArchivos:
-        os.remove(f'./static/images/productos/{registro[1]}/{archivo}')#Borra el directorio junto con los archivos contenidos
-    os.rmdir(f'./static/images/productos/{registro[1]}')
+        os.remove(f'/home/alexisdev508/Novasin/static/images/productos/{registro[1]}/{archivo}')#Borra el directorio junto con los archivos contenidos
+    os.rmdir(f'/home/alexisdev508/Novasin/static/images/productos/{registro[1]}')
     consulta = 'DELETE FROM productos WHERE pk_producto=%s'
     con = db.connect()
     cur = con.cursor()
@@ -383,19 +383,19 @@ def actualizar_producto():
     imagen9pNombre = 'imagen9p-' +imagen9p.filename
     imagen10pNombre =  'imagen10p-'+imagen10p.filename
     try:
-        listaArchivos = os.listdir(f'./static/images/productos/{nombre_producto}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+        listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
         for archivo in listaArchivos:
-            os.remove(f'./static/images/productos/{nombre_producto}/{archivo}')#Borra el directorio junto con los archivos contenidos
-        imagen1p.save(f'./static/images/productos/{nombre_producto}/' +  imagen1pNombre)
-        imagen2p.save(f'./static/images/productos/{nombre_producto}/' +  imagen2pNombre)
-        imagen3p.save(f'./static/images/productos/{nombre_producto}/' +  imagen3pNombre)
-        imagen4p.save(f'./static/images/productos/{nombre_producto}/' +  imagen4pNombre)
-        imagen5p.save(f'./static/images/productos/{nombre_producto}/' +  imagen5pNombre)
-        imagen6p.save(f'./static/images/productos/{nombre_producto}/' +  imagen6pNombre)
-        imagen7p.save(f'./static/images/productos/{nombre_producto}/' +  imagen7pNombre)
-        imagen8p.save(f'./static/images/productos/{nombre_producto}/' +  imagen8pNombre)
-        imagen9p.save(f'./static/images/productos/{nombre_producto}/' +  imagen9pNombre)
-        imagen10p.save(f'./static/images/productos/{nombre_producto}/' +  imagen10pNombre) 
+            os.remove(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/{archivo}')#Borra el directorio junto con los archivos contenidos
+        imagen1p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen1pNombre)
+        imagen2p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen2pNombre)
+        imagen3p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen3pNombre)
+        imagen4p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen4pNombre)
+        imagen5p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen5pNombre)
+        imagen6p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen6pNombre)
+        imagen7p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen7pNombre)
+        imagen8p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen8pNombre)
+        imagen9p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen9pNombre)
+        imagen10p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' +  imagen10pNombre) 
         consulta = 'UPDATE productos SET nombre_producto=%s, descripcion_producto = %s, precio_producto = %s, imagen1 = %s, imagen2=%s,imagen3=%s,imagen4=%s,imagen5=%s,imagen6=%s,imagen7=%s,imagen8=%s,imagen9=%s,imagen10=%s, fk_categoria=%s'
         con = db.connect() #Abre una conexion con MySQL
         cur = con.cursor()
@@ -466,14 +466,14 @@ def carrusel_principal():
     imagen4cNombre = imagen4c.filename
     imagen5cNombre = imagen5c.filename
     # try:
-    listaArchivos = os.listdir(f'./static/images/carrusel/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+    listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/carrusel/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
     for archivo in listaArchivos:
-        os.remove(f'./static/images/carrusel/{archivo}')#Borra el directorio junto con los archivos contenidos
-    imagen1c.save(f'./static/images/carrusel/' + 'imagen1c-' + imagen1cNombre)
-    imagen2c.save(f'./static/images/carrusel/' + 'imagen2c-' + imagen2cNombre)
-    imagen3c.save(f'./static/images/carrusel/' + 'imagen3c-' + imagen3cNombre)
-    imagen4c.save(f'./static/images/carrusel/' + 'imagen4c-' + imagen4cNombre)
-    imagen5c.save(f'./static/images/carrusel/' + 'imagen5c-' + imagen5cNombre)
+        os.remove(f'/home/alexisdev508/Novasin/static/images/carrusel/{archivo}')#Borra el directorio junto con los archivos contenidos
+    imagen1c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen1c-' + imagen1cNombre)
+    imagen2c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen2c-' + imagen2cNombre)
+    imagen3c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen3c-' + imagen3cNombre)
+    imagen4c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen4c-' + imagen4cNombre)
+    imagen5c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen5c-' + imagen5cNombre)
     consulta = 'INSERT INTO carruseles VALUES(NULL, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s)'
     borrar = 'DELETE FROM carruseles'
     con = db.connect()
