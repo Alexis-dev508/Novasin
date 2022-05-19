@@ -15,26 +15,9 @@ from requests import Session
 
  # Crear objeto de sesión (objeto de operación mysql)
 
-# ///// Trayendo los modelos de las tablas
-# from models.carrusel import Carrusel
-# from models.categoria import Categoria
-# from models.usuario import Usuario
-# from models.producto import Producto
 
 app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
-# SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
-#     username="alexisdev508",
-#     password="123456guessa",
-#     hostname="alexisdev508.mysql.pythonanywhere-services.com",
-#     databasename="alexisdev508$novasin",
-# )
-# app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-# app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
-# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-# app.secret_key = 'H%23^2FY6673HN'
-
-# db = SQLAlchemy(app)
 db = MySQL()
 
 app.config['MYSQL_DATABASE_HOST'] = 'alexisdev508.mysql.pythonanywhere-services.com'
@@ -278,7 +261,6 @@ def editar_producto(pk_producto):
     cur = con.cursor()
     cur.execute(consulta, (pk_producto))
     producto = cur.fetchall()
-
     cur.execute(consulta_categoria)
     categorias = cur.fetchall()
     con.commit()
@@ -292,16 +274,16 @@ def guardar_producto():
     precio_producto = request.form['precioProducto']
     status = 'v'
     categoria = request.form['select-categoria']
-    imagen1p = request.files['imagen1']
-    imagen2p = request.files['imagen2']
-    imagen3p = request.files['imagen3']
-    imagen4p = request.files['imagen4']
-    imagen5p = request.files['imagen5']
-    imagen6p = request.files['imagen6']
-    imagen7p = request.files['imagen7']
-    imagen8p = request.files['imagen8']
-    imagen9p = request.files['imagen9']
-    imagen10p = request.files['imagen10']
+    imagen1p = request.files['imagen1p']
+    imagen2p = request.files['imagen2p']
+    imagen3p = request.files['imagen3p']
+    imagen4p = request.files['imagen4p']
+    imagen5p = request.files['imagen5p']
+    imagen6p = request.files['imagen6p']
+    imagen7p = request.files['imagen7p']
+    imagen8p = request.files['imagen8p']
+    imagen9p = request.files['imagen9p']
+    imagen10p = request.files['imagen10p']
     imagen1pNombre = 'imagen1p-' + imagen1p.filename
     imagen2pNombre = 'imagen2p-' + imagen2p.filename
     imagen3pNombre = 'imagen3p-' + imagen3p.filename

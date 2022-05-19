@@ -152,10 +152,10 @@
     <div class="row pt-5">
       <div class="col-sm-12 mb-3" style="background:rgba(34, 34, 34, 0.968); color: white;">
         <h1 style="padding: 0.5rem;">Mas funciones</h1>
-      </div>    
-      
-      <button type="button" style="border-radius: 10px;" class="btn btn-primary" data-toggle="modal" data-target="#modalCarrusel"
-        style="font-size: 1.5rem; font-weight: bold;">
+      </div>
+
+      <button type="button" style="border-radius: 10px;" class="btn btn-primary" data-toggle="modal"
+        data-target="#modalCarrusel" style="font-size: 1.5rem; font-weight: bold;">
         <i class="bi bi-card-heading" style="font-size: 7rem;"></i>
         <br>
         Cambiar el carrusel principal
@@ -198,44 +198,56 @@
                   <div class="col-md-4">
                     <label for="imagenCaratula">
                       <!-- Caratula -->
-                       <a onclick="mostrarFile('imagenCaratula')"><img src="../static/icono-imagen.png" id="imgImagenCaratula" alt="Cargar una imagen" class="icono-imagen"></a>
-                       <input type="file" hidden name="imagenCaratula" id="imagenCaratula"
-                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required onchange="vista_preeliminar(event, 'imgImagenCaratula')"> 
-                     </label>
+                      <a onclick="mostrarFile('imagenCaratula')"><img src="../static/icono-imagen.png"
+                          id="imgImagenCaratula" alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagenCaratula" id="imagenCaratula"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagenCaratula')">
+                    </label>
                   </div>
-                 <div class="col-md-4">
-                  <label for="imagen1">
-                    <a onclick="mostrarFile('imagen1')"><img src="../static/icono-imagen.png" id="imgImagen1" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen1')">
-                  </label>
-                 </div>
-                 <div class="col-md-4">
-                  <label for="imagen2">
-                    <a onclick="mostrarFile('imagen2')"><img src="../static/icono-imagen.png" id="imgImagen2" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen2')">
-                  </label>
-                 </div>
-                 <div class="col-md-4">
-                  <label for="imagen3">
-                    <a onclick="mostrarFile('imagen3')"><img src="../static/icono-imagen.png" id="imgImagen3" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen3')">
-                  </label>
-                 </div>
+                  <div class="col-md-4">
+                    <label for="imagen1">
+                      <a onclick="mostrarFile('imagen1')"><img src="../static/icono-imagen.png" id="imgImagen1"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen1" id="imagen1"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen1')">
+                    </label>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="imagen2">
+                      <a onclick="mostrarFile('imagen2')"><img src="../static/icono-imagen.png" id="imgImagen2"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen2" id="imagen2"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen2')">
+                    </label>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="imagen3">
+                      <a onclick="mostrarFile('imagen3')"><img src="../static/icono-imagen.png" id="imgImagen3"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen3" id="imagen3"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen3')">
+                    </label>
+                  </div>
                   <div class="col-md-4">
                     <label for="imagen4">
-                      <a onclick="mostrarFile('imagen4')"><img src="../static/icono-imagen.png" id="imgImagen4" alt="Cargar una imagen" class="icono-imagen"></a>
-                      <input type="file" hidden name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                        required onchange="vista_preeliminar(event, 'imgImagen4')">
+                      <a onclick="mostrarFile('imagen4')"><img src="../static/icono-imagen.png" id="imgImagen4"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen4" id="imagen4"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen4')">
                     </label>
                   </div>
                   <div class="col-md-4">
                     <label for="imagen5">
-                      <a onclick="mostrarFile('imagen5')"><img src="../static/icono-imagen.png" id="imgImagen5" alt="Cargar una imagen" class="icono-imagen"></a>
-                      <input type="file" hidden name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                        required onchange="vista_preeliminar(event, 'imgImagen5')">
+                      <a onclick="mostrarFile('imagen5')"><img src="../static/icono-imagen.png" id="imgImagen5"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen5" id="imagen5"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen5')">
                     </label>
                   </div>
                 </div>
@@ -299,41 +311,51 @@
                   </label>
                 </div>
                 <div class="row mx-auto">
-                
+
                   <div class="col-md-4">
-                  <label for="imagen1c">
-                    <a onclick="mostrarFile('imagen1c')"><img src="../static/icono-imagen.png" id="imgImagen1c" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen1c" id="imagen1c"
-                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required onchange="vista_preeliminar(event, 'imgImagen1c')">
-                  </label>
+                    <label for="imagen1c">
+                      <a onclick="mostrarFile('imagen1c')"><img src="../static/icono-imagen.png" id="imgImagen1c"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen1c" id="imagen1c"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen1c')">
+                    </label>
                   </div>
                   <div class="col-md-4">
-                  <label for="imagen2c">
-                     <a onclick="mostrarFile('imagen2c')"><img src="../static/icono-imagen.png" id="imgImagen2c" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen2c" id="imagen2c"
-                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required onchange="vista_preeliminar(event, 'imgImagen2c')">
-                  </label>
+                    <label for="imagen2c">
+                      <a onclick="mostrarFile('imagen2c')"><img src="../static/icono-imagen.png" id="imgImagen2c"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen2c" id="imagen2c"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen2c')">
+                    </label>
                   </div>
                   <div class="col-md-4">
-                  <label for="imagen3c">
-                     <a onclick="mostrarFile('imagen3c')"><img src="../static/icono-imagen.png" id="imgImagen3c" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen3c" id="imagen3c"
-                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required onchange="vista_preeliminar(event, 'imgImagen3c')">
-                  </label>
+                    <label for="imagen3c">
+                      <a onclick="mostrarFile('imagen3c')"><img src="../static/icono-imagen.png" id="imgImagen3c"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen3c" id="imagen3c"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen3c')">
+                    </label>
                   </div>
                   <div class="col-md-4">
-                  <label for="imagen4c">
-                     <a onclick="mostrarFile('imagen4c')"><img src="../static/icono-imagen.png" id="imgImagen4c" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen4c" id="imagen4c"
-                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required onchange="vista_preeliminar(event, 'imgImagen4c')">
-                  </label>
+                    <label for="imagen4c">
+                      <a onclick="mostrarFile('imagen4c')"><img src="../static/icono-imagen.png" id="imgImagen4c"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen4c" id="imagen4c"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen4c')">
+                    </label>
                   </div>
                   <div class="col-md-4">
-                  <label for="imagen5c">
-                     <a onclick="mostrarFile('imagen5c')"><img src="../static/icono-imagen.png" id="imgImagen5c" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen5c" id="imagen5c"
-                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required onchange="vista_preeliminar(event, 'imgImagen5c')">
-                  </label>
+                    <label for="imagen5c">
+                      <a onclick="mostrarFile('imagen5c')"><img src="../static/icono-imagen.png" id="imgImagen5c"
+                          alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen5c" id="imagen5c"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagen5c')">
+                    </label>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -390,58 +412,99 @@
                     {% endfor %}
                   </select>
                   <br>
-                  <label for="imagen">
-                    <a onclick="mostrarFile('imagen1')"><img src="../static/icono-imagen.png" id="imgImagen1p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen1" id="imagen1" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen1p')">
-                  </label>
-                  <label for="imagen2">
-                    <a onclick="mostrarFile('imagen2')"><img src="../static/icono-imagen.png" id="imgImagen2p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen2" id="imagen2" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen2p')">
-                  </label>
-                  <label for="imagen3">
-                    <a onclick="mostrarFile('imagen3')"><img src="../static/icono-imagen.png" id="imgImagen3p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen3" id="imagen3" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen3p')">
-                  </label>
-                  <label for="imagen4">
-                    <a onclick="mostrarFile('imagen4')"><img src="../static/icono-imagen.png" id="imgImagen4p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen4" id="imagen4" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen4p')">
-                  </label>
-                  <label for="imagen5">
-                    <a onclick="mostrarFile('imagen5')"><img src="../static/icono-imagen.png" id="imgImagen5p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen5" id="imagen5" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen5p')">
-                  </label>
-                  <label for="imagen6">
-                    <a onclick="mostrarFile('imagen6')"><img src="../static/icono-imagen.png" id="imgImagen6p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen6" id="imagen6" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen6p')">
-                  </label>
-                  <label for="imagen7">
-                    <a onclick="mostrarFile('imagen7')"><img src="../static/icono-imagen.png" id="imgImagen7p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen7" id="imagen7" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen7p')">
-                  </label>
-                  <label for="imagen8">
-                    <a onclick="mostrarFile('imagen8')"><img src="../static/icono-imagen.png" id="imgImagen8p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen8" id="imagen8" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen8p')">
-                  </label>
-                  <label for="imagen9">
-                    <a onclick="mostrarFile('imagen9')"><img src="../static/icono-imagen.png" id="imgImagen9p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file" hidden name="imagen9" id="imagen9" accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif"
-                      required onchange="vista_preeliminar(event, 'imgImagen9p')">
-                  </label>
-                  <label for="imagen10">
-                    <<a onclick="mostrarFile('imagen10')"><img src="../static/icono-imagen.png" id="imgImagen10p" alt="Cargar una imagen" class="icono-imagen"></a>
-                    <input type="file"hidden name="imagen10" id="imagen10"
-                      accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required onchange="vista_preeliminar(event, 'imgImagen10p')">
-                  </label>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <label for="imagen1p">
+                        <a onclick="mostrarFile('imagen1p')"><img src="../static/icono-imagen.png" id="imgImagen1p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                        <input type="file" hidden name="imagen1p" id="imagen1p"
+                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                          onchange="vista_preeliminar(event, 'imgImagen1p')">
+                      </label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="imagen2p">
+                        <a onclick="mostrarFile('imagen2p')"><img src="../static/icono-imagen.png" id="imgImagen2p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                        <input type="file" hidden name="imagen2p" id="imagen2p"
+                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                          onchange="vista_preeliminar(event, 'imgImagen2p')">
+                      </label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="imagen3p">
+                        <a onclick="mostrarFile('imagen3p')"><img src="../static/icono-imagen.png" id="imgImagen3p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                        <input type="file" hidden name="imagen3p" id="imagen3p"
+                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                          onchange="vista_preeliminar(event, 'imgImagen3p')">
+                      </label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="imagen4p">
+                        <a onclick="mostrarFile('imagen4p')"><img src="../static/icono-imagen.png" id="imgImagen4p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                        <input type="file" hidden name="imagen4p" id="imagen4p"
+                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                          onchange="vista_preeliminar(event, 'imgImagen4p')">
+                      </label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="imagen5p">
+                        <a onclick="mostrarFile('imagen5p')"><img src="../static/icono-imagen.png" id="imgImagen5p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                        <input type="file" hidden name="imagen5p" id="imagen5p"
+                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                          onchange="vista_preeliminar(event, 'imgImagen5p')">
+                      </label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="imagen6p">
+                        <a onclick="mostrarFile('imagen6p')"><img src="../static/icono-imagen.png" id="imgImagen6p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                        <input type="file" hidden name="imagen6p" id="imagen6p"
+                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                          onchange="vista_preeliminar(event, 'imgImagen6p')">
+                      </label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="imagen7p">
+                        <a onclick="mostrarFile('imagen7p')"><img src="../static/icono-imagen.png" id="imgImagen7p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                        <input type="file" hidden name="imagen7p" id="imagen7p"
+                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                          onchange="vista_preeliminar(event, 'imgImagen7p')">
+                      </label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="imagen8p">
+                        <a onclick="mostrarFile('imagen8p')"><img src="../static/icono-imagen.png" id="imgImagen8p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                        <input type="file" hidden name="imagen8p" id="imagen8p"
+                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                          onchange="vista_preeliminar(event, 'imgImagen8p')">
+                      </label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="imagen9p">
+                        <a onclick="mostrarFile('imagen9p')"><img src="../static/icono-imagen.png" id="imgImagen9p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                        <input type="file" hidden name="imagen9p" id="imagen9p"
+                          accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                          onchange="vista_preeliminar(event, 'imgImagen9p')">
+                      </label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="imagen10p">
+                        <a onclick="mostrarFile('imagen10p')"><img src="../static/icono-imagen.png" id="imgImagen10p"
+                            alt="Cargar una imagen" class="icono-imagen"></a>
+                          <input type="file" hidden name="imagen10p" id="imagen10p"
+                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                            onchange="vista_preeliminar(event, 'imgImagen10p')">
+                      </label>
+                    </div>
 
-
+                  </div>
                 </div>
                 <div class="modal-footer">
 
@@ -464,19 +527,18 @@
   <script src="../../static/libraries/bootstrap-4.6.1-dist/js/bootstrap.min.js "></script>
 
   <script>
-    let vista_preeliminar = (event, fileImg) =>{
-      console.log(event)
+    let vista_preeliminar = (event, fileImg) => {
       let leer_img = new FileReader();
       let id_img = document.getElementById(fileImg);
 
-      leer_img.onload = () =>{
-        if(leer_img.readyState == 2){
+      leer_img.onload = () => {
+        if (leer_img.readyState == 2) {
           id_img.src = leer_img.result;
         }
       }
       leer_img.readAsDataURL(event.target.files[0]);
     }
-    function mostrarFile(fileId){
+    function mostrarFile(fileId) {
       $(`#${fileId}`).triggerHandler('click');
     }
     function confirmarEliminar(ruta) {
