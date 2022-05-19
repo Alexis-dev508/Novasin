@@ -31,8 +31,6 @@ app.secret_key = 'H%23^2FY6673HN'
 # app.config['MYSQL_DATABASE_DB'] = 'novasin'
 # app.secret_key = 'H%23^2FY6673HN'
 
-
-
 db.init_app(app)
   
 @app.route('/') #Sirve para señalar que cuando busque la diagonal, Flask cargue automaticamente el index
@@ -147,13 +145,14 @@ def guardarCategoria():
     imagen5 = request.files['imagen5']
     imagen5Nombre = 'imagen5-'+ imagen5.filename
     try:
-        os.mkdir(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}')
-        imagenCaratula.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagenCaratulaNombre)
-        imagen1.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen1Nombre)
-        imagen2.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen2Nombre)
-        imagen3.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen3Nombre)
-        imagen4.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen4Nombre)
-        imagen5.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/' + imagen5Nombre)
+        nombreCategoriaCarpeta = nombreCategoria.strip().replace(' ', '-')
+        os.mkdir(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}')
+        imagenCaratula.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/' + imagenCaratulaNombre)
+        imagen1.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/' + imagen1Nombre)
+        imagen2.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/' + imagen2Nombre)
+        imagen3.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/' + imagen3Nombre)
+        imagen4.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/' + imagen4Nombre)
+        imagen5.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/' + imagen5Nombre)
         consulta = 'INSERT INTO categorias (pk_categoria, nombreCategoria, descripcionCategoria, imagenCaratula, imagen1, imagen2, imagen3, imagen4, imagen5)  VALUES(NULL, %s, %s, %s, %s, %s,%s,%s,%s)' 
         con = db.connect() #Abre una conexion con MySQL
         cur = con.cursor()
@@ -295,17 +294,18 @@ def guardar_producto():
     imagen9pNombre = 'imagen9p-' + imagen9p.filename
     imagen10pNombre = 'imagen10-' + imagen10p.filename
     try:
-        os.mkdir(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}') 
-        imagen1p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen1pNombre)
-        imagen2p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen2pNombre)
-        imagen3p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen3pNombre)
-        imagen4p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen4pNombre)
-        imagen5p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen5pNombre)
-        imagen6p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen6pNombre)
-        imagen7p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen7pNombre)
-        imagen8p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen8pNombre)
-        imagen9p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen9pNombre)
-        imagen10p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombre_producto}/' + imagen10pNombre) 
+        nombreProductoCarpeta = nombre_producto.strip().replace(' ', '-')
+        os.mkdir(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}') 
+        imagen1p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen1pNombre)
+        imagen2p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen2pNombre)
+        imagen3p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen3pNombre)
+        imagen4p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen4pNombre)
+        imagen5p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen5pNombre)
+        imagen6p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen6pNombre)
+        imagen7p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen7pNombre)
+        imagen8p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen8pNombre)
+        imagen9p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen9pNombre)
+        imagen10p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' + imagen10pNombre) 
         consulta = 'INSERT INTO productos  VALUES (NULL, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
         con = db.connect() #Abre una conexion con MySQL
         cur = con.cursor()

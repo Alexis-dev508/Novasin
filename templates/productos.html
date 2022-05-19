@@ -50,23 +50,23 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <h4 class="text-over--carousel">{{categoria[1]}}</h4>
-              <img src="../static/images/categorias/{{categoria[1]}}/{{categoria[3]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
+              <img src="../static/images/categorias/{{categoria[1].strip().replace(' ', '-')}}/{{categoria[3]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
             </div>
             <div class="carousel-item">
               <h4 class="text-over--carousel">{{categoria[1]}}</h4>
-              <img src="../static/images/categorias/{{categoria[1]}}/{{categoria[4]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
+              <img src="../static/images/categorias/{{categoria[1].strip().replace(' ', '-')}}/{{categoria[4]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
             </div>
             <div class="carousel-item">
               <h4 class="text-over--carousel">{{categoria[1]}}</h4>
-              <img src="../static/images/categorias/{{categoria[1]}}/{{categoria[5]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
+              <img src="../static/images/categorias/{{categoria[1].strip().replace(' ', '-')}}/{{categoria[5]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
             </div>
             <div class="carousel-item">
               <h4 class="text-over--carousel">{{categoria[1]}}</h4>
-              <img src="../static/images/categorias/{{categoria[1]}}/{{categoria[6]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
+              <img src="../static/images/categorias/{{categoria[1].strip().replace(' ', '-')}}/{{categoria[6]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
             </div>
             <div class="carousel-item">
               <h4 class="text-over--carousel">{{categoria[1]}}</h4>
-              <img src="../static/images/categorias/{{categoria[1]}}/{{categoria[7]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
+              <img src="../static/images/categorias/{{categoria[1].strip().replace(' ', '-')}}/{{categoria[7]}}" class="d-block w-100" alt="Imagen 1 de carrusel">
             </div>
             
           </div>
@@ -91,7 +91,7 @@
         {% for producto in productos %}
         <div class="col-sm card">
           <div class="card__image-holder">
-            <img class="card__image" src="../static/images/productos/{{producto[1]}}/{{producto[5]}}" alt="{{producto[1]}}" />
+            <img class="card__image" src="../static/images/productos/{{producto[1].strip().replace(' ', '-')}}/{{producto[5]}}" alt="{{producto[1]}}" />
           </div>
           <div class="card-title">
             <a href="#" class="toggle-info btn">
