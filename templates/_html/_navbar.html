@@ -7,17 +7,20 @@
   <title>Document</title>
   <link rel="stylesheet" href="../../static/css/main.css">
   <link rel="stylesheet" href="../../static/css/navbar.css">
+  <link rel="stylesheet" href="../../static/css/boton-flotante.css">
 
 </head>
 <body>
+  <a id="link_whatsapp" href="https://wa.me/526676973437?text=Hola, he revisado su pagina web y quiera preguntar acerca de: "  class="btn-flotante"><i class="bi bi-whatsapp "  style="font-size: 3rem;"></i></i></a>
   <header>
+
     <div class="menu_bar">
     <!--List menu icon-->
       <a href="#" class="bt-menu" ><svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
         
       </svg>
-      <a  href="../acerca.html"><div class="imagen-logo"></div></a>
+      <a  href="/"><div class="imagen-logo"></div></a>
       </a>
     
       
@@ -33,22 +36,9 @@
         <li  class="navbar-li" id="li_iniciar_sesion"><a  href="/registro" ><svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" fill="currentColor" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
           <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
         </svg>Iniciar Sesion</a></li>
-        <!-- <li  class="navbar-li"><a href="/contacto" > <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
-          <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
-        </svg>Contacto</a></li> -->
-        <li class="navbar-li"><a  href="/acerca" > <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-        </svg>Acerca de </a></li>
-        <li class="navbar-li"><a  href="/politicas" > <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" fill="currentColor" class="bi bi-shield-fill-check" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm2.146 5.146a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647z"/>
-        </svg>Politicas de Privacidad</a></li>
-        <li class="navbar-li"><a  href="#" > <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" fill="currentColor" class="bi bi-alarm-fill" viewBox="0 0 16 16">
+        <li  class="navbar-li" ><a data-toggle="modal"  data-target="#modal-horario" ><svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem"  fill="currentColor" class="bi bi-alarm-fill" viewBox="0 0 16 16">
           <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z"/>
-        </svg>  <!-- Button trigger modal -->
-        <button type="button" style="background-color: transparent; border: none; color: white; font-weight: bold;" data-toggle="modal" data-target="#modal-horario" >
-          Horario
-        </button></a></li>
-
+        </svg>Horario</a></li>
         <li class="navbar-li" id="admin-li"><a href="/admin" ><svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
           <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
         </svg>Administrar</a></li>
@@ -70,13 +60,37 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-
-        <p style="font-size: 1.3rem; font-weight: bold;">Lunes - Viernes desde las 8 AM, hasta las 4 PM</p>
-        <br>
-        <p style="font-size: 1.3rem; font-weight: bold;">Sabado de 8 AM a 2 PM</p>
-        <br>
-       <p style="font-size: 1.3rem; font-weight: bold;">Domingo - Cerrado</p> 
+      <div class="modal-body horario-body">
+        <div class="row">
+          <div class="col-sm-6"><p class="horario-p-head">Domingo</p></div>
+          <div class="col-sm-6"><p class="horario-p">Cerrado</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6"><p class="horario-p-head">Lunes</p></div>
+          <div class="col-sm-6"><p class="horario-p">8:00 a. m. - 6:00 p. m.</p> </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6"><p class="horario-p-head">Martes</p></div>
+          <div class="col-sm-6"><p class="horario-p">8:00 a. m. - 6:00 p. m.</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6"><p class="horario-p-head">Miercoles</p></div>
+          <div class="col-sm-6"><p class="horario-p">8:00 a. m. - 6:00 p. m.</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6"><p class="horario-p-head">Jueves</p></div>
+          <div class="col-sm-6"><p class="horario-p">8:00 a. m. - 6:00 p. m.</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6"><p class="horario-p-head">Viernes</p></div>
+          <div class="col-sm-6"><p class="horario-p">8:00 a. m. - 6:00 p. m.</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6"><p class="horario-p-head">Sabado</p></div>
+          <div class="col-sm-6"><p class="horario-p">8:00 a. m. - 2:00 p. m.</p></div>
+        </div>
+        
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
@@ -96,6 +110,7 @@
 
     }
 </script>
+<script src="../../static/libraries/jquery3.6.0/jquery-3.6.0.min.js"></script>
 <!--Script para la barra de navegacion-->
 <script>
 

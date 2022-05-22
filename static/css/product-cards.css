@@ -40,6 +40,14 @@
     font-family: "Source Sans Pro", sans-serif;
     text-rendering: optimizeLegibility;
   }
+  #carousel_productos{
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+
+  }
+
   a.btn {
     background: #0096a0;
     border-radius: 4px;
@@ -70,11 +78,13 @@
   div.cards {
     max-width: 960px;
     text-align: center;
+    margin: 0 auto;
   }
   div.card {
     background: #ffffff;
     display: inline-block;
     margin: 8px;
+    margin-left: 3px;
     max-width: 300px;
     perspective: 1000;
     text-align: center;
@@ -84,6 +94,7 @@
     top: 0;
     width: 300px;
     z-index: 1;
+    padding: 0px;
   }
   div.card img {
     max-width: 300px;

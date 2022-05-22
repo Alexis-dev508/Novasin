@@ -37,14 +37,22 @@ db.init_app(app)
 def index(): #Funcion para cargar el index
     consulta_categorias = 'SELECT * FROM categorias'
     consulta_carrusel = 'SELECT * FROM carruseles LIMIT 1'
+    consulta_galeria = 'SELECT * FROM galerias'
+
     con = db.connect()
     cur = con.cursor()
+
     cur.execute(consulta_categorias) 
     categorias = cur.fetchall() 
+
     cur.execute(consulta_carrusel) 
     carrusel = cur.fetchone() 
+
+    cur.execute(consulta_galeria) 
+    galerias = cur.fetchall() 
+
     con.commit() 
-    return render_template('index.html', categorias = categorias, carruseles = carrusel) #Devuelve la vista del index y le manda variables
+    return render_template('index.html', categorias = categorias, carruseles = carrusel, galerias = galerias) #Devuelve la vista del index y le manda variables
 
 
 @app.route('/registro')
@@ -90,6 +98,8 @@ def admin():
             consulta_categorias = 'SELECT * FROM categorias'
             consulta_productos = 'SELECT * FROM productos'
             consulta_usuarios = 'SELECT * FROM usuarios'
+            consulta_galeria = 'SELECT * FROM galerias'
+
             con = db.connect()
             cur = con.cursor()
             cur.execute(consulta_categorias)
@@ -100,9 +110,13 @@ def admin():
             
             cur.execute(consulta_usuarios)
             usuarios = cur.fetchall() 
+
+            cur.execute(consulta_galeria)
+            galerias = cur.fetchall() 
+
             con.commit()
              
-            return render_template('admin.html', usuarios = usuarios, categorias = categorias, productos = productos, ) #Le mandamos el array a la vista para poder usar los datos
+            return render_template('admin.html', usuarios = usuarios, categorias = categorias, productos = productos, galerias = galerias ) #Le mandamos el array a la vista para poder usar los datos
     except:
         return redirect('/401')
 
@@ -449,26 +463,67 @@ def carrusel_principal():
     imagen3cNombre = imagen3c.filename
     imagen4cNombre = imagen4c.filename
     imagen5cNombre = imagen5c.filename
-    # try:
-    listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/carrusel/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
-    for archivo in listaArchivos:
-        os.remove(f'/home/alexisdev508/Novasin/static/images/carrusel/{archivo}')#Borra el directorio junto con los archivos contenidos
-    imagen1c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen1c-' + imagen1cNombre)
-    imagen2c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen2c-' + imagen2cNombre)
-    imagen3c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen3c-' + imagen3cNombre)
-    imagen4c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen4c-' + imagen4cNombre)
-    imagen5c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen5c-' + imagen5cNombre)
-    consulta = 'INSERT INTO carruseles VALUES(NULL, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s)'
-    borrar = 'DELETE FROM carruseles'
+    try:
+        listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/carrusel/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+        for archivo in listaArchivos:
+            os.remove(f'/home/alexisdev508/Novasin/static/images/carrusel/{archivo}')#Borra el directorio junto con los archivos contenidos
+        imagen1c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen1c-' + imagen1cNombre)
+        imagen2c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen2c-' + imagen2cNombre)
+        imagen3c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen3c-' + imagen3cNombre)
+        imagen4c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen4c-' + imagen4cNombre)
+        imagen5c.save(f'/home/alexisdev508/Novasin/static/images/carrusel/' + 'imagen5c-' + imagen5cNombre)
+        consulta = 'INSERT INTO carruseles VALUES(NULL, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s)'
+        borrar = 'DELETE FROM carruseles'
+        con = db.connect()
+        cur = con.cursor()
+        cur.execute(borrar)
+        cur.execute(consulta,(titulo_imagen_1,titulo_imagen_2,titulo_imagen_3,titulo_imagen_4,titulo_imagen_5,imagen1cNombre, imagen2cNombre, imagen3cNombre, imagen4cNombre,imagen5cNombre))
+        con.commit()
+        return redirect('/admin')
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            return 'Algo salio mal, intentelo de nuevo o pongase en contacto con el administrador del servicio'
+
+
+# //////////////GALERIA////////////////////
+@app.route('/guardar-imagen-galeria', methods=['POST'])
+def guardar_imagen_galeria():
+    titulo_imagen = request.form['titulo_imagen']
+    imagen_galeria = request.files['imagen_galeria']
+    imagen_galeria_nombre = imagen_galeria.filename
+    try:
+        imagen_galeria.save(f'./static/images/galeria/'+ imagen_galeria_nombre) 
+        consulta = 'INSERT INTO galerias VALUES (NULL, %s, %s)'
+        con = db.connect() #Abre una conexion con MySQL
+        cur = con.cursor()
+        cur.execute(consulta,(titulo_imagen, imagen_galeria_nombre)) #Le enviamos parametros a la consulta
+        con.commit() #Guarda los cambios en la base de datos
+        return redirect('/admin')
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            return 'Algo salio mal, intentelo de nuevo o pongase en contacto con el administrador del servicio'
+
+
+@app.route('/eliminar-imagen-galeria/<int:pk_galeria>')
+def eliminar_imagen_galeria(pk_galeria):
+    consultaTraerDatos = 'SELECT * FROM galerias WHERE pk_galeria = %s'
     con = db.connect()
     cur = con.cursor()
-    cur.execute(borrar)
-    cur.execute(consulta,(titulo_imagen_1,titulo_imagen_2,titulo_imagen_3,titulo_imagen_4,titulo_imagen_5,imagen1cNombre, imagen2cNombre, imagen3cNombre, imagen4cNombre,imagen5cNombre))
+    cur.execute(consultaTraerDatos,(pk_galeria))
+    registro = cur.fetchone()
+    con.commit()
+    listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/galeria/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+    for archivo in listaArchivos:
+        if archivo == registro[2]:
+            os.remove(f'/home/alexisdev508/Novasin/static/images/galeria/{archivo}')#Borra el directorio junto con los archivos contenidos
+   
+    consulta = 'DELETE FROM galeria WHERE pk_galeria=%s'
+    con = db.connect()
+    cur = con.cursor()
+    cur.execute(consulta,(pk_galeria))
     con.commit()
     return redirect('/admin')
-    # except OSError as e:
-    #     if e.errno != errno.EEXIST:
-    #         return 'Algo salio mal'
+
 
 
 if __name__ == '__main__':

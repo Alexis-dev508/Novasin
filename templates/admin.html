@@ -25,18 +25,16 @@
   <!-- <input type="text" id="validar_existe_inicio_sesion" hidden value="{{session['tipo_usuario']}}"> -->
   <br>
   <br>
-  <div class="container">
+  <div class="container admin-container">
     <!-- ========= TABLA DE CATEGORIAS ========= -->
     <div class="row">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategoria"
+      <div class="col-sm-6">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCategoria"
         style="font-size: 1.5rem; font-weight: bold;">
         + Añadir nueva categoria
 
       </button>
-    </div>
-    <br>
-    <div class="row">
-      <table class="table">
+      <table class="table table-responsive">
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -52,7 +50,7 @@
             <td>{{datos[0]}}</td>
             <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
             <td>{{datos[2]}}</td>
-            <td><img style="width: 7rem; height: 7rem;" src="../static/images/categorias/{{datos[1]}}/{{datos[3]}}"
+            <td><img style="width: 7rem; height: 7rem;" src="/home/alexisdev508/Novasin/static/images/categorias/{{datos[1].strip().replace(' ', '-')}}/{{datos[3]}}"
                 alt=""> </td>
             <td>
               <a href="/editar-categoria/{{datos[0]}}"><i class="bi bi-pencil-fill"
@@ -67,18 +65,13 @@
         </tbody>
       </table>
     </div>
-    <br>
-    <!-- ========= TABLA DE PRODUCTOS ========= -->
-    <div class="row">
+     <!-- ========= TABLA DE PRODUCTOS ========= -->
+    <div class="col-sm-6">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProducto"
-        style="font-size: 1.5rem; font-weight: bold; left:-55px;">
-        + Añadir nuevo producto
-      </button>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-      <table class="table">
+      style="font-size: 1.5rem; font-weight: bold; left:-55px;">
+      + Añadir nuevo producto
+    </button>
+      <table class="table table-responsive">
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -97,7 +90,7 @@
             <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
             <td>{{datos[2]}}</td>
             <td>{{datos[3]}}</td>
-            <td><img style="width: 7rem; height: 7rem;" src="../static/images/productos/{{datos[1]}}/{{datos[5]}}"
+            <td><img style="width: 7rem; height: 7rem;" src="/home/alexisdev508/Novasin/static/images/productos/{{datos[1].strip().replace(' ', '-')}}/{{datos[5]}}"
                 alt=""> </td>
             <td>
               <a href="/editar-producto/{{datos[0]}}"><i class="bi bi-pencil-fill"
@@ -108,11 +101,14 @@
             </td>
           </tr>
           {% endfor %}
-
-
-
         </tbody>
       </table>
+    </div>
+    </div>
+   
+    <br>
+    <div class="row">
+      
     </div>
     <br><br>
     <!-- ========= TABLA DE USUARIOS ========= -->
@@ -121,7 +117,8 @@
     </div>
     <br>
     <div class="row">
-      <table class="table">
+      <div class="col-12">
+      <table class="table table-responsive">
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -149,7 +146,9 @@
         </tbody>
       </table>
     </div>
-    <div class="row pt-5">
+    </div>
+    
+    <div class="row pt-5 p-2">
       <div class="col-sm-12 mb-3" style="background:rgba(34, 34, 34, 0.968); color: white;">
         <h1 style="padding: 0.5rem;">Mas funciones</h1>
       </div>
@@ -160,11 +159,90 @@
         <br>
         Cambiar el carrusel principal
       </button>
+      <button type="button" style="border-radius: 10px; margin-left:0.5rem;" class="btn btn-primary" data-toggle="modal"
+      data-target="#modalGaleria" style="font-size: 1.5rem; font-weight: bold;">
+      <i class="bi bi-image-fill" style="font-size: 7rem;"></i>
+      <br>
+      Administrar galeria principal
+    </button>
     </div>
 
   </div>
 
   <div class="container">
+      <!-- ====== Modal Galeria ====== -->
+
+      <div class="modal fade" id="modalGaleria" tabindex="-1" role="dialog" aria-labelledby="modalGaleriaLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalGaleriaLabel">Añadir una imagen a la galeria</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+              <form action="/guardar-imagen-galeria" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                <div class="col-md-6">
+                  <label for="titulo_imagen">
+                    <span>Titulo de la imagen (opcional)</span>
+                    <br>
+                    <input type="text" style="width:100%;" name="titulo_imagen" id="titulo_imagen">
+                  </label>
+                </div>               
+               
+                  <div class="col-md-6">
+                    <label for="imagen_galeria">
+                      <!-- Caratula -->
+                      <a onclick="mostrarFile('imagen_galeria')"><img src="../static/icono-imagen.png"
+                          id="imgImagenGaleria" alt="Cargar una imagen" class="icono-imagen"></a>
+                      <input type="file" hidden name="imagen_galeria" id="imagen_galeria"
+                        accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                        onchange="vista_preeliminar(event, 'imgImagenGaleria')">
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="modal-footer" style="padding-left:0px; padding-right:0px;">
+                  <input type="submit" class="btn btn-primary btn-guardar" value="Guardar imagen" >
+                </div>
+                <table class="table table-responsive">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Titulo de la imagen</th>
+                      <th scope="col">Imagen</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>        
+                    {% for datos in galerias %}
+                    <tr>
+                
+                      <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
+
+                      <td><img style="width: 7rem; height: 7rem;" src="/home/alexisdev508/Novasin/static/images/galeria/{{datos[2]}}"
+                          alt=""> </td>
+                      <td>
+                        <!--Envia el id de la personas a la ruta de editar-->
+                        <a onclick="confirmarEliminar('/eliminar-imagen-galeria/{{datos[0]}}')"><i class="bi bi-trash-fill"
+                            style="font-size: 1.5rem; padding: 0.5rem;"></i></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+          
+          
+          
+                  </tbody>
+                </table>
+              </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- ====== Modal Categoria ====== -->
 
     <div class="modal fade" id="modalCategoria" tabindex="-1" role="dialog" aria-labelledby="modalCategoriaLabel"

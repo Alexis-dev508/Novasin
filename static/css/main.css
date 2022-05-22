@@ -8,6 +8,28 @@
   margin: 0px;
   padding: 0px;
 }
+/* //////////CONTENEDOR CON SCROLL////////// */
+#global {
+	height: 300px;
+	width: 200px;
+	border: 1px solid #ddd;
+	background: #f1f1f1;
+	overflow-y: scroll;
+}
+#mensajes {
+	height: auto;
+}
+.texto {
+	padding:4px;
+	background:#fff;
+}
+/* ///////////////////////////////////////// */
+.container-fluid{
+  padding: 0px;
+}
+.galeria-p{
+  visibility: hidden;
+}
 .categoria-h1-div{
   background-color: var(--main-green);
   padding: 1.5rem;
@@ -68,7 +90,7 @@ html {
   font-weight: bold;
 }
 .contenedor-princial-galeria{
-  margin-top: 15rem;
+  margin-top: 25rem;
 }
 .button-home {
   font-size: 1.3rem;
@@ -122,9 +144,7 @@ html {
 }
 .container {
   width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 20px;
+
 }
 .container h1 {
   text-align: center;
@@ -194,6 +214,7 @@ html {
   }
   .card{
     margin-top: 10rem;
+    z-index: 1;
   }
   .button-home {
     font-size: 2rem;
@@ -225,11 +246,12 @@ html {
     padding: 2rem 2rem 2rem 1.2rem;
   }
   #card-container{
-   margin-top: 55rem;
+   margin-top: 5rem;
+   margin-bottom: 10rem;
   }
   .card{
     margin: 15rem;
-    width: 200%;
+    width: 100%;
   }
  
   #card-container{
@@ -248,9 +270,7 @@ html {
   .image {
     flex: 100%;
   }
-  #galery-hidden{
-    display: none;
-  }
+
   .categoria-h1-div{
     display: none;
   }
@@ -266,9 +286,38 @@ html {
   }
   .card{
     margin-top: 20vh;
+    z-index: 1;
   }
   .downbanner {
 
     padding: 2rem 2rem 2rem 1.2rem;
   }
+}
+@media screen and (max-width: 449px) {
+
+  .card{
+    margin-top: 30vh;
+    z-index: 1;
+  }
+  #card-container{
+    margin-top: 30vh;
+  }
+ 
+}
+@media screen and (max-width: 400px) {
+
+  #card-container{
+    margin-top: 20vh;
+  }
+  .text-over--carousel{
+    padding: 2rem;
+  }
+  .galeria-p{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+ 
 }

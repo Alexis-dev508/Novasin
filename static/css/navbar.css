@@ -9,6 +9,7 @@
 }
 body {
 	background:#FFFFFA;
+	width: 100vw;
 
 }
 .navbar-li a{
@@ -26,7 +27,10 @@ body {
 }
 
 header {
-	width:100%;
+	width:100vw;
+	position: fixed;
+	z-index: 10;
+
 }
 .servicios{
 	width: 70vw;
@@ -35,11 +39,6 @@ header {
 .servicios2{
 	height: 70vh;
 	
-}
-.navbarContainer{
-	display: inline-block;
-	position:fixed;
-	z-index:2;
 }
 
 header nav {
@@ -52,7 +51,16 @@ header nav {
 .menu_bar {
 	display:none;
 }
-
+.horario-body{
+	font-size: 1.5rem;
+	text-align: center;
+}
+.horario-p-head{
+	font-weight: bold;
+}
+.btn-primary{
+	width: 100%;
+}
 header nav ul {
 	overflow:hidden;
 	list-style:none;
@@ -110,6 +118,7 @@ section {
 		background: none;
 	}
 	.dropdown_menu{
+		z-index: 10;
 		background-color: #FFFFFA;
 		padding-bottom: 70vh;
 		border: 1px solid grey;
@@ -124,7 +133,7 @@ section {
 		height: 3.5rem;
 		position: absolute;
 		left: 88%;
-		top: 13%;
+		top:5px;
 		background-repeat: round;
 		float: right;
 	}
@@ -220,6 +229,10 @@ section {
 		display:block;
 		background:#ccc;
 	}
+	.horario-body{
+		text-align: center;
+		font-size: 2rem;
+	}
 
 	.menu_bar .bt-menu {
 		display:block;
@@ -255,6 +268,11 @@ section {
 		font-size: 1.2rem;
 		text-align: justify;
 		padding: 0 2rem;
+	}
+}
+@media screen and (min-width: 350px ) {
+	.horario-body{
+		font-size: 1.2rem;
 	}
 }
 .btn-grad {background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%)}

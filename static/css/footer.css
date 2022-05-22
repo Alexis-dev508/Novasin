@@ -4,7 +4,8 @@
    
 }
 .footer-container{
- 	background-image: radial-gradient( circle farthest-corner at 10% 20%, rgba(0, 162, 208, 0.98) 0.1%,  rgba(37,145,251,0.98));
+    background: rgb(2,0,36);
+    background: linear-gradient(277deg, rgba(2,0,36,1) 0%, rgba(167,255,115,1) 0%, rgba(240,240,240,1) 100%);
     margin: 2rem 0px 0px 0px;
     text-align: center;
     vertical-align: middle;
@@ -13,11 +14,17 @@
     text-decoration: none;
     list-style: none;
     display: block;
-    color: white;
+    color: black;
     font-size: 2rem;
     font-weight: bold;
     margin: 0.5rem;
+    padding: 0;
+    width: 95%;
 
+}
+.li-footer{
+    padding: 0px;
+    width: 95%;
 }
 .footer-a:hover{
     text-decoration: none;

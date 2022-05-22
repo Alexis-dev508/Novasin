@@ -38,3 +38,9 @@ CREATE TABLE IF NOT EXISTS productos(
     fk_categoria SMALLINT NOT NULL,
     FOREIGN KEY (fk_categoria) REFERENCES categorias(pk_categoria)
 );
+
+CREATE TABLE IF NOT EXISTS galerias (
+    pk_galeria SMALLINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    titulo_imagen VARCHAR(300),
+    imagen VARCHAR(300) NOT NULL
+);
