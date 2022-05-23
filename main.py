@@ -241,7 +241,7 @@ def eliminar_categoria(idcategoria):
     registro = cur.fetchone()
     con.commit()
     nombreCategoria = registro[1].strip().replace(' ', '-')
-    listaArchivos = os.listdir(f'./static/images/categorias/{nombreCategoria}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+    listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
     for archivo in listaArchivos:
         os.remove(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/{archivo}')#Borra el directorio junto con los archivos contenidos
     os.rmdir(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}')
