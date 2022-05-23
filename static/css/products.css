@@ -1,3 +1,9 @@
+:root {
+    --main-blue: rgb(0 162 208);
+    --main-green: rgb(44 148 87);
+    --roboto-font: @import
+      url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+  }
 .usage-container{
     padding: 0rem 5vw 2rem 5vw;
     text-align: center;
@@ -5,4 +11,15 @@
 }
 .usage-container_ul{
     list-style: none;
+}
+.btn-cotizar{
+    text-align: center;
+    background-color: var(--main-green);
+    color: white;
+    width: 95%;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0.5rem;
+    border-radius: 1rem;
 }

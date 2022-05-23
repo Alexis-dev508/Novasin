@@ -4,6 +4,12 @@
     font-weight: 200;
     src: url(https://fonts.gstatic.com/s/sourcesanspro/v19/6xKydSBYKcSV-LCoeQqfX1RYOo3i94_wlxdr.ttf) format('truetype');
   }
+  :root {
+    --main-blue: rgb(0 162 208);
+    --main-green: rgb(44 148 87);
+    --roboto-font: @import
+      url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+  }
   @font-face {
     font-family: 'Source Sans Pro';
     font-style: normal;
@@ -80,6 +86,13 @@
     text-align: center;
     margin: 0 auto;
   }
+  .card-title h2{
+    background-color: var(--main-green);
+    color: white;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
   div.card {
     background: #ffffff;
     display: inline-block;
@@ -90,6 +103,7 @@
     text-align: center;
     position: relative;
     text-align: left;
+    border: 1px solid black;
     transition: all 0.3s 0s ease-in;
     top: 0;
     width: 300px;
@@ -100,6 +114,11 @@
     max-width: 300px;
 
   }
+ .controles-carrusel-productos{
+   height: 5rem;
+   z-index: 1;
+ }
+
   div.card .card__image-holder {
     background: rgba(0, 0, 0, 0.1);
     height: 7rem;
@@ -111,8 +130,7 @@
   }
   div.card div.card-title {
     background: #ffffff;
-    padding: 18px 15px 10px;
-    position: relative;
+    padding: 18px 0px 10px 0px;
     z-index: 0;
   }
   div.card div.card-title a.toggle-info {
@@ -155,7 +173,6 @@
     letter-spacing: -0.025em;
   }
   div.card div.card-description {
-    padding: 0 15px 10px;
     position: relative;
     font-size: 14px;
   }

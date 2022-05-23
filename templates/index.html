@@ -92,19 +92,23 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <p class="card-text">{{categoria[2]}}</p>
+              <div class="card-description scroll" style="z-index: 99999999999999999;">
+                <p class="card-text">{{categoria[2]}}</p>
+               
+              </div>
+             
             </li>
             <li class="list-group-item">
               <!-- Boton con animacion -->
-              <nav>
+              <a href="/mostrar-productos-categoria/{{categoria[0]}}" class="a-ver--mas"> <nav>
                 <ul>
                   <li>
-                    <a href="/mostrar-productos-categoria/{{categoria[0]}}" class="a-ver--mas"> Ver mas <i class="bi bi-arrow-right-short"
+                     Ver mas <i class="bi bi-arrow-right-short"
                       style="font-size: 3rem; margin:0px; padding: 0px; vertical-align: middle;"></i>
                     <span></span><span></span><span></span><span></span>
-                  </li></a>
+                  </li>
                 </ul>
-              </nav>
+              </nav></a>
             </li>
           </ul>
         </div>
