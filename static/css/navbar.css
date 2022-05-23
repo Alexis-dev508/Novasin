@@ -58,9 +58,7 @@ header nav {
 .horario-p-head{
 	font-weight: bold;
 }
-.btn-primary{
-	width: 100%;
-}
+
 header nav ul {
 	overflow:hidden;
 	list-style:none;

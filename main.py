@@ -20,16 +20,16 @@ app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
 db = MySQL()
 
-app.config['MYSQL_DATABASE_HOST'] = 'alexisdev508.mysql.pythonanywhere-services.com'
-app.config['MYSQL_DATABASE_USER'] = 'alexisdev508'
-app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
-app.config['MYSQL_DATABASE_DB'] = 'alexisdev508$novasin'
-app.secret_key = 'H%23^2FY6673HN'
-# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-# app.config['MYSQL_DATABASE_USER'] = 'root'
-# app.config['MYSQL_DATABASE_PASSWORD'] = ''
-# app.config['MYSQL_DATABASE_DB'] = 'novasin'
+# app.config['MYSQL_DATABASE_HOST'] = 'alexisdev508.mysql.pythonanywhere-services.com'
+# app.config['MYSQL_DATABASE_USER'] = 'alexisdev508'
+# app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
+# app.config['MYSQL_DATABASE_DB'] = 'alexisdev508$novasin'
 # app.secret_key = 'H%23^2FY6673HN'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_DB'] = 'novasin'
+app.secret_key = 'H%23^2FY6673HN'
 
 db.init_app(app)
   
@@ -240,11 +240,11 @@ def eliminar_categoria(idcategoria):
     cur.execute(consultaTraerDatos,(idcategoria))
     registro = cur.fetchone()
     con.commit()
-    print(registro)
-    listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/categorias/{registro[1]}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+    nombreCategoria = registro[1].strip().replace(' ', '-')
+    listaArchivos = os.listdir(f'./static/images/categorias/{nombreCategoria}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
     for archivo in listaArchivos:
-        os.remove(f'/home/alexisdev508/Novasin/static/images/categorias/{registro[1]}/{archivo}')#Borra el directorio junto con los archivos contenidos
-    os.rmdir(f'/home/alexisdev508/Novasin/static/images/categorias/{registro[1]}')
+        os.remove(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/{archivo}')#Borra el directorio junto con los archivos contenidos
+    os.rmdir(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}')
     consulta = 'DELETE FROM categorias WHERE pk_categoria=%s'
     con = db.connect()
     cur = con.cursor()
@@ -340,10 +340,11 @@ def eliminar_producto(pk_producto):
     cur.execute(consultaTraerDatos,(pk_producto))
     registro = cur.fetchone()
     con.commit()
-    listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/productos/{registro[1]}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+    nombreProducto = registro[1].strip().replace(' ', '-')
+    listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProducto}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
     for archivo in listaArchivos:
-        os.remove(f'/home/alexisdev508/Novasin/static/images/productos/{registro[1]}/{archivo}')#Borra el directorio junto con los archivos contenidos
-    os.rmdir(f'/home/alexisdev508/Novasin/static/images/productos/{registro[1]}')
+        os.remove(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProducto}/{archivo}')#Borra el directorio junto con los archivos contenidos
+    os.rmdir(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProducto}')
     consulta = 'DELETE FROM productos WHERE pk_producto=%s'
     con = db.connect()
     cur = con.cursor()
