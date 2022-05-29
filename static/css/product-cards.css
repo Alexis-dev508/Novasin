@@ -121,7 +121,6 @@
 
 
   div.card .card__image-holder {
-    background: rgba(0, 0, 0, 0.1);
     height: 7rem;
     padding-bottom: 75%;
   }
@@ -137,8 +136,11 @@
     width: 100%;
   }
   .carousel-top{
-    margin-top: 15% !important;
-    margin-left: 1.5rem !important;
+    margin-top: 12% !important;
+    margin-left: 1.7rem !important;
+  }
+  .carousel-top .text-over--carousel{
+    margin-top: 13%;
   }
   div.card div.card-title {
     background: #ffffff;
