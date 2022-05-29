@@ -6,8 +6,9 @@
 .footer-container{
     background: rgb(2,0,36);
     background: linear-gradient(277deg, rgba(2,0,36,1) 0%, rgba(167,255,115,1) 0%, rgba(240,240,240,1) 100%);
-    margin: 2rem 0px 0px 0px;
+    margin: 2rem 0px 0px 1rem;
     text-align: center;
+    align-items: center;
     vertical-align: middle;
 }
 .footer-a{
@@ -20,6 +21,7 @@
     margin: 0.5rem;
     padding: 0;
     width: 95%;
+    text-align: center;
 
 }
 .li-footer{
