@@ -22,7 +22,7 @@
     min-width: 300px;
     text-align: center;
     margin: 0 auto;
-    height: 45vh;
+    height: auto;
 
 }
 #user_form span{
