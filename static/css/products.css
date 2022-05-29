@@ -23,3 +23,9 @@
     margin: 0.5rem;
     border-radius: 1rem;
 }
+.carousel{
+    margin-top: 12%;
+}
+.controles-carrusel-productos{
+    height: 500px;
+}
