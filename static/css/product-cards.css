@@ -136,6 +136,10 @@
     margin-top: 0 !important;
     width: 100%;
   }
+  .carousel-top{
+    margin-top: 12% !important;
+    margin-left: 1.1rem !important;
+  }
   div.card div.card-title {
     background: #ffffff;
     padding: 18px 0px 10px 0px;
