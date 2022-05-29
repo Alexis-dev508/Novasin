@@ -7,6 +7,7 @@
 * {
   margin: 0px;
   padding: 0px;
+
 }
 /* //////////CONTENEDOR CON SCROLL////////// */
 div.scroll {
@@ -264,7 +265,9 @@ html {
   .image {
     flex: 100%;
   }
-
+  *{
+    overflow-x: hidden;
+  }
   .categoria-h1-div{
     display: none;
   }
@@ -288,7 +291,9 @@ html {
   }
 }
 @media screen and (max-width: 449px) {
-
+  *{
+    overflow-x: hidden;
+  }
   .card{
     margin-top: 30vh;
     z-index: 1;

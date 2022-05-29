@@ -12,6 +12,7 @@ body {
 	width: 100vw;
 
 }
+
 .navbar-li a{
 	text-decoration: none;
 	font-size: 1.5rem;
@@ -89,7 +90,11 @@ header nav ul li a:hover {
 section {
 	padding:20px;
 }
-
+@media screen and (min-width: 851px){
+	#btn-horario{
+		color: white;
+	}
+}
 @media screen and (max-width:850px ) {
 	header nav {
 		width:80%;
@@ -99,6 +104,9 @@ section {
 		position: fixed;
 		background-color: #FFFFFA;
 		
+	}
+	#btn-horario{
+		color: white;
 	}
 	.carousel{
 		/* padding-top: 9vh;  */
@@ -188,7 +196,10 @@ section {
 		margin:0;
 		position: fixed;
 		background-color: #FFFFFA;
-		
+	}
+	#btn-horario{
+		color: black;
+
 	}
 	.p_single{
 		font-size: 1.2rem;

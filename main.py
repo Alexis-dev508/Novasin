@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import select
 from flask_login import login_required
 from flaskext.mysql import MySQL
+from werkzeug.security import generate_password_hash, check_password_hash
 # from requests import Session
 import os
 import errno
@@ -20,16 +21,16 @@ app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
 db = MySQL()
 
-app.config['MYSQL_DATABASE_HOST'] = 'alexisdev508.mysql.pythonanywhere-services.com'
-app.config['MYSQL_DATABASE_USER'] = 'alexisdev508'
-app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
-app.config['MYSQL_DATABASE_DB'] = 'alexisdev508$novasin'
-app.secret_key = 'H%23^2FY6673HN'
-# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-# app.config['MYSQL_DATABASE_USER'] = 'root'
-# app.config['MYSQL_DATABASE_PASSWORD'] = ''
-# app.config['MYSQL_DATABASE_DB'] = 'novasin'
+# app.config['MYSQL_DATABASE_HOST'] = 'alexisdev508.mysql.pythonanywhere-services.com'
+# app.config['MYSQL_DATABASE_USER'] = 'alexisdev508'
+# app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
+# app.config['MYSQL_DATABASE_DB'] = 'alexisdev508$novasin'
 # app.secret_key = 'H%23^2FY6673HN'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_DB'] = 'novasin'
+app.secret_key = 'H%23^2FY6673HN'
 
 db.init_app(app)
   
@@ -38,7 +39,6 @@ def index(): #Funcion para cargar el index
     consulta_categorias = 'SELECT * FROM categorias'
     consulta_carrusel = 'SELECT * FROM carruseles LIMIT 1'
     consulta_galeria = 'SELECT * FROM galerias'
-
     con = db.connect()
     cur = con.cursor()
 
@@ -50,7 +50,6 @@ def index(): #Funcion para cargar el index
 
     cur.execute(consulta_galeria) 
     galerias = cur.fetchall() 
-
     con.commit() 
     return render_template('index.html', categorias = categorias, carruseles = carrusel, galerias = galerias) #Devuelve la vista del index y le manda variables
 
@@ -126,6 +125,7 @@ def admin():
 def guardar_usuario():
     nombre = request.form['name'] #Recibiendo los datos del formulario, es importante poner el mismo nombre del input
     contrasena = request.form['new-password']
+    encodedPass = generate_password_hash(contrasena)
     confirmarContrasena = request.form['new-password2']
     telefono = request.form['phone']
     email = request.form['email']
@@ -134,7 +134,7 @@ def guardar_usuario():
         consulta = 'INSERT INTO usuarios (pk_usuario, nombre,password, email_usuario, telefono, ciudad, tipo_usuario) VALUES(NULL, %s,%s, %s, %s, %s, %s)' 
         con = db.connect() #Abre una conexion con MySQLq
         cur = con.cursor()
-        cur.execute(consulta,(nombre,contrasena, email, telefono, ciudad, 'cliente')) #Le enviamos parametros a la consulta
+        cur.execute(consulta,(nombre,encodedPass, email, telefono, ciudad, 'cliente')) #Le enviamos parametros a la consulta
         con.commit() #Guarda los cambios en la base de datos
         return redirect('/registro') #Retorna el mensaje de guardado
     else:
@@ -421,20 +421,24 @@ def eliminar_usuario(pk_usuario):
 def validar_usuario():
     username = request.form['user']
     pass1 = request.form['password']    
-    # stmt = select(Usuario).where(Usuario.nombre == 'novasinculiacan')
-    # result = session.execute(stmt)
-    consulta = 'SELECT * FROM usuarios WHERE nombre = %s AND password = %s'
+    encontroUsuario = 'SELECT * FROM usuarios WHERE nombre = %s'
     con = db.connect()
     cur = con.cursor()
-    cur.execute(consulta,(username, pass1))
-    usuario = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
+    cur.execute(encontroUsuario,(username))
+    usuarioEncontrado = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
     con.commit()
-    if usuario != None:
-        session["nombre_usuario"]= usuario[1]
-        session["tipo_usuario"]= usuario[6]
-        session['pk_usuario'] = usuario[0]
-
-        return redirect('/')
+    print(usuarioEncontrado)
+    if usuarioEncontrado != None:
+       unencodedPass = check_password_hash(usuarioEncontrado[2], pass1)
+       print(unencodedPass)
+       if unencodedPass:
+           session["nombre_usuario"]= usuarioEncontrado[1]
+           session["tipo_usuario"]= usuarioEncontrado[6]
+           session['pk_usuario'] = usuarioEncontrado[0]
+           return redirect('/')
+       else:
+           return 'Algo salio mal, intentelo de nuevo mas tarde'
+   
     else:
         flash('El usuario o la contraseña son incorrectos')
         return render_template('./registro.html')
