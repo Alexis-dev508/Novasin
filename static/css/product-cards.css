@@ -119,6 +119,7 @@
    z-index: 1;
  }
 
+
   div.card .card__image-holder {
     background: rgba(0, 0, 0, 0.1);
     height: 7rem;
@@ -127,6 +128,13 @@
   .card__image{
     height: 20rem;
     width: 28rem;
+    padding: 0;
+    margin: 0;
+  }
+  .carousel{
+    margin-left: -6px !important;
+    margin-top: 0 !important;
+    width: 100%;
   }
   div.card div.card-title {
     background: #ffffff;
