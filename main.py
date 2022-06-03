@@ -21,16 +21,16 @@ app = Flask(__name__) #Le asigna el mismo nombre que el archivo
 
 db = MySQL()
 
-app.config['MYSQL_DATABASE_HOST'] = 'alexisdev508.mysql.pythonanywhere-services.com'
-app.config['MYSQL_DATABASE_USER'] = 'alexisdev508'
-app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
-app.config['MYSQL_DATABASE_DB'] = 'alexisdev508$novasin'
-app.secret_key = 'H%23^2FY6673HN'
-# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-# app.config['MYSQL_DATABASE_USER'] = 'root'
-# app.config['MYSQL_DATABASE_PASSWORD'] = ''
-# app.config['MYSQL_DATABASE_DB'] = 'novasin'
+# app.config['MYSQL_DATABASE_HOST'] = 'alexisdev508.mysql.pythonanywhere-services.com'
+# app.config['MYSQL_DATABASE_USER'] = 'alexisdev508'
+# app.config['MYSQL_DATABASE_PASSWORD'] = '123456guessa'
+# app.config['MYSQL_DATABASE_DB'] = 'alexisdev508$novasin'
 # app.secret_key = 'H%23^2FY6673HN'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_DB'] = 'novasin'
+app.secret_key = 'H%23^2FY6673HN'
 
 db.init_app(app)
   
@@ -192,11 +192,10 @@ def editar_categoria(idcategoria):
 
 
 
-@app.route('/actualizar-categoria', methods=['POST']) #Ruta para hacer una insercion o POST
+@app.route('/actualizar-categoria', methods=['POST',]) #Ruta para hacer una insercion o POST
 def actualizar_categoria():
     idCategoria = request.form['pk_categoria']
     nombreCategoria = request.form['nombreCategoria']
-    nombreCategoriaRespaldo = request.form['nombreCategoriaRespaldo']
     descripcionCategoria = request.form['descripcionCategoria']
     imagenCaratula = request.files['imagenCaratula']
     imagenCaratulaNombre = imagenCaratula.filename
@@ -212,13 +211,13 @@ def actualizar_categoria():
     imagen5Nombre = imagen5.filename
     try:
         nombreCategoriaCarpeta = nombreCategoria.strip().replace(' ', '-')
-        listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
+        listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
         for archivo in listaArchivos:
-             os.remove(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoria}/{archivo}')#Borra el directorio junto con los archivos contenidos
-        consulta = "UPDATE categorias SET nombreCategoria = %s, descripcionCategoria = %s, imagenCaratula = %s, imagen1 = %s, imagen2 = %s, imagen3 = %s, imagen4 = %s, imagen5 = %s  WHERE pk_categoria = %s"  
+             os.remove(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/{archivo}')#Borra el directorio junto con los archivos contenidos
+        consulta = "UPDATE categorias SET descripcionCategoria = %s, imagenCaratula = %s, imagen1 = %s, imagen2 = %s, imagen3 = %s, imagen4 = %s, imagen5 = %s  WHERE pk_categoria = %s"  
         con = db.connect() #Abre una conexion con MySQL
         cur = con.cursor()
-        cur.execute(consulta,(nombreCategoria, descripcionCategoria, imagenCaratulaNombre, imagen1Nombre, imagen2Nombre, imagen3Nombre, imagen4Nombre, imagen5Nombre, idCategoria )) #Le enviamos parametros a la consulta
+        cur.execute(consulta,(descripcionCategoria, imagenCaratulaNombre, imagen1Nombre, imagen2Nombre, imagen3Nombre, imagen4Nombre, imagen5Nombre, idCategoria )) #Le enviamos parametros a la consulta
         imagenCaratula.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/' +'caratula-'+ imagenCaratulaNombre)
         imagen1.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/' + 'imagen1-' + imagen1Nombre)
         imagen2.save(f'/home/alexisdev508/Novasin/static/images/categorias/{nombreCategoriaCarpeta}/' + 'imagen2-' + imagen2Nombre)
@@ -356,6 +355,7 @@ def eliminar_producto(pk_producto):
 @app.route('/actualizar-producto', methods=['POST']) #Ruta para hacer una insercion o POST
 def actualizar_producto():
     nombre_producto = request.form['nombreProducto']
+    nombre_producto_respaldo = request.form['nombreProductoRespaldo']
     descripcion_producto = request.form['descripcionProducto']
     precio_producto = request.form['precioProducto']
     status = 'v'
@@ -381,7 +381,7 @@ def actualizar_producto():
     imagen9pNombre = 'imagen9p-' +imagen9p.filename
     imagen10pNombre =  'imagen10p-'+imagen10p.filename
     try:
-        nombreProductoCarpeta = nombre_producto.strip().replace(' ', '-')
+        nombreProductoCarpeta = nombre_producto_respaldo.strip().replace(' ', '-')
         listaArchivos = os.listdir(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/') #Obtiene una lista de los nombres de archivos contenidos en la carpeta
         for archivo in listaArchivos:
             os.remove(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/{archivo}')#Borra el directorio junto con los archivos contenidos
@@ -395,10 +395,10 @@ def actualizar_producto():
         imagen8p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' +  imagen8pNombre)
         imagen9p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' +  imagen9pNombre)
         imagen10p.save(f'/home/alexisdev508/Novasin/static/images/productos/{nombreProductoCarpeta}/' +  imagen10pNombre) 
-        consulta = 'UPDATE productos SET nombre_producto=%s, descripcion_producto = %s, precio_producto = %s, imagen1 = %s, imagen2=%s,imagen3=%s,imagen4=%s,imagen5=%s,imagen6=%s,imagen7=%s,imagen8=%s,imagen9=%s,imagen10=%s, fk_categoria=%s'
+        consulta = 'UPDATE productos SET descripcion_producto = %s, precio_producto = %s, imagen1 = %s, imagen2=%s,imagen3=%s,imagen4=%s,imagen5=%s,imagen6=%s,imagen7=%s,imagen8=%s,imagen9=%s,imagen10=%s, fk_categoria=%s'
         con = db.connect() #Abre una conexion con MySQL
         cur = con.cursor()
-        cur.execute(consulta,(nombre_producto, descripcion_producto, precio_producto, imagen1pNombre, imagen2pNombre,imagen3pNombre,imagen4pNombre,imagen5pNombre,imagen6pNombre,imagen7pNombre,imagen8pNombre,imagen9pNombre,imagen10pNombre, categoria)) #Le enviamos parametros a la consulta
+        cur.execute(consulta,(descripcion_producto, precio_producto, imagen1pNombre, imagen2pNombre,imagen3pNombre,imagen4pNombre,imagen5pNombre,imagen6pNombre,imagen7pNombre,imagen8pNombre,imagen9pNombre,imagen10pNombre, categoria)) #Le enviamos parametros a la consulta
         con.commit() #Guarda los cambios en la base de datos
         return redirect('/admin')
     except OSError as e:
@@ -427,20 +427,19 @@ def validar_usuario():
     cur.execute(encontroUsuario,(username))
     usuarioEncontrado = cur.fetchone() #Envia todos los datos de la consulta y los guarda en la variable persona
     con.commit()
-    print(usuarioEncontrado)
     if usuarioEncontrado != None:
        unencodedPass = check_password_hash(usuarioEncontrado[2], pass1)
-       print(unencodedPass)
        if unencodedPass:
            session["nombre_usuario"]= usuarioEncontrado[1]
            session["tipo_usuario"]= usuarioEncontrado[6]
            session['pk_usuario'] = usuarioEncontrado[0]
            return redirect('/')
        else:
-           return flash('El usuario o la contraseña son incorrectos')
+           flash('El usuario o la contraseña son incorrectos, intente nuevamente')
+           return render_template('./registro.html')
    
     else:
-        flash('El usuario o la contraseña son incorrectos')
+        flash('El usuario o la contraseña son incorrectos, intente nuevamente')
         return render_template('./registro.html')
 
 

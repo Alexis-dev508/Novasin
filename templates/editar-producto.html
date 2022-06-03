@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../static/css/contacto.css">
     <link rel="stylesheet" href="../static/css/navbar.css">
     <link rel="stylesheet" href="../static/css/editar-categoria.css">
+    <link rel="stylesheet" href="../static/libraries/bootstrap-icons/font/bootstrap-icons.css">
     <title>Editar Producto</title>
 </head>
 
@@ -33,12 +34,16 @@
         <div class="row mx-auto">
             <form action="/actualizar-producto" class="form-editar" method="POST" enctype="multipart/form-data">
                 <input type="text" name="pk_producto" id="pk_producto" value="{{datos[0]}}" hidden>
+                <input type="text" value="{{datos[1]}}" name="nombreProducto" id="nombreProducto" style="background-color: red; margin-top: 25%;" hidden>
+                <div class="col-sm-12 pt-5">
+                    <h1>Editar Producto</h1>
+                </div>
                 <div class="col-sm-12">
                     <label for="nombreProducto" class="label-input">
                         <br>
                         <span>Nombre del producto</span>
                         <br>
-                        <input type="text" value="{{datos[1]}}" name="nombreProducto" id="nombreProducto" readonly>
+                        <input type="text" name="nombreProductoRespaldo" id="nombreProductoRespaldo" disabled>
                     </label>
                 </div>
                 <div class="col-sm-12">
@@ -151,6 +156,15 @@
         </div>
         {% endfor %}
     </div>
+    <script>
+        $(document).ready(function() {
+            let nombreProducto = document.getElementById('nombreProducto').value;
+            let nombreProductoRespaldo = document.getElementById('nombreProductoRespaldo')
+            nombreProductoRespaldo.value = nombreProducto
+            nombreProducto.style = 'disabled'
+        });
+        
+    </script> 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"

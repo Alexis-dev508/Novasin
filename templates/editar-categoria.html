@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../static/css/contacto.css">
     <link rel="stylesheet" href="../static/css/navbar.css">
     <link rel="stylesheet" href="../static/css/editar-categoria.css">
+    <link rel="stylesheet" href="../static/libraries/bootstrap-icons/font/bootstrap-icons.css">
     <title>Editar Categoria</title>
 </head>
 
@@ -33,13 +34,16 @@
         <div class="row mx-auto">
             <form action="/actualizar-categoria" class="form-editar" method="POST" enctype="multipart/form-data">
                 <input type="text" name="pk_categoria" id="pk_categoria" value="{{datos[0]}}" hidden>
-                <input type="text"  name="nombreCategoriaRespaldo" id="nombreCategoriaRespaldo" hidden>
+                <input type="text"  name="nombreCategoria" id="nombreCategoria"  value='{{datos[1]}}' hidden style="background-color: red; margin-top:25%;">
+                <div class="col-sm-12 pt-5">
+                    <h1>Editar Categoria</h1>
+                </div>
                 <div class="col-sm-12">
                     <label for="nombreCategoria"  class="label-input">
                         <br>
                         <span>Nombre de la categoria</span>
                         <br>
-                        <input type="text" name="nombreCategoria" id="nombreCategoria" value='{{datos[1]}}' disabled required>
+                        <input type="text" name="nombreCategoriaRespaldo" id="nombreCategoriaRespaldo" disabled required>
                     </label>
                 </div>
                 <div class="col-sm-12">
@@ -103,6 +107,15 @@
         </div>
         {% endfor %}
     </div>
+    <script>
+        $(document).ready(() => {
+            nombreCategoriaRespaldo = document.getElementById('nombreCategoriaRespaldo');
+            nombreCategoria = document.getElementById('nombreCategoria').value;
+            nombreCategoriaRespaldo.value = nombreCategoria
+        });
+     
+
+    </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -127,7 +140,7 @@
         });
         
     </script> 
-        </script>
+ 
     {% endblock %}
 
 </body>
