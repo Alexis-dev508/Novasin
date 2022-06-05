@@ -49,8 +49,8 @@
           <tr>
             <td>{{datos[0]}}</td>
             <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
-            <td>{{datos[2]}}</td>
-            <td><img style="width: 7rem; height: 7rem;" src="/home/alexisdev508/Novasin/static/images/categorias/{{datos[1].strip().replace(' ', '-')}}/{{datos[3]}}"
+            <td class="overflowedContainerTd" ><div class="overflowedContainer">{{datos[2]}}</div> </td>
+            <td><img style="width: 7rem; height: 7rem;" src="{{rutaCategorias}}{{datos[1].strip().replace(' ', '-')}}/{{datos[3]}}"
                 alt=""> </td>
             <td>
               <a href="/editar-categoria/{{datos[0]}}"><i class="bi bi-pencil-fill"
@@ -88,9 +88,9 @@
           <tr>
             <td>{{datos[0]}}</td>
             <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
-            <td>{{datos[2]}}</td>
+            <td class="overflowedContainerTd"><div class="overflowedContainer">{{datos[2]}}</div></td>
             <td>{{datos[3]}}</td>
-            <td><img style="width: 7rem; height: 7rem;" src="/home/alexisdev508/Novasin/static/images/productos/{{datos[1].strip().replace(' ', '-')}}/{{datos[5]}}"
+            <td><img style="width: 7rem; height: 7rem;" src="{{rutaProductos}}{{datos[1].strip().replace(' ', '-')}}/{{datos[5]}}"
                 alt=""> </td>
             <td>
               <a href="/editar-producto/{{datos[0]}}"><i class="bi bi-pencil-fill"
@@ -223,7 +223,7 @@
                 
                       <td>{{datos[1]}}</td> <!-- Asigna el nombre de la imagen y la muestra-->
 
-                      <td><img style="width: 7rem; height: 7rem;" src="/home/alexisdev508/Novasin/static/images/galeria/{{datos[2]}}"
+                      <td><img style="width: 7rem; height: 7rem;" src="{{rutaGaleria}}{{datos[2]}}"
                           alt=""> </td>
                       <td>
                         <!--Envia el id de la personas a la ruta de editar-->

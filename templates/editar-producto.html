@@ -34,7 +34,8 @@
         <div class="row mx-auto">
             <form action="/actualizar-producto" class="form-editar" method="POST" enctype="multipart/form-data">
                 <input type="text" name="pk_producto" id="pk_producto" value="{{datos[0]}}" hidden>
-                <input type="text" value="{{datos[1]}}" name="nombreProducto" id="nombreProducto" style="background-color: red; margin-top: 25%;" hidden>
+                <input type="text" value="{{datos[1]}}" name="nombreProducto" id="nombreProducto"
+                    style="background-color: red; margin-top: 25%;" hidden>
                 <div class="col-sm-12 pt-5">
                     <h1>Editar Producto</h1>
                 </div>
@@ -51,7 +52,7 @@
                         <br>
                         <span>Descripcion del producto</span>
                         <br>
-                        <textarea name="descripcionProducto" id="descripcionProducto"> {{datos[2]}}</textarea>
+                        <textarea style="width: 100%; height: 15rem" name="descripcionProducto" id="descripcionProducto"> {{datos[2]}}</textarea>
                     </label>
                 </div>
                 <div class="col-sm-12">
@@ -59,89 +60,113 @@
                         <br>
                         <span>Precio del producto</span>
                         <br>
-                        <input type="text" value="{{datos[3]}}" name="precioProducto" placeholder="Ej. $100 por metro cuadrado" id="precioProducto">
+                        <input type="text" value="{{datos[3]}}" name="precioProducto"
+                            placeholder="Ej. $100 por metro cuadrado" id="precioProducto">
                     </label>
                 </div>
                 <div class="col-sm-12">
                     <label for="select-categoria" class="label-input">
                         <br>
                         <span>Categoria del producto</span>
-                        <select name="select-categoria"  class="label-input" style="width: 40%; font-weight: normal;" id="select-categoria">
+                        <select name="select-categoria" class="label-input" style="width: 40%; font-weight: normal;"
+                            id="select-categoria">
                             {% for categoria in categorias %}
-                              <option value="{{categoria[0]}}">{{categoria[1]}}</option>
+                            <option value="{{categoria[0]}}">{{categoria[1]}}</option>
                             {% endfor %}
-                          </select>
+                        </select>
                     </label>
                 </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen1" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen1" id="imagen1"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen2" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen2" id="imagen2"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen3" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen3" id="imagen3"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen4" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen4" id="imagen4"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen5" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen5" id="imagen5"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen6" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen6" id="imagen6"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen7" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen7" id="imagen7"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen8" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen8" id="imagen8"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen9" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen9" id="imagen9"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
-                </div>
-                <div class="col custom-input-file" style="background-color: gold;">
-                    <label for="imagen10" class="label-input">
-                        <span>Subir una imagen</span>
-                        <input type="file" name="imagen10" id="imagen10"
-                            accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required>
-                    </label>
+                <div class="imageContainer">
+                    <div class="imageElement ">
+                        <label for="imagen1">
+                            <a onclick="mostrarFile('imagen1')"><img src="../static/icono-imagen-golden.png" id="imgImagen1"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen1" id="imagen1"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen1')">
+                        </label>
+                    </div>
+                    <div class="imageElement ">
+                        <label for="imagen2">
+                            <a onclick="mostrarFile('imagen2')"><img src="../static/icono-imagen.png" id="imgImagen2"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen2" id="imagen2"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen2')">
+                        </label>
+                    </div>
+                    <div class="imageElement ">
+                        <label for="imagen3">
+                            <a onclick="mostrarFile('imagen3')"><img src="../static/icono-imagen.png" id="imgImagen3"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen3" id="imagen3"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen3')">
+                        </label>
+                    </div>
+                    <div class="imageElement ">
+                        <label for="imagen4">
+                            <a onclick="mostrarFile('imagen4')"><img src="../static/icono-imagen.png" id="imgImagen4"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen4" id="imagen4"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen4')">
+                        </label>
+                    </div>
+                    <div class="imageElement ">
+                        <label for="imagen5">
+                            <a onclick="mostrarFile('imagen5')"><img src="../static/icono-imagen.png" id="imgImagen5"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen5" id="imagen5"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen5')">
+                        </label>
+                    </div>
+                    <div class="imageElement">
+                        <label for="imagen6">
+                            <a onclick="mostrarFile('imagen6')"><img src="../static/icono-imagen.png" id="imgImagen6"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen6" id="imagen6"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen6')">
+                        </label>
+                    </div>
+                    <div class="imageElement ">
+                        <label for="imagen7">
+                            <a onclick="mostrarFile('imagen7')"><img src="../static/icono-imagen.png" id="imgImagen7"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen7" id="imagen7"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen7')">
+                        </label>
+                    </div>
+                    <div class="imageElement ">
+                        <label for="imagen8">
+                            <a onclick="mostrarFile('imagen8')"><img src="../static/icono-imagen.png" id="imgImagen8"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen8" id="imagen8"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen8')">
+                        </label>
+                    </div>
+                    <div class="imageElement ">
+                        <label for="imagen9">
+                            <a onclick="mostrarFile('imagen9')"><img src="../static/icono-imagen.png" id="imgImagen9"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen9" id="imagen9"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen9')">
+                        </label>
+                    </div>
+                    <div class="imageElement ">
+                        <label for="imagen10">
+                            <a onclick="mostrarFile('imagen10')"><img src="../static/icono-imagen.png" id="imgImagen10"
+                                    alt="Cargar una imagen" class="icono-imagen"></a>
+                            <input type="file" hidden name="imagen10" id="imagen10"
+                                accept=".jpg,.png,jpeg,.bmp,.BMP,.gif,.GIF,.TIF,.tif" required
+                                onchange="vista_preeliminar(event, 'imgImagen10')">
+                        </label>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -149,7 +174,8 @@
                         <input type="submit" class="btn btn-primary" value="Guardar" style="width: 100%; height: 3rem;">
                     </div>
                     <div class="col-sm-12">
-                        <a href="/admin"><button type="button" class="btn btn-secondary" style="width: 100%; height: 3rem;">Cancelar</button></a>
+                        <a href="/admin"><button type="button" class="btn btn-secondary"
+                                style="width: 100%; height: 3rem;">Cancelar</button></a>
                     </div>
                 </div>
             </form>
@@ -157,14 +183,30 @@
         {% endfor %}
     </div>
     <script>
-        $(document).ready(function() {
+        let vista_preeliminar = (event, fileImg) => {
+            let leer_img = new FileReader();
+            let id_img = document.getElementById(fileImg);
+
+            leer_img.onload = () => {
+                if (leer_img.readyState == 2) {
+                    id_img.src = leer_img.result;
+                }
+            }
+            leer_img.readAsDataURL(event.target.files[0]);
+        }
+        function mostrarFile(fileId) {
+            $(`#${fileId}`).triggerHandler('click');
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
             let nombreProducto = document.getElementById('nombreProducto').value;
             let nombreProductoRespaldo = document.getElementById('nombreProductoRespaldo')
             nombreProductoRespaldo.value = nombreProducto
             nombreProducto.style = 'disabled'
         });
-        
-    </script> 
+
+    </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -189,7 +231,7 @@
         });
 
     </script>
-    </script>
+
     {% endblock %}
 
 </body>

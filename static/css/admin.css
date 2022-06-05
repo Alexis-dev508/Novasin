@@ -5,6 +5,18 @@ form{
 label{
     width: 100%;
 }
+.overflowedContainer{
+    overflow: scroll;
+    max-width: 30rem;
+    max-height: 20rem;
+}
+.overflowedContainerTd{
+    max-width: 30rem;
+    max-height: 20rem;
+}
+.imagenPrincipal{
+   border: 10px solid gold;
+}
 .col-sm-3 label{
     width: 10%;
 }

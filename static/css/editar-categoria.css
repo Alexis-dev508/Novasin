@@ -10,6 +10,19 @@
     font-weight: bold;
     font-size: 1.8rem;
 }
+.imageContainer{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    text-align: center;
+    margin-top: 5rem;
+    justify-content: space-around;
+    gap: -5rem;
+    
+}
+.imageElement img{
+    max-width: 10rem;
+    max-height: 10rem;
+}
 span{
     padding: 2rem;
 }
